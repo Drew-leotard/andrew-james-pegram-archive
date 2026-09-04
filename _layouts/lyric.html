@@ -1,0 +1,102 @@
+---
+layout: default
+---
+
+<style>
+  body {
+    margin: 0;
+    background: #000;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  header {
+    padding: 32px 5vw;
+    font-size: 14px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  header a {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  main {
+    max-width: 720px;
+    margin: 12vh auto;
+    padding: 0 30px;
+  }
+
+  .date {
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+  }
+
+  h1 {
+    font-size: clamp(40px, 7vw, 80px);
+    line-height: 0.95;
+    font-weight: 400;
+    margin: 0 0 20px;
+    text-transform: uppercase;
+  }
+
+  .artist {
+    font-size: 18px;
+    font-style: italic;
+    margin-bottom: 70px;
+  }
+
+  .lyrics {
+    font-size: 18px;
+    line-height: 1.8;
+    white-space: pre-line;
+  }
+
+  footer {
+    margin-top: 120px;
+    padding-top: 30px;
+    border-top: 1px solid #333;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  a {
+    color: inherit;
+  }
+</style>
+
+<header>
+  <a href="{{ '/' | relative_url }}">
+    Andrew James Pegram
+  </a>
+</header>
+
+<main>
+
+  <div class="date">
+    {{ page.date | date: "%d %B %Y" }}
+  </div>
+
+  <h1>{{ page.title }}</h1>
+
+  {% if page.artist %}
+  <div class="artist">
+    {{ page.artist }}
+  </div>
+  {% endif %}
+
+  <div class="lyrics">
+    {{ content }}
+  </div>
+
+  <footer>
+    <a href="{{ '/lyrics/' | relative_url }}">← All lyrics</a>
+  </footer>
+
+</main>
