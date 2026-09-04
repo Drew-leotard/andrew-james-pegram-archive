@@ -1,0 +1,21 @@
+---
+layout: default
+---
+
+<h1>Releases</h1>
+
+{% for release in site.releases reversed %}
+  <article>
+    <p>{{ release.date | date: "%d %B %Y" }}</p>
+
+    <h2>
+      <a href="{{ release.url | relative_url }}">
+        {{ release.artist }} — {{ release.title }}
+      </a>
+    </h2>
+
+    {% if release.format %}
+      <p>{{ release.format }}</p>
+    {% endif %}
+  </article>
+{% endfor %}
