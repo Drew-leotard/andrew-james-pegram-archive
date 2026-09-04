@@ -6,9 +6,19 @@ collections:
     output: true
     permalink: /news/:name/
 
+  releases:
+    output: true
+    permalink: /releases/:name/
+
 defaults:
   - scope:
       path: ""
       type: "stories"
     values:
       layout: "story"
+
+  - scope:
+      path: ""
+      type: "releases"
+    values:
+      layout: "release"
