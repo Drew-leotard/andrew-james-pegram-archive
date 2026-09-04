@@ -1,0 +1,121 @@
+---
+layout: default
+title: Video
+---
+
+<style>
+  body {
+    margin: 0;
+    background: #000;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  header {
+    padding: 32px 5vw;
+    font-size: 14px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  main {
+    max-width: 1100px;
+    margin: 12vh auto;
+    padding: 0 5vw;
+  }
+
+  .section-title {
+    font-size: clamp(48px, 10vw, 120px);
+    line-height: 0.9;
+    font-weight: 400;
+    text-transform: uppercase;
+    margin: 0 0 15vh;
+  }
+
+  .video-entry {
+    margin-bottom: 14vh;
+  }
+
+  .video-date {
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+
+  .video-title {
+    font-size: clamp(32px, 5vw, 64px);
+    line-height: 0.95;
+    font-weight: 400;
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  .video-title a:hover {
+    opacity: 0.55;
+  }
+
+  .video-description {
+    max-width: 600px;
+    margin-top: 20px;
+    font-size: 18px;
+    line-height: 1.5;
+  }
+
+  footer {
+    margin-top: 15vh;
+    padding: 30px 0 60px;
+    border-top: 1px solid #333;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+</style>
+
+<header>
+  <a href="{{ '/' | relative_url }}">
+    Andrew James Pegram
+  </a>
+</header>
+
+<main>
+
+  <h1 class="section-title">Video</h1>
+
+  {% assign videos = site.video | sort: "date" | reverse %}
+
+  {% for video in videos %}
+
+  <article class="video-entry">
+
+    <div class="video-date">
+      {{ video.date | date: "%d %B %Y" }}
+    </div>
+
+    <h2 class="video-title">
+      <a href="{{ video.url | relative_url }}">
+        {{ video.title }}
+      </a>
+    </h2>
+
+    {% if video.description %}
+    <div class="video-description">
+      {{ video.description }}
+    </div>
+    {% endif %}
+
+  </article>
+
+  {% endfor %}
+
+  <footer>
+    <a href="{{ '/' | relative_url }}">← Andrew James Pegram</a>
+  </footer>
+
+</main>
