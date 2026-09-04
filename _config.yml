@@ -19,6 +19,10 @@ collections:
     output: true
     permalink: /tour-dates/:name/
 
+  video:
+    output: true
+    permalink: /video/:name/
+
 defaults:
   - scope:
       path: ""
@@ -44,3 +48,8 @@ defaults:
     values:
       layout: "tour-date"
 
+  - scope:
+      path: ""
+      type: "video"
+    values:
+      layout: "video"
