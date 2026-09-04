@@ -134,21 +134,12 @@ layout: default
     </div>
   {% endif %}
 
-  <div class="release-meta">
-
-    {% if page.format %}
-    <p><strong>Format:</strong> {{ page.format }}</p>
-    {% endif %}
-
-    {% if page.isrc %}
-    <p><strong>ISRC:</strong> {{ page.isrc }}</p>
-    {% endif %}
-
-    {% if page.credits %}
-    <p><strong>Credits:</strong> {{ page.credits }}</p>
-    {% endif %}
-
-  </div>
+<div class="release-meta">
+{% if page.format %}<p><strong>Format:</strong> {{ page.format }}</p>{% endif %}
+{% if page.isrc %}<p><strong>ISRC:</strong> {{ page.isrc }}</p>{% endif %}
+{% if page.credits %}<p><strong>Credits:</strong> {{ page.credits }}</p>{% endif %}
+<p><strong>Lyrics:</strong> <a href="{{ '/lyrics/stole-you-from-the-underworld/' | relative_url }}">Stole You From The Underworld</a></p>
+</div>
 
   <article>
     {{ content }}
