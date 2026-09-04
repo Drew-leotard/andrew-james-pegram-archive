@@ -1,4 +1,5 @@
 ---
+layout: release
 title: "Stole You From The Underworld"
 artist: "Genuflector"
 date: 2026-09-01
