@@ -1,0 +1,14 @@
+title: "Andrew James Pegram"
+description: "Stories, releases, lyrics, live, video and images."
+
+collections:
+  stories:
+    output: true
+    permalink: /news/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: "stories"
+    values:
+      layout: "story"
