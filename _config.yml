@@ -10,6 +10,10 @@ collections:
     output: true
     permalink: /releases/:name/
 
+  lyrics:
+    output: true
+    permalink: /lyrics/:name/
+
 defaults:
   - scope:
       path: ""
@@ -22,3 +26,9 @@ defaults:
       type: "releases"
     values:
       layout: "release"
+
+  - scope:
+      path: ""
+      type: "lyrics"
+    values:
+      layout: "lyric"
