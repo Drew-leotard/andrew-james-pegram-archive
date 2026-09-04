@@ -2,32 +2,160 @@
 layout: default
 ---
 
-<p><a href="{{ '/releases/' | relative_url }}">← All releases</a></p>
+<style>
+  body {
+    margin: 0;
+    background: #000;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+  }
 
-<p>{{ page.date | date: "%d %B %Y" }}</p>
+  header {
+    padding: 32px 5vw;
+    font-size: 14px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
 
-<h1>{{ page.title }}</h1>
+  header a {
+    color: #fff;
+    text-decoration: none;
+  }
 
-{% if page.artist %}
-<p>{{ page.artist }}</p>
-{% endif %}
+  main {
+    max-width: 720px;
+    margin: 12vh auto;
+    padding: 0 30px;
+  }
 
-{% if page.artwork %}
-<img src="{{ page.artwork | relative_url }}" alt="{{ page.title }} artwork">
-{% endif %}
+  .date {
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+  }
 
-{% if page.format %}
-<p><strong>Format:</strong> {{ page.format }}</p>
-{% endif %}
+  h1 {
+    font-size: clamp(40px, 7vw, 80px);
+    line-height: 0.95;
+    font-weight: 400;
+    margin: 0 0 20px;
+    text-transform: uppercase;
+  }
 
-{% if page.isrc %}
-<p><strong>ISRC:</strong> {{ page.isrc }}</p>
-{% endif %}
+  .artist {
+    font-size: 18px;
+    font-style: italic;
+    margin-bottom: 60px;
+  }
 
-{% if page.credits %}
-<p><strong>Credits:</strong> {{ page.credits }}</p>
-{% endif %}
+  .release-meta {
+    font-size: 16px;
+    margin-bottom: 60px;
+  }
 
-{{ content }}
+  .release-meta p {
+    margin: 0 0 12px;
+  }
 
-<p><a href="{{ '/releases/' | relative_url }}">← All releases</a></p>
+  article {
+    font-size: 18px;
+  }
+
+  article p {
+    margin: 0 0 28px;
+  }
+
+  .artwork-placeholder {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border: 1px solid #333;
+    margin-bottom: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #777;
+  }
+
+  .artwork {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 60px;
+  }
+
+  footer {
+    margin-top: 120px;
+    padding-top: 30px;
+    border-top: 1px solid #333;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  a {
+    color: inherit;
+  }
+</style>
+
+<header>
+  <a href="{{ '/' | relative_url }}">
+    Andrew James Pegram
+  </a>
+</header>
+
+<main>
+
+  <div class="date">
+    {{ page.date | date: "%d %B %Y" }}
+  </div>
+
+  <h1>{{ page.title }}</h1>
+
+  {% if page.artist %}
+  <div class="artist">
+    {{ page.artist }}
+  </div>
+  {% endif %}
+
+  {% if page.artwork %}
+    <img
+      class="artwork"
+      src="{{ page.artwork | relative_url }}"
+      alt="{{ page.title }} artwork">
+  {% else %}
+    <div class="artwork-placeholder">
+      Artwork to follow
+    </div>
+  {% endif %}
+
+  <div class="release-meta">
+
+    {% if page.format %}
+    <p><strong>Format:</strong> {{ page.format }}</p>
+    {% endif %}
+
+    {% if page.isrc %}
+    <p><strong>ISRC:</strong> {{ page.isrc }}</p>
+    {% endif %}
+
+    {% if page.credits %}
+    <p><strong>Credits:</strong> {{ page.credits }}</p>
+    {% endif %}
+
+  </div>
+
+  <article>
+    {{ content }}
+  </article>
+
+  <footer>
+    <a href="{{ '/releases/' | relative_url }}">← All releases</a>
+  </footer>
+
+</main>
