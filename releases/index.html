@@ -39,18 +39,18 @@ main {
   margin: 0 0 15vh;
 }
 
-.release {
+.story {
   margin-bottom: 14vh;
 }
 
-.release-date {
+.story-date {
   font-size: 12px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   margin-bottom: 18px;
 }
 
-.release-title {
+.story-title {
   font-size: clamp(32px, 5vw, 64px);
   line-height: 0.95;
   font-weight: 400;
@@ -58,11 +58,11 @@ main {
   margin: 0;
 }
 
-.release-title a:hover {
+.story-title a:hover {
   opacity: 0.55;
 }
 
-.release-format {
+.story-description {
   max-width: 600px;
   margin-top: 20px;
   font-size: 18px;
@@ -96,24 +96,30 @@ Andrew James Pegram
 
 {% for release in releases %}
 
-<article class="release">
+<article class="story">
 
-<div class="release-date">
+<div class="story-date">
+
 {{ release.date | date: "%d %B %Y" }}
+
 </div>
 
-<h2 class="release-title">
+<h2 class="story-title">
 
 <a href="{{ release.url | relative_url }}">
+
 {{ release.artist }} — {{ release.title }}
+
 </a>
 
 </h2>
 
 {% if release.format %}
 
-<div class="release-format">
+<div class="story-description">
+
 {{ release.format }}
+
 </div>
 
 {% endif %}
