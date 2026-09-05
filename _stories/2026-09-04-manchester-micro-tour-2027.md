@@ -6,6 +6,8 @@ categories:
   - stories
   - manchester
   - live
+description: "Hometown Manchester live dates announced"
+tour_dates_url: "/tour-dates/manchester-micro-tour-2027/"
 ---
 
 Hometown Manchester live dates announced
