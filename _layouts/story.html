@@ -6,63 +6,82 @@
 
   <title>{{ page.title }} — {{ site.title }}</title>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&display=swap" rel="stylesheet">
+
   <style>
+    :root {
+      --gold: #9E7C02C9;
+      --black: #000000;
+      --white: #ffffff;
+    }
+
     body {
       margin: 0;
-      background: #000;
-      color: #fff;
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 15px;
-      line-height: 1.6;
+      background: var(--white);
+      color: var(--black);
+      font-family: "Hedvig Letters Serif", Georgia, serif;
+      font-size: 16px;
+      line-height: 1.7;
     }
 
     header {
-      padding: 28px 5vw;
-      font-size: 12px;
-      letter-spacing: 0.14em;
+      padding: 32px 5vw;
+      font-family: "Hedvig Letters Serif", Georgia, serif;
+      font-size: 14px;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      border-bottom: 1px solid #222;
+      color: var(--gold);
+      border-bottom: 1px solid var(--gold);
     }
 
     header a {
-      color: #fff;
+      color: var(--gold);
       text-decoration: none;
     }
 
     main {
       max-width: 900px;
-      margin: 9vh auto 12vh;
+      margin: 10vh auto 12vh;
       padding: 0 5vw;
     }
 
     .date {
-      font-size: 11px;
-      letter-spacing: 0.14em;
+      font-family: "Hedvig Letters Serif", Georgia, serif;
+      font-size: 12px;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      margin-bottom: 28px;
-      opacity: 0.65;
+      color: var(--gold);
+      margin-bottom: 32px;
     }
 
     h1 {
+      font-family: "Hedvig Letters Serif", Georgia, serif;
       font-size: clamp(42px, 7vw, 86px);
       line-height: 0.95;
       font-weight: 400;
       letter-spacing: -0.025em;
-      margin: 0 0 24px;
+      color: var(--black);
+      margin: 0 0 28px;
       text-transform: uppercase;
     }
 
     .subtitle {
-      font-size: 17px;
+      font-family: "Hedvig Letters Serif", Georgia, serif;
+      font-size: 18px;
       line-height: 1.5;
-      margin-bottom: 70px;
+      color: var(--gold);
+      margin-bottom: 75px;
       max-width: 650px;
     }
 
     article {
       max-width: 680px;
-      font-size: 17px;
+      font-family: "Hedvig Letters Serif", Georgia, serif;
+      font-size: 18px;
       line-height: 1.7;
+      color: var(--black);
     }
 
     article h1 {
@@ -70,6 +89,7 @@
       line-height: 1;
       margin-top: 60px;
       margin-bottom: 30px;
+      color: var(--black);
     }
 
     article h2 {
@@ -80,6 +100,7 @@
       text-transform: uppercase;
       margin-top: 70px;
       margin-bottom: 30px;
+      color: var(--gold);
     }
 
     article p {
@@ -92,45 +113,45 @@
 
     .story-actions {
       display: flex;
-      gap: 36px;
+      gap: 40px;
       margin-top: 55px;
       margin-bottom: 70px;
       padding-top: 25px;
-      border-top: 1px solid #222;
-      font-size: 12px;
-      letter-spacing: 0.14em;
+      border-top: 1px solid var(--gold);
+      font-size: 13px;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
     }
 
     .story-actions a {
-      color: #fff;
+      color: var(--gold);
       text-decoration: none;
     }
 
     .story-actions a:hover {
-      opacity: 0.5;
+      color: var(--black);
     }
 
     footer {
       margin-top: 100px;
       padding-top: 25px;
-      border-top: 1px solid #222;
-      font-size: 11px;
+      border-top: 1px solid var(--gold);
+      font-size: 12px;
       text-transform: uppercase;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.12em;
     }
 
     footer a {
-      color: #fff;
+      color: var(--gold);
       text-decoration: none;
     }
 
     footer a:hover {
-      opacity: 0.5;
+      color: var(--black);
     }
 
     a {
-      color: inherit;
+      color: var(--gold);
     }
 
     @media (max-width: 600px) {
@@ -154,7 +175,7 @@
       }
 
       article {
-        font-size: 16px;
+        font-size: 17px;
       }
 
       .story-actions {
