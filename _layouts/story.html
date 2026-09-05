@@ -68,6 +68,21 @@
       margin: 0 0 28px;
     }
 
+    .ticket-link {
+      display: inline-block;
+      margin-top: 20px;
+      margin-bottom: 40px;
+      font-size: 14px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .ticket-link:hover {
+      opacity: 0.55;
+    }
+
     footer {
       margin-top: 120px;
       padding-top: 30px;
@@ -106,6 +121,16 @@
   <article>
     {{ content }}
   </article>
+
+  {% if page.ticket_url %}
+  <a
+    class="ticket-link"
+    href="{{ page.ticket_url }}"
+    target="_blank"
+    rel="noopener">
+    Get Tickets →
+  </a>
+  {% endif %}
 
   <footer>
     <a href="{{ '/news/' | relative_url }}">← All stories</a>
