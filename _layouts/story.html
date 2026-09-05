@@ -68,18 +68,22 @@
       margin: 0 0 28px;
     }
 
-    .ticket-link {
-      display: inline-block;
-      margin-top: 20px;
+    .story-actions {
+      display: flex;
+      gap: 40px;
+      margin-top: 40px;
       margin-bottom: 40px;
       font-size: 14px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
+    }
+
+    .story-actions a {
       color: #fff;
       text-decoration: none;
     }
 
-    .ticket-link:hover {
+    .story-actions a:hover {
       opacity: 0.55;
     }
 
@@ -122,14 +126,22 @@
     {{ content }}
   </article>
 
-  {% if page.ticket_url %}
-  <a
-    class="ticket-link"
-    href="{{ page.ticket_url }}"
-    target="_blank"
-    rel="noopener">
-    Get Tickets →
-  </a>
+  {% if page.tour_dates_url or page.ticket_url %}
+  <div class="story-actions">
+
+    {% if page.tour_dates_url %}
+    <a href="{{ page.tour_dates_url | relative_url }}">
+      View Tour Dates →
+    </a>
+    {% endif %}
+
+    {% if page.ticket_url %}
+    <a href="{{ page.ticket_url }}" target="_blank" rel="noopener">
+      Get Tickets →
+    </a>
+    {% endif %}
+
+  </div>
   {% endif %}
 
   <footer>
