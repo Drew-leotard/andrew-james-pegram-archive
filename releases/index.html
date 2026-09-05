@@ -154,8 +154,8 @@ title: Releases
 
   <div class="release-grid">
 
-    {% assign releases = site.releases | sort: "date" | reverse %}
-
+{% assign releases = site.releases | sort: "order" %}
+    
     {% for release in releases %}
 
     <div class="release">
