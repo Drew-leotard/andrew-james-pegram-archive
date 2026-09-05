@@ -12,15 +12,16 @@
       background: #000;
       color: #fff;
       font-family: Arial, Helvetica, sans-serif;
-      font-size: 16px;
+      font-size: 15px;
       line-height: 1.6;
     }
 
     header {
-      padding: 32px 5vw;
-      font-size: 14px;
-      letter-spacing: 0.12em;
+      padding: 28px 5vw;
+      font-size: 12px;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
+      border-bottom: 1px solid #222;
     }
 
     header a {
@@ -29,52 +30,75 @@
     }
 
     main {
-      max-width: 720px;
-      margin: 12vh auto;
-      padding: 0 30px;
+      max-width: 900px;
+      margin: 9vh auto 12vh;
+      padding: 0 5vw;
     }
 
     .date {
-      font-size: 12px;
-      letter-spacing: 0.12em;
+      font-size: 11px;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      margin-bottom: 40px;
+      margin-bottom: 28px;
+      opacity: 0.65;
     }
 
     h1 {
-      font-size: clamp(40px, 7vw, 80px);
+      font-size: clamp(42px, 7vw, 86px);
       line-height: 0.95;
       font-weight: 400;
-      margin: 0 0 20px;
+      letter-spacing: -0.025em;
+      margin: 0 0 24px;
       text-transform: uppercase;
     }
 
     .subtitle {
-      font-size: 18px;
-      font-style: italic;
-      margin-bottom: 80px;
+      font-size: 17px;
+      line-height: 1.5;
+      margin-bottom: 70px;
+      max-width: 650px;
     }
 
     article {
-      font-size: 18px;
+      max-width: 680px;
+      font-size: 17px;
+      line-height: 1.7;
     }
 
     article h1 {
       font-size: 32px;
+      line-height: 1;
       margin-top: 60px;
+      margin-bottom: 30px;
+    }
+
+    article h2 {
+      font-size: 30px;
+      line-height: 1;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      margin-top: 70px;
+      margin-bottom: 30px;
     }
 
     article p {
       margin: 0 0 28px;
     }
 
+    article strong {
+      font-weight: 600;
+    }
+
     .story-actions {
       display: flex;
-      gap: 40px;
-      margin-top: 40px;
-      margin-bottom: 40px;
-      font-size: 14px;
-      letter-spacing: 0.12em;
+      gap: 36px;
+      margin-top: 55px;
+      margin-bottom: 70px;
+      padding-top: 25px;
+      border-top: 1px solid #222;
+      font-size: 12px;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
     }
 
@@ -84,20 +108,59 @@
     }
 
     .story-actions a:hover {
-      opacity: 0.55;
+      opacity: 0.5;
     }
 
     footer {
-      margin-top: 120px;
-      padding-top: 30px;
-      border-top: 1px solid #333;
-      font-size: 12px;
+      margin-top: 100px;
+      padding-top: 25px;
+      border-top: 1px solid #222;
+      font-size: 11px;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.14em;
+    }
+
+    footer a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      opacity: 0.5;
     }
 
     a {
       color: inherit;
+    }
+
+    @media (max-width: 600px) {
+
+      header {
+        padding: 24px 6vw;
+      }
+
+      main {
+        margin-top: 7vh;
+        padding: 0 6vw;
+      }
+
+      h1 {
+        font-size: clamp(38px, 12vw, 60px);
+      }
+
+      .subtitle {
+        font-size: 16px;
+        margin-bottom: 55px;
+      }
+
+      article {
+        font-size: 16px;
+      }
+
+      .story-actions {
+        flex-direction: column;
+        gap: 18px;
+      }
     }
   </style>
 </head>
@@ -145,7 +208,9 @@
   {% endif %}
 
   <footer>
-    <a href="{{ '/news/' | relative_url }}">← All stories</a>
+    <a href="{{ '/news/' | relative_url }}">
+      ← All stories
+    </a>
   </footer>
 
 </main>
