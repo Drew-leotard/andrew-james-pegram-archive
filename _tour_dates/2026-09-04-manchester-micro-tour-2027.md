@@ -1,10 +1,10 @@
 ---
-layout: tour-date
-title: "Manchester Micro Tour 2027"
-date: 2027-01-01
-description: ""
-permalink: /tour-dates/manchester-micro-tour-2027/
+layout: story
+title: "ANNOUNCING | MANCHESTER MICRO TOUR 2027"
+date: 2026-09-04
+description: "Hometown Manchester live dates announced"
 ---
+
 ## Manchester Micro Tour 2027
 
 **May 1, 2027**  
