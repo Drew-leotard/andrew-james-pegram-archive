@@ -4,124 +4,167 @@ title: Lyrics
 ---
 
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&display=swap');
 
-body {
-  margin: 0;
-  background: #000;
-  color: #fff;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 16px;
-}
+  :root {
+    --gold: #9E7C02C9;
+    --black: #000000;
+    --white: #ffffff;
+  }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+  body {
+    margin: 0;
+    background: var(--white);
+    color: var(--black);
+    font-family: "Hedvig Letters Serif", Georgia, serif;
+    font-size: 16px;
+    line-height: 1.7;
+  }
 
-header {
-  padding: 32px 5vw;
-  font-size: 14px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
+  header {
+    padding: 32px 5vw;
+    font-size: 14px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border-bottom: 1px solid var(--gold);
+  }
 
-main {
-  max-width: 1100px;
-  margin: 12vh auto;
-  padding: 0 5vw;
-}
+  header a {
+    color: var(--gold);
+    text-decoration: none;
+  }
 
-.section-title {
-  font-size: clamp(48px, 10vw, 120px);
-  line-height: 0.9;
-  font-weight: 400;
-  text-transform: uppercase;
-  margin: 0 0 15vh;
-}
+  main {
+    max-width: 1100px;
+    margin: 10vh auto 12vh;
+    padding: 0 5vw;
+  }
 
-.story {
-  margin-bottom: 14vh;
-}
+  .section-title {
+    font-size: clamp(48px, 8vw, 100px);
+    line-height: 0.9;
+    font-weight: 400;
+    letter-spacing: -0.025em;
+    color: var(--black);
+    text-transform: uppercase;
+    margin: 0 0 15vh;
+  }
 
-.story-date {
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  margin-bottom: 18px;
-}
+  .story {
+    margin-bottom: 12vh;
+  }
 
-.story-title {
-  font-size: clamp(32px, 5vw, 64px);
-  line-height: 0.95;
-  font-weight: 400;
-  text-transform: uppercase;
-  margin: 0;
-}
+  .story-date {
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 18px;
+  }
 
-.story-title a:hover {
-  opacity: 0.55;
-}
+  .story-title {
+    font-size: clamp(32px, 5vw, 64px);
+    line-height: 0.95;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    margin: 0;
+  }
 
-.story-description {
-  max-width: 600px;
-  margin-top: 20px;
-  font-size: 18px;
-  line-height: 1.5;
-}
+  .story-title a {
+    color: var(--black);
+    text-decoration: none;
+  }
 
-footer {
-  margin-top: 15vh;
-  padding: 30px 0 60px;
-  border-top: 1px solid #333;
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
+  .story-title a:hover {
+    color: var(--gold);
+  }
 
+  footer {
+    margin-top: 15vh;
+    padding: 30px 0 60px;
+    border-top: 1px solid var(--gold);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  footer a {
+    color: var(--gold);
+    text-decoration: none;
+  }
+
+  footer a:hover {
+    color: var(--black);
+  }
+
+  @media (max-width: 600px) {
+
+    header {
+      padding: 24px 6vw;
+    }
+
+    main {
+      margin-top: 7vh;
+      padding: 0 6vw;
+    }
+
+    .section-title {
+      font-size: clamp(42px, 12vw, 60px);
+      margin-bottom: 10vh;
+    }
+
+    .story {
+      margin-bottom: 10vh;
+    }
+
+    .story-title {
+      font-size: clamp(30px, 9vw, 48px);
+    }
+  }
 </style>
 
 <header>
 
-<a href="{{ '/' | relative_url }}">
-Andrew James Pegram
-</a>
+  <a href="{{ '/' | relative_url }}">
+    Andrew James Pegram
+  </a>
 
 </header>
 
 <main>
 
-<h1 class="section-title">Lyrics</h1>
+  <h1 class="section-title">Lyrics</h1>
 
-{% assign lyrics = site.lyrics | sort: "date" | reverse %}
+  {% assign lyrics = site.lyrics | sort: "date" | reverse %}
 
-{% for lyric in lyrics %}
+  {% for lyric in lyrics %}
 
-<article class="story">
+  <article class="story">
 
-<div class="story-date">
+    <div class="story-date">
+      {{ lyric.date | date: "%d %B %Y" }}
+    </div>
 
-{{ lyric.date | date: "%d %B %Y" }}
+    <h2 class="story-title">
 
-</div>
+      <a href="{{ lyric.url | relative_url }}">
+        {{ lyric.artist }} — {{ lyric.title }}
+      </a>
 
-<h2 class="story-title">
+    </h2>
 
-<a href="{{ lyric.url | relative_url }}">
+  </article>
 
-{{ lyric.artist }} — {{ lyric.title }}
+  {% endfor %}
 
-</a>
+  <footer>
 
-</h2>
+    <a href="{{ '/' | relative_url }}">
+      ← Andrew James Pegram
+    </a>
 
-</article>
-
-{% endfor %}
-
-<footer>
-
-<a href="{{ '/' | relative_url }}">← Andrew James Pegram</a>
-
-</footer>
+  </footer>
 
 </main>
