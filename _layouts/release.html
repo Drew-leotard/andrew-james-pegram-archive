@@ -51,23 +51,6 @@ layout: default
     margin-bottom: 60px;
   }
 
-  .release-meta {
-    font-size: 16px;
-    margin-bottom: 60px;
-  }
-
-  .release-meta p {
-    margin: 0 0 12px;
-  }
-
-  article {
-    font-size: 18px;
-  }
-
-  article p {
-    margin: 0 0 28px;
-  }
-
   .artwork-placeholder {
     width: 100%;
     aspect-ratio: 1 / 1;
@@ -87,6 +70,41 @@ layout: default
     height: auto;
     display: block;
     margin-bottom: 60px;
+  }
+
+  .release-actions {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 60px;
+    font-size: 14px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .release-actions a {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .release-actions a:hover {
+    opacity: 0.55;
+  }
+
+  .release-meta {
+    font-size: 16px;
+    margin-bottom: 60px;
+  }
+
+  .release-meta p {
+    margin: 0 0 12px;
+  }
+
+  article {
+    font-size: 18px;
+  }
+
+  article p {
+    margin: 0 0 28px;
   }
 
   footer {
@@ -124,22 +142,43 @@ layout: default
   {% endif %}
 
   {% if page.artwork %}
-    <img
-      class="artwork"
-      src="{{ page.artwork | relative_url }}"
-      alt="{{ page.title }} artwork">
+  <img
+    class="artwork"
+    src="{{ page.artwork | relative_url }}"
+    alt="{{ page.title }} artwork">
   {% else %}
-    <div class="artwork-placeholder">
-      Artwork to follow
-    </div>
+  <div class="artwork-placeholder">
+    Artwork to follow
+  </div>
   {% endif %}
 
-<div class="release-meta">
-{% if page.format %}<p><strong>Format:</strong> {{ page.format }}</p>{% endif %}
-{% if page.isrc %}<p><strong>ISRC:</strong> {{ page.isrc }}</p>{% endif %}
-{% if page.credits %}<p><strong>Credits:</strong> {{ page.credits }}</p>{% endif %}
-<p><strong>Lyrics:</strong> <a href="{{ '/lyrics/stole-you-from-the-underworld/' | relative_url }}">Stole You From The Underworld</a></p>
-</div>
+  <div class="release-actions">
+    <a href="https://example.com" target="_blank" rel="noopener">Listen</a>
+    <a href="https://example.com" target="_blank" rel="noopener">Buy</a>
+  </div>
+
+  <div class="release-meta">
+
+    {% if page.format %}
+    <p><strong>Format:</strong> {{ page.format }}</p>
+    {% endif %}
+
+    {% if page.isrc %}
+    <p><strong>ISRC:</strong> {{ page.isrc }}</p>
+    {% endif %}
+
+    {% if page.credits %}
+    <p><strong>Credits:</strong> {{ page.credits }}</p>
+    {% endif %}
+
+    <p>
+      <strong>Lyrics:</strong>
+      <a href="{{ '/lyrics/stole-you-from-the-underworld/' | relative_url }}">
+        Stole You From The Underworld
+      </a>
+    </p>
+
+  </div>
 
   <article>
     {{ content }}
