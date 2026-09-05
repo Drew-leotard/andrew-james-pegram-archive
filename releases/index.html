@@ -4,134 +4,203 @@ title: Releases
 ---
 
 <style>
+  body {
+    margin: 0;
+    background: #000;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+  }
 
-body {
-  margin: 0;
-  background: #000;
-  color: #fff;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 16px;
-}
+  header {
+    padding: 32px 5vw;
+    font-size: 14px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+  header a {
+    color: #fff;
+    text-decoration: none;
+  }
 
-header {
-  padding: 32px 5vw;
-  font-size: 14px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
+  main {
+    max-width: 1400px;
+    margin: 10vh auto;
+    padding: 0 5vw;
+  }
 
-main {
-  max-width: 1100px;
-  margin: 12vh auto;
-  padding: 0 5vw;
-}
+  h1 {
+    font-size: clamp(48px, 8vw, 100px);
+    line-height: 0.9;
+    font-weight: 400;
+    margin: 0 0 80px;
+    text-transform: uppercase;
+  }
 
-.section-title {
-  font-size: clamp(48px, 10vw, 120px);
-  line-height: 0.9;
-  font-weight: 400;
-  text-transform: uppercase;
-  margin: 0 0 15vh;
-}
+  .release-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 70px 40px;
+  }
 
-.story {
-  margin-bottom: 14vh;
-}
+  .release {
+    min-width: 0;
+  }
 
-.story-date {
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  margin-bottom: 18px;
-}
+  .artwork-placeholder {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border: 1px solid #333;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #777;
+  }
 
-.story-title {
-  font-size: clamp(32px, 5vw, 64px);
-  line-height: 0.95;
-  font-weight: 400;
-  text-transform: uppercase;
-  margin: 0;
-}
+  .artwork {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    display: block;
+    margin-bottom: 20px;
+  }
 
-.story-title a:hover {
-  opacity: 0.55;
-}
+  .release-title {
+    font-size: 20px;
+    line-height: 1.1;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
 
-.story-description {
-  max-width: 600px;
-  margin-top: 20px;
-  font-size: 18px;
-  line-height: 1.5;
-}
+  .release-title a {
+    color: #fff;
+    text-decoration: none;
+  }
 
-footer {
-  margin-top: 15vh;
-  padding: 30px 0 60px;
-  border-top: 1px solid #333;
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
+  .release-title a:hover {
+    opacity: 0.55;
+  }
 
+  .release-artist {
+    font-size: 16px;
+    font-style: italic;
+    margin-bottom: 18px;
+  }
+
+  .release-actions {
+    display: flex;
+    gap: 30px;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .release-actions a {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .release-actions a:hover {
+    opacity: 0.55;
+  }
+
+  footer {
+    margin-top: 120px;
+    padding-top: 30px;
+    border-top: 1px solid #333;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  footer a {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  @media (max-width: 900px) {
+    .release-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .release-grid {
+      grid-template-columns: 1fr;
+      gap: 60px;
+    }
+
+    main {
+      margin-top: 8vh;
+    }
+  }
 </style>
 
 <header>
-
-<a href="{{ '/' | relative_url }}">
-Andrew James Pegram
-</a>
-
+  <a href="{{ '/' | relative_url }}">
+    Andrew James Pegram
+  </a>
 </header>
 
 <main>
 
-<h1 class="section-title">Releases</h1>
+  <h1>Releases</h1>
 
-{% assign releases = site.releases | sort: "date" | reverse %}
+  <div class="release-grid">
 
-{% for release in releases %}
+    {% assign releases = site.releases | sort: "date" | reverse %}
 
-<article class="story">
+    {% for release in releases %}
 
-<div class="story-date">
+    <div class="release">
 
-{{ release.date | date: "%d %B %Y" }}
+      {% if release.artwork %}
+      <img
+        class="artwork"
+        src="{{ release.artwork | relative_url }}"
+        alt="{{ release.title }} artwork">
+      {% else %}
+      <div class="artwork-placeholder">
+        Image
+      </div>
+      {% endif %}
 
-</div>
+      <div class="release-title">
+        <a href="{{ release.url | relative_url }}">
+          {{ release.title }}
+        </a>
+      </div>
 
-<h2 class="story-title">
+      {% if release.artist %}
+      <div class="release-artist">
+        {{ release.artist }}
+      </div>
+      {% endif %}
 
-<a href="{{ release.url | relative_url }}">
+      <div class="release-actions">
+        <a href="https://example.com" target="_blank" rel="noopener">
+          Listen
+        </a>
 
-{{ release.artist }} — {{ release.title }}
+        <a href="https://example.com" target="_blank" rel="noopener">
+          Buy
+        </a>
+      </div>
 
-</a>
+    </div>
 
-</h2>
+    {% endfor %}
 
-{% if release.format %}
+  </div>
 
-<div class="story-description">
-
-{{ release.format }}
-
-</div>
-
-{% endif %}
-
-</article>
-
-{% endfor %}
-
-<footer>
-
-<a href="{{ '/' | relative_url }}">← Andrew James Pegram</a>
-
-</footer>
+  <footer>
+    <a href="{{ '/' | relative_url }}">← Home</a>
+  </footer>
 
 </main>
