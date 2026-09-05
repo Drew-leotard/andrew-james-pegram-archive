@@ -4,13 +4,21 @@ title: Releases
 ---
 
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&display=swap');
+
+  :root {
+    --gold: #9E7C02C9;
+    --black: #000000;
+    --white: #ffffff;
+  }
+
   body {
     margin: 0;
-    background: #000;
-    color: #fff;
-    font-family: Arial, Helvetica, sans-serif;
+    background: var(--white);
+    color: var(--black);
+    font-family: "Hedvig Letters Serif", Georgia, serif;
     font-size: 16px;
-    line-height: 1.6;
+    line-height: 1.7;
   }
 
   header {
@@ -18,16 +26,18 @@ title: Releases
     font-size: 14px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
+    color: var(--gold);
+    border-bottom: 1px solid var(--gold);
   }
 
   header a {
-    color: #fff;
+    color: var(--gold);
     text-decoration: none;
   }
 
   main {
     max-width: 1400px;
-    margin: 10vh auto;
+    margin: 10vh auto 12vh;
     padding: 0 5vw;
   }
 
@@ -35,6 +45,8 @@ title: Releases
     font-size: clamp(48px, 8vw, 100px);
     line-height: 0.9;
     font-weight: 400;
+    letter-spacing: -0.025em;
+    color: var(--black);
     margin: 0 0 80px;
     text-transform: uppercase;
   }
@@ -52,7 +64,7 @@ title: Releases
   .artwork-placeholder {
     width: 100%;
     aspect-ratio: 1 / 1;
-    border: 1px solid #333;
+    border: 1px solid var(--gold);
     margin-bottom: 20px;
     display: flex;
     align-items: center;
@@ -60,7 +72,7 @@ title: Releases
     font-size: 12px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: #777;
+    color: var(--gold);
   }
 
   .artwork {
@@ -79,17 +91,17 @@ title: Releases
   }
 
   .release-title a {
-    color: #fff;
+    color: var(--black);
     text-decoration: none;
   }
 
   .release-title a:hover {
-    opacity: 0.55;
+    color: var(--gold);
   }
 
   .release-artist {
     font-size: 16px;
-    font-style: italic;
+    color: var(--gold);
     margin-bottom: 18px;
   }
 
@@ -102,26 +114,30 @@ title: Releases
   }
 
   .release-actions a {
-    color: #fff;
+    color: var(--gold);
     text-decoration: none;
   }
 
   .release-actions a:hover {
-    opacity: 0.55;
+    color: var(--black);
   }
 
   footer {
     margin-top: 120px;
-    padding-top: 30px;
-    border-top: 1px solid #333;
+    padding-top: 25px;
+    border-top: 1px solid var(--gold);
     font-size: 12px;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
   }
 
   footer a {
-    color: #fff;
+    color: var(--gold);
     text-decoration: none;
+  }
+
+  footer a:hover {
+    color: var(--black);
   }
 
   @media (max-width: 900px) {
@@ -131,13 +147,27 @@ title: Releases
   }
 
   @media (max-width: 600px) {
+
+    header {
+      padding: 24px 6vw;
+    }
+
+    main {
+      margin-top: 7vh;
+      padding: 0 6vw;
+    }
+
+    h1 {
+      font-size: clamp(42px, 12vw, 60px);
+    }
+
     .release-grid {
       grid-template-columns: 1fr;
       gap: 60px;
     }
 
-    main {
-      margin-top: 8vh;
+    .release-title {
+      font-size: 19px;
     }
   }
 </style>
@@ -154,8 +184,8 @@ title: Releases
 
   <div class="release-grid">
 
-{% assign releases = site.releases | sort: "order" %}
-    
+    {% assign releases = site.releases | sort: "order" %}
+
     {% for release in releases %}
 
     <div class="release">
@@ -184,6 +214,7 @@ title: Releases
       {% endif %}
 
       <div class="release-actions">
+
         <a href="https://example.com" target="_blank" rel="noopener">
           Listen
         </a>
@@ -191,6 +222,7 @@ title: Releases
         <a href="https://example.com" target="_blank" rel="noopener">
           Buy
         </a>
+
       </div>
 
     </div>
