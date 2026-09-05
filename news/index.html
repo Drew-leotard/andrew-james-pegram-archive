@@ -42,26 +42,28 @@ title: News
     padding: 0 5vw;
   }
 
- .section-title {
-  display: inline-block;
+.section-title {
+  display: block;
+  width: fit-content;
+  margin: 0 auto 10vh;
+
   font-family: "IM Fell English", Georgia, serif;
   font-size: 32px;
-    line-height: 1;
-    font-weight: 400;
-    letter-spacing: 0;
-    text-transform: uppercase;
-    margin: 0 0 10vh;
+  line-height: 1;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: uppercase;
 
-    background: linear-gradient(
-      90deg,
-      var(--gold) 0%,
-      var(--green) 100%
-    );
+  background: linear-gradient(
+    90deg,
+    var(--gold) 0%,
+    var(--green) 100%
+  );
 
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
 
   .story {
     margin-bottom: 9vh;
