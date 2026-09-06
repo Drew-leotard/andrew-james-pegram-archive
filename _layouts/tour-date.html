@@ -86,28 +86,23 @@ layout: default
   .tour-date-title {
     margin: 0 0 18px;
 
-    font-family: "IM Fell English", Georgia, serif;
-    font-size: 34px;
+    font-family: "Hedvig Letters Serif", Georgia, serif;
+    font-size: 30px;
     line-height: 1.15;
     font-weight: 400;
-    text-transform: uppercase;
-
-    background: linear-gradient(
-      90deg,
-      var(--gold) 0%,
-      var(--green) 100%
-    );
-
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--black);
+    text-align: left;
+    text-transform: none;
   }
 
   .tour-date-date {
     margin-bottom: 35px;
 
-    font-size: 14px;
-    line-height: 1.4;
+    font-family: "Hedvig Letters Serif", Georgia, serif;
+    font-size: 12px;
+    line-height: 1.5;
+    font-weight: 400;
+    color: var(--gold);
   }
 
   .tour-date-divider {
@@ -122,23 +117,32 @@ layout: default
     );
   }
 
+  /* --------------------------------------------------
+     CONTENT
+  -------------------------------------------------- */
+
   .tour-date-content {
-    font-size: 16px;
+    font-family: "Hedvig Letters Serif", Georgia, serif;
+    font-size: 12px;
     line-height: 1.7;
+    font-weight: 400;
+    color: var(--black);
   }
 
   .tour-date-content p {
-    margin: 0 0 30px;
+    margin: 0 0 28px;
+    font-weight: 400;
   }
 
   .tour-date-content h2 {
-    margin: 50px 0 30px;
+    margin: 48px 0 28px;
 
     font-family: "IM Fell English", Georgia, serif;
-    font-size: 26px;
+    font-size: 24px;
     line-height: 1.2;
     font-weight: 400;
     text-transform: uppercase;
+    text-align: left;
 
     background: linear-gradient(
       90deg,
@@ -172,7 +176,7 @@ layout: default
     margin-top: 55px;
     padding-top: 25px;
 
-    border-top: 1px solid #9E7C02C9;
+    border-top: 1px solid var(--gold);
 
     display: flex;
     align-items: center;
@@ -180,10 +184,10 @@ layout: default
   }
 
   .tour-date-share-label {
-    font-family: "IM Fell English", Georgia, serif;
-    font-size: 15px;
-    text-transform: uppercase;
-    color: #777777;
+    font-family: "Hedvig Letters Serif", Georgia, serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--gold);
     margin-right: 8px;
   }
 
@@ -195,10 +199,11 @@ layout: default
     width: 34px;
     height: 34px;
 
-    border: 1px solid #111111;
+    border: 1px solid var(--gold);
     border-radius: 50%;
 
-    color: #111111;
+    color: var(--gold);
+    background: transparent;
     text-decoration: none;
 
     font-family: Arial, sans-serif;
@@ -208,7 +213,7 @@ layout: default
 
   .tour-date-share a:hover {
     color: #ffffff;
-    background: #111111;
+    background: var(--gold);
   }
 
   /* --------------------------------------------------
@@ -223,7 +228,8 @@ layout: default
   .tour-date-footer a {
     font-family: "Hedvig Letters Serif", Georgia, serif;
     font-size: 15px;
-    color: #111111;
+    font-weight: 400;
+    color: var(--black);
     text-decoration: none;
   }
 
@@ -261,16 +267,20 @@ layout: default
     }
 
     .tour-date-title {
-      font-size: 28px;
+      font-size: 27px;
+    }
+
+    .tour-date-date {
+      font-size: 12px;
     }
 
     .tour-date-content {
-      font-size: 16px;
-      line-height: 1.65;
+      font-size: 12px;
+      line-height: 1.7;
     }
 
     .tour-date-content h2 {
-      font-size: 23px;
+      font-size: 22px;
     }
 
     .tour-date-share {
