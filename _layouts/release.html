@@ -50,9 +50,7 @@
       padding: 0 5vw;
     }
 
-    /* --------------------------------
-       RELEASE HEADER
-       -------------------------------- */
+    /* RELEASE HEADER */
 
     .release-header {
       display: grid;
@@ -122,9 +120,7 @@
       margin: 0 0 25px;
     }
 
-    /* --------------------------------
-       ACTIONS
-       -------------------------------- */
+    /* LISTEN / BUY */
 
     .release-actions {
       display: flex;
@@ -138,18 +134,13 @@
       font-size: 13px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      border-bottom: 1px solid var(--gold);
-      padding-bottom: 4px;
     }
 
     .release-actions a:hover {
       color: var(--black);
-      border-color: var(--black);
     }
 
-    /* --------------------------------
-       DESCRIPTION
-       -------------------------------- */
+    /* DESCRIPTION */
 
     .release-description {
       max-width: 650px;
@@ -163,9 +154,7 @@
       margin: 0 0 20px;
     }
 
-    /* --------------------------------
-       TRACKLIST
-       -------------------------------- */
+    /* TRACKLIST */
 
     .tracklist-box {
       border: 1px solid var(--gold);
@@ -204,7 +193,9 @@
       gap: 10px;
       padding: 8px 0;
       border-bottom: 1px solid rgba(158, 124, 2, 0.35);
+      font-family: "Hedvig Letters Serif", Georgia, serif;
       font-size: 14px;
+      color: var(--black);
     }
 
     .tracklist li:last-child {
@@ -215,23 +206,11 @@
       color: var(--gold);
     }
 
-    .lyrics-link {
-      display: inline-block;
-      margin-top: 25px;
-      color: var(--gold);
-      text-decoration: none;
-      font-size: 12px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
-    .lyrics-link:hover {
+    .track-title {
       color: var(--black);
     }
 
-    /* --------------------------------
-       GALLERY
-       -------------------------------- */
+    /* GALLERY */
 
     .gallery-section {
       margin-bottom: 80px;
@@ -250,24 +229,7 @@
       display: block;
     }
 
-    .gallery-placeholder {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      border: 1px solid var(--gold);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-sizing: border-box;
-      color: var(--gold);
-      font-size: 11px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      text-align: center;
-    }
-
-    /* --------------------------------
-       METADATA
-       -------------------------------- */
+    /* METADATA */
 
     .release-meta {
       padding-top: 25px;
@@ -284,9 +246,7 @@
       letter-spacing: 0.08em;
     }
 
-    /* --------------------------------
-       FOOTER
-       -------------------------------- */
+    /* FOOTER */
 
     footer {
       padding-top: 25px;
@@ -305,9 +265,7 @@
       color: var(--black);
     }
 
-    /* --------------------------------
-       MOBILE
-       -------------------------------- */
+    /* MOBILE */
 
     @media (max-width: 600px) {
 
@@ -412,7 +370,7 @@
 
   <!-- LISTEN / BUY -->
 
-  {% if page.listen_url or page.buy_url or page.lyrics_url %}
+  {% if page.listen_url or page.buy_url %}
     <nav class="release-actions">
 
       {% if page.listen_url %}
@@ -424,12 +382,6 @@
       {% if page.buy_url %}
         <a href="{{ page.buy_url }}" target="_blank" rel="noopener">
           Buy
-        </a>
-      {% endif %}
-
-      {% if page.lyrics_url %}
-        <a href="{{ page.lyrics_url | relative_url }}">
-          Lyrics
         </a>
       {% endif %}
 
@@ -461,25 +413,13 @@
               {{ forloop.index | prepend: "0" | slice: -2, 2 }}
             </span>
 
-            <span>
-              {% if track.lyrics_url %}
-                <a href="{{ track.lyrics_url | relative_url }}">
-                  {{ track.title }}
-                </a>
-              {% else %}
-                {{ track.title }}
-              {% endif %}
+            <span class="track-title">
+              {{ track.title }}
             </span>
           </li>
         {% endfor %}
 
       </ol>
-
-      {% if page.lyrics_url %}
-        <a class="lyrics-link" href="{{ page.lyrics_url | relative_url }}">
-          View all lyrics →
-        </a>
-      {% endif %}
 
     </section>
   {% endif %}
