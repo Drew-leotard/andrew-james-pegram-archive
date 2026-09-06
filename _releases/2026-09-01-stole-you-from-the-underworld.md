@@ -18,13 +18,10 @@ lyrics_url: "/lyrics/stole-you-from-the-underworld/"
 
 tracklist:
   - title: "Track One"
-    lyrics_url: "/lyrics/track-one/"
   - title: "Track Two"
-    lyrics_url: "/lyrics/track-two/"
   - title: "Track Three"
-    lyrics_url: "/lyrics/track-three/"
 
-gallery_title: "Making Of"
+gallery_title: "Stole You From The Underworld Images"
 
 gallery:
   - url: "/assets/images/releases/stole-you-from-the-underworld-01.jpg"
