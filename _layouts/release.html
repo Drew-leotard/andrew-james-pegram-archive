@@ -55,7 +55,7 @@
       display: grid;
       grid-template-columns: 500px 1fr;
       gap: 55px;
-      align-items: start;
+      align-items: center;
       margin-bottom: 35px;
     }
 
@@ -85,7 +85,8 @@
     /* RELEASE INFORMATION */
 
     .release-heading {
-      padding-top: 5px;
+      padding: 0 15px;
+      text-align: center;
     }
 
     .release-artist {
@@ -115,20 +116,13 @@
       text-transform: uppercase;
     }
 
-    /* DIVIDER */
-
-    .release-divider {
-      border: 0;
-      border-top: 1px solid var(--line);
-      margin: 35px 0 25px;
-    }
-
     /* LISTEN / BUY */
 
     .release-actions {
       display: flex;
+      justify-content: center;
       gap: 28px;
-      margin-bottom: 55px;
+      margin-top: 28px;
     }
 
     .release-actions a {
@@ -141,6 +135,14 @@
 
     .release-actions a:hover {
       color: var(--black);
+    }
+
+    /* DIVIDER */
+
+    .release-divider {
+      border: 0;
+      border-top: 1px solid var(--line);
+      margin: 35px 0 55px;
     }
 
     /* DESCRIPTION */
@@ -284,6 +286,7 @@
       .release-header {
         grid-template-columns: 1fr;
         gap: 30px;
+        align-items: start;
       }
 
       .release-art {
@@ -299,7 +302,7 @@
       }
 
       .release-heading {
-        padding-top: 0;
+        padding: 0;
       }
 
       h1 {
@@ -317,7 +320,11 @@
 
       .release-actions {
         gap: 22px;
-        margin-bottom: 45px;
+        margin-top: 22px;
+      }
+
+      .release-divider {
+        margin: 35px 0 45px;
       }
 
       .release-description {
@@ -375,31 +382,29 @@
         {{ page.date | date: "%Y" }}
       </div>
 
+      {% if page.listen_url or page.buy_url %}
+        <nav class="release-actions">
+
+          {% if page.listen_url %}
+            <a href="{{ page.listen_url }}" target="_blank" rel="noopener">
+              Listen
+            </a>
+          {% endif %}
+
+          {% if page.buy_url %}
+            <a href="{{ page.buy_url }}" target="_blank" rel="noopener">
+              Buy
+            </a>
+          {% endif %}
+
+        </nav>
+      {% endif %}
+
     </div>
 
   </section>
 
   <hr class="release-divider">
-
-  <!-- LISTEN / BUY -->
-
-  {% if page.listen_url or page.buy_url %}
-    <nav class="release-actions">
-
-      {% if page.listen_url %}
-        <a href="{{ page.listen_url }}" target="_blank" rel="noopener">
-          Listen
-        </a>
-      {% endif %}
-
-      {% if page.buy_url %}
-        <a href="{{ page.buy_url }}" target="_blank" rel="noopener">
-          Buy
-        </a>
-      {% endif %}
-
-    </nav>
-  {% endif %}
 
   <!-- DESCRIPTION -->
 
