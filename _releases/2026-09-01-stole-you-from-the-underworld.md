@@ -34,5 +34,4 @@ gallery:
   - url: "/assets/images/releases/stole-you-from-the-underworld-03.jpg"
     alt: "Recording session"
 ---
-```yaml
 
