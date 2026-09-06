@@ -18,6 +18,7 @@
       --black: #000000;
       --white: #ffffff;
       --line: #9E7C02C9;
+      --view-all: #2E2E2E61;
     }
 
     body {
@@ -167,13 +168,23 @@
       margin-bottom: 75px;
     }
 
+    .tracklist-heading {
+      position: relative;
+      min-height: 32px;
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
     .section-heading {
-      margin: 0 0 28px;
+      margin: 0;
       font-family: "IM Fell English", Georgia, serif;
       font-size: 25px;
       line-height: 1;
       font-weight: 400;
       text-transform: uppercase;
+      text-align: center;
 
       background: linear-gradient(
         90deg,
@@ -184,6 +195,26 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+    }
+
+    .view-all {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+
+      color: var(--view-all);
+      font-family: "DATATYPE", Arial, sans-serif;
+      font-size: 1px;
+      line-height: 1;
+      font-weight: 400;
+      letter-spacing: 0;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    .view-all:hover {
+      color: var(--black);
     }
 
     .tracklist {
@@ -341,6 +372,18 @@
         padding: 22px 20px 25px;
       }
 
+      .tracklist-heading {
+        min-height: 28px;
+      }
+
+      .section-heading {
+        font-size: 22px;
+      }
+
+      .view-all {
+        right: 0;
+      }
+
       .gallery {
         grid-template-columns: repeat(2, 1fr);
       }
@@ -421,9 +464,20 @@
   {% if page.tracklist %}
     <section class="tracklist-box">
 
-      <h2 class="section-heading">
-        Tracklist & Lyrics
-      </h2>
+      <div class="tracklist-heading">
+
+        <h2 class="section-heading">
+          Tracklist & Lyrics
+        </h2>
+
+    <a
+  class="view-all"
+  href="{{ '/lyrics/' | relative_url }}"
+>
+  View All
+</a>
+
+      </div>
 
       <ol class="tracklist">
 
@@ -448,7 +502,7 @@
     <section class="gallery-section">
 
       <h2 class="section-heading">
-        {{ page.gallery_title | default: "Making Of" }}
+        {{ page.gallery_title | default: "Gallery" }}
       </h2>
 
       <div class="gallery">
