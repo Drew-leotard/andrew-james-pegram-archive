@@ -470,6 +470,8 @@
 
   <section class="release-header">
 
+  <div class="release-left">
+
     {% if page.cover_image %}
       <img
         class="release-art"
@@ -482,44 +484,73 @@
       </div>
     {% endif %}
 
-    <div class="release-heading">
+    {% if page.format or page.isrc or page.credits %}
+      <section class="release-meta">
 
-      <h1>
-        {{ page.title }}
-      </h1>
+        {% if page.format %}
+          <div>
+            <strong>Format</strong><br>
+            {{ page.format }}
+          </div>
+        {% endif %}
 
-      <p class="release-artist">
-        {{ page.artist }}
-      </p>
+        {% if page.isrc %}
+          <div>
+            <strong>ISRC</strong><br>
+            {{ page.isrc }}
+          </div>
+        {% endif %}
 
-      <div class="release-year">
-        {{ page.date | date: "%Y" }}
-      </div>
+        {% if page.credits %}
+          <div>
+            <strong>Credits</strong><br>
+            {{ page.credits }}
+          </div>
+        {% endif %}
 
-      <div class="release-title-divider"></div>
+      </section>
+    {% endif %}
 
-      {% if page.listen_url or page.buy_url %}
-        <nav class="release-actions">
+  </div>
 
-          {% if page.listen_url %}
-            <a href="{{ page.listen_url }}" target="_blank" rel="noopener">
-              Listen
-            </a>
-          {% endif %}
+  <div class="release-heading">
 
-          {% if page.buy_url %}
-            <a href="{{ page.buy_url }}" target="_blank" rel="noopener">
-              Buy
-            </a>
-          {% endif %}
+    <h1>
+      {{ page.title }}
+    </h1>
 
-        </nav>
-      {% endif %}
+    <p class="release-artist">
+      {{ page.artist }}
+    </p>
 
+    <div class="release-year">
+      {{ page.date | date: "%Y" }}
     </div>
 
-  </section>
+    <div class="release-title-divider"></div>
 
+    {% if page.listen_url or page.buy_url %}
+      <nav class="release-actions">
+
+        {% if page.listen_url %}
+          <a href="{{ page.listen_url }}" target="_blank" rel="noopener">
+            Listen
+          </a>
+        {% endif %}
+
+        {% if page.buy_url %}
+          <a href="{{ page.buy_url }}" target="_blank" rel="noopener">
+            Buy
+          </a>
+        {% endif %}
+
+      </nav>
+    {% endif %}
+
+  </div>
+
+</section>
+  
   <hr class="release-divider">
 
   {% if content %}
