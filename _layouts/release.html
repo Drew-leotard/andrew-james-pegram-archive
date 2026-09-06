@@ -59,8 +59,6 @@
       margin-bottom: 35px;
     }
 
-    /* RELEASE ARTWORK */
-
     .release-art {
       width: 500px;
       height: 500px;
@@ -82,19 +80,9 @@
       text-align: center;
     }
 
-    /* RELEASE INFORMATION */
-
     .release-heading {
       padding: 0 15px;
       text-align: center;
-    }
-
-    .release-artist {
-      margin: 0 0 14px;
-      color: var(--gold);
-      font-size: 13px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
     }
 
     h1 {
@@ -108,6 +96,14 @@
       text-transform: uppercase;
     }
 
+    .release-artist {
+      margin: 14px 0 0;
+      color: var(--gold);
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
     .release-year {
       margin-top: 22px;
       color: var(--gold);
@@ -115,8 +111,6 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
     }
-
-    /* LISTEN / BUY */
 
     .release-actions {
       display: flex;
@@ -136,8 +130,6 @@
     .release-actions a:hover {
       color: var(--black);
     }
-
-    /* DIVIDER */
 
     .release-divider {
       border: 0;
@@ -303,6 +295,7 @@
 
       .release-heading {
         padding: 0;
+        text-align: center;
       }
 
       h1 {
@@ -352,8 +345,6 @@
 
 <main>
 
-  <!-- RELEASE HEADER -->
-
   <section class="release-header">
 
     {% if page.cover_image %}
@@ -370,13 +361,13 @@
 
     <div class="release-heading">
 
-      <p class="release-artist">
-        {{ page.artist }}
-      </p>
-
       <h1>
         {{ page.title }}
       </h1>
+
+      <p class="release-artist">
+        {{ page.artist }}
+      </p>
 
       <div class="release-year">
         {{ page.date | date: "%Y" }}
@@ -406,15 +397,11 @@
 
   <hr class="release-divider">
 
-  <!-- DESCRIPTION -->
-
   {% if content %}
     <section class="release-description">
       {{ content }}
     </section>
   {% endif %}
-
-  <!-- TRACKLIST -->
 
   {% if page.tracklist %}
     <section class="tracklist-box">
@@ -442,8 +429,6 @@
     </section>
   {% endif %}
 
-  <!-- MAKING / RECORDING GALLERY -->
-
   {% if page.gallery %}
     <section class="gallery-section">
 
@@ -464,8 +449,6 @@
 
     </section>
   {% endif %}
-
-  <!-- METADATA -->
 
   {% if page.format or page.isrc or page.credits %}
     <section class="release-meta">
@@ -504,4 +487,3 @@
 
 </body>
 </html>
-```
