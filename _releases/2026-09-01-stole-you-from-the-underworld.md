@@ -9,7 +9,7 @@ format: "Digital / Vinyl"
 isrc: "XXXX"
 credits: "NAME / NAME / NAME"
 
-cover_image: "/assets/images/releases/stole-you-from-the-underworld.jpg"
+cover_image: "/assets/images/releases/stole-you-from-the-underworld-cover.png"
 
 listen_url: ""
 buy_url: ""
