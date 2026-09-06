@@ -112,6 +112,14 @@
       text-transform: uppercase;
     }
 
+    .release-title-divider {
+      width: 100%;
+      max-width: 420px;
+      height: 1px;
+      background: var(--gold);
+      margin: 24px auto 0;
+    }
+
     .release-actions {
       display: flex;
       justify-content: center;
@@ -311,6 +319,11 @@
         font-size: 11px;
       }
 
+      .release-title-divider {
+        max-width: 100%;
+        margin-top: 18px;
+      }
+
       .release-actions {
         gap: 22px;
         margin-top: 22px;
@@ -372,6 +385,8 @@
       <div class="release-year">
         {{ page.date | date: "%Y" }}
       </div>
+
+      <div class="release-title-divider"></div>
 
       {% if page.listen_url or page.buy_url %}
         <nav class="release-actions">
