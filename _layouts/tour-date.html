@@ -16,25 +16,39 @@ layout: default
     font-family: "Hedvig Letters Serif", Georgia, serif;
   }
 
+  /* ==================================================
+     PAGE
+  ================================================== */
+
   .tour-date-page {
     max-width: 1100px;
     margin: 0 auto;
     padding: 60px 30px 100px;
   }
 
-  /* --------------------------------------------------
+
+  /* ==================================================
      SITE HEADER
-  -------------------------------------------------- */
+     Matches the Releases page
+  ================================================== */
+
+  .site-header {
+    width: 100%;
+    margin: 0 0 80px;
+    padding-bottom: 22px;
+
+    border-bottom: 1px solid var(--gold);
+  }
 
   .site-title {
     display: block;
     width: fit-content;
-    margin: 0 0 14vh;
 
     font-family: "Hedvig Letters Serif", Georgia, serif;
     font-size: 30px;
     line-height: 1.1;
     font-weight: 400;
+
     color: var(--gold);
     text-decoration: none;
   }
@@ -43,24 +57,27 @@ layout: default
     text-decoration: none;
   }
 
-  /* --------------------------------------------------
-     MAIN TOUR DATE LAYOUT
-  -------------------------------------------------- */
+
+  /* ==================================================
+     MAIN RELEASE-STYLE LAYOUT
+  ================================================== */
 
   .tour-date-layout {
     display: grid;
-    grid-template-columns: minmax(0, 500px) minmax(0, 1fr);
+    grid-template-columns: 500px minmax(0, 1fr);
     gap: 70px;
     align-items: start;
   }
 
-  /* --------------------------------------------------
+
+  /* ==================================================
      IMAGE
-  -------------------------------------------------- */
+  ================================================== */
 
   .tour-date-image {
-    width: 100%;
-    aspect-ratio: 1 / 1;
+    width: 500px;
+    height: 500px;
+
     background: #f3f3f3;
 
     display: flex;
@@ -68,8 +85,11 @@ layout: default
     justify-content: center;
 
     color: #999999;
+
     font-family: "Hedvig Letters Serif", Georgia, serif;
     font-size: 12px;
+    font-weight: 400;
+
     text-align: center;
   }
 
@@ -77,39 +97,61 @@ layout: default
     padding: 20px;
   }
 
-  /* --------------------------------------------------
-     TEXT COLUMN
-  -------------------------------------------------- */
+
+  /* ==================================================
+     RIGHT-HAND INFORMATION
+  ================================================== */
 
   .tour-date-info {
-    padding-top: 2px;
+    width: 100%;
+    padding-top: 0;
   }
 
+
+  /* ==================================================
+     TITLE
+     Same display scale as Releases
+  ================================================== */
+
   .tour-date-title {
-    margin: 0 0 16px;
+    margin: 0 0 18px;
 
     font-family: "Hedvig Letters Serif", Georgia, serif;
-    font-size: 30px;
+    font-size: 34px;
     line-height: 1.15;
     font-weight: 400;
+
     color: var(--black);
+
     text-align: left;
   }
 
+
+  /* ==================================================
+     DATE
+  ================================================== */
+
   .tour-date-date {
-    margin-bottom: 32px;
+    margin: 0 0 25px;
 
     font-family: "Hedvig Letters Serif", Georgia, serif;
     font-size: 12px;
     line-height: 1.5;
     font-weight: 400;
+
     color: var(--gold);
   }
+
+
+  /* ==================================================
+     DIVIDER
+  ================================================== */
 
   .tour-date-divider {
     width: 100%;
     height: 1px;
-    margin: 0 0 32px;
+
+    margin: 0 0 30px;
 
     background: linear-gradient(
       90deg,
@@ -118,15 +160,18 @@ layout: default
     );
   }
 
-  /* --------------------------------------------------
+
+  /* ==================================================
      CONTENT
-  -------------------------------------------------- */
+     Small restrained article text
+  ================================================== */
 
   .tour-date-content {
     font-family: "Hedvig Letters Serif", Georgia, serif;
     font-size: 12px;
     line-height: 1.65;
     font-weight: 400;
+
     color: var(--black);
   }
 
@@ -135,13 +180,23 @@ layout: default
     font-weight: 400;
   }
 
+  .tour-date-content strong {
+    font-weight: 400;
+  }
+
+
+  /* ==================================================
+     SECTION HEADING
+  ================================================== */
+
   .tour-date-content h2 {
     margin: 45px 0 25px;
 
     font-family: "IM Fell English", Georgia, serif;
-    font-size: 23px;
+    font-size: 24px;
     line-height: 1.2;
     font-weight: 400;
+
     text-transform: uppercase;
     text-align: left;
 
@@ -156,9 +211,10 @@ layout: default
     background-clip: text;
   }
 
-  .tour-date-content strong {
-    font-weight: 400;
-  }
+
+  /* ==================================================
+     LINKS
+  ================================================== */
 
   .tour-date-content a {
     color: var(--green);
@@ -169,9 +225,10 @@ layout: default
     text-decoration: underline;
   }
 
-  /* --------------------------------------------------
+
+  /* ==================================================
      SOCIAL SHARE
-  -------------------------------------------------- */
+  ================================================== */
 
   .tour-date-share {
     margin-top: 50px;
@@ -181,30 +238,36 @@ layout: default
 
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 14px;
   }
 
   .tour-date-share-label {
+    margin-right: 8px;
+
     font-family: "Hedvig Letters Serif", Georgia, serif;
     font-size: 12px;
+    line-height: 1;
     font-weight: 400;
+
     color: var(--gold);
-    margin-right: 6px;
   }
 
   .tour-date-share a {
+    width: 32px;
+    height: 32px;
+
     display: flex;
     align-items: center;
     justify-content: center;
 
-    width: 32px;
-    height: 32px;
+    box-sizing: border-box;
 
     border: 1px solid var(--gold);
     border-radius: 50%;
 
-    color: var(--gold);
     background: transparent;
+
+    color: var(--gold);
     text-decoration: none;
 
     font-family: Arial, sans-serif;
@@ -213,23 +276,27 @@ layout: default
   }
 
   .tour-date-share a:hover {
-    color: #ffffff;
     background: var(--gold);
+    color: #ffffff;
   }
 
-  /* --------------------------------------------------
+
+  /* ==================================================
      FOOTER
-  -------------------------------------------------- */
+  ================================================== */
 
   .tour-date-footer {
-    margin-top: 14vh;
+    margin-top: 100px;
+
     text-align: center;
   }
 
   .tour-date-footer a {
     font-family: "Hedvig Letters Serif", Georgia, serif;
     font-size: 15px;
+    line-height: 1.2;
     font-weight: 400;
+
     color: var(--black);
     text-decoration: none;
   }
@@ -238,9 +305,10 @@ layout: default
     text-decoration: underline;
   }
 
-  /* --------------------------------------------------
+
+  /* ==================================================
      MOBILE
-  -------------------------------------------------- */
+  ================================================== */
 
   @media (max-width: 800px) {
 
@@ -248,9 +316,13 @@ layout: default
       padding: 45px 22px 70px;
     }
 
+    .site-header {
+      margin-bottom: 55px;
+      padding-bottom: 18px;
+    }
+
     .site-title {
       font-size: 25px;
-      margin-bottom: 10vh;
     }
 
     .tour-date-layout {
@@ -259,16 +331,14 @@ layout: default
     }
 
     .tour-date-image {
-      max-width: 500px;
-      margin: 0 auto;
-    }
-
-    .tour-date-info {
-      padding-top: 0;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1 / 1;
     }
 
     .tour-date-title {
-      font-size: 27px;
+      font-size: 30px;
+      line-height: 1.15;
     }
 
     .tour-date-date {
@@ -285,11 +355,11 @@ layout: default
     }
 
     .tour-date-share {
-      margin-top: 45px;
+      margin-top: 42px;
     }
 
     .tour-date-footer {
-      margin-top: 10vh;
+      margin-top: 75px;
     }
   }
 </style>
@@ -297,55 +367,84 @@ layout: default
 
 <main class="tour-date-page">
 
-  <!-- Site header -->
 
-  <a
-    class="site-title"
-    href="https://andrewjamespegram.carrd.co/"
-  >
-    Andrew James Pegram
-  </a>
+  <!-- ==================================================
+       SITE HEADER
+  ================================================== -->
+
+  <header class="site-header">
+
+    <a
+      class="site-title"
+      href="https://andrewjamespegram.carrd.co/"
+    >
+      Andrew James Pegram
+    </a>
+
+  </header>
 
 
-  <!-- Tour date -->
+  <!-- ==================================================
+       TOUR DATE
+  ================================================== -->
 
   <div class="tour-date-layout">
 
-    <!-- Image placeholder -->
+
+    <!-- IMAGE -->
 
     <div class="tour-date-image">
       <span>TOUR IMAGE</span>
     </div>
 
 
-    <!-- Tour information -->
+    <!-- INFORMATION -->
 
     <div class="tour-date-info">
+
+
+      <!-- TITLE -->
 
       <h1 class="tour-date-title">
         {{ page.title }}
       </h1>
 
+
+      <!-- DATE -->
+
       {% if page.date %}
+
         <div class="tour-date-date">
           {{ page.date | date: "%d %B %Y" }}
         </div>
+
       {% endif %}
 
+
+      <!-- DIVIDER -->
+
       <div class="tour-date-divider"></div>
+
+
+      <!-- CONTENT -->
 
       <article class="tour-date-content">
         {{ content }}
       </article>
 
 
-      <!-- Social sharing -->
+      <!-- ==================================================
+           SOCIAL SHARE
+      ================================================== -->
 
       <div class="tour-date-share">
 
         <span class="tour-date-share-label">
           Share
         </span>
+
+
+        <!-- Facebook -->
 
         <a
           href="https://www.facebook.com/sharer/sharer.php?u={{ page.url | absolute_url | url_encode }}"
@@ -357,6 +456,9 @@ layout: default
           f
         </a>
 
+
+        <!-- X -->
+
         <a
           href="https://twitter.com/intent/tweet?url={{ page.url | absolute_url | url_encode }}&text={{ page.title | url_encode }}"
           target="_blank"
@@ -366,6 +468,9 @@ layout: default
         >
           X
         </a>
+
+
+        <!-- WhatsApp -->
 
         <a
           href="https://wa.me/?text={{ page.title | append: ' ' | append: page.url | absolute_url | url_encode }}"
@@ -379,12 +484,15 @@ layout: default
 
       </div>
 
+
     </div>
 
   </div>
 
 
-  <!-- Back -->
+  <!-- ==================================================
+       BACK
+  ================================================== -->
 
   <footer class="tour-date-footer">
 
@@ -393,5 +501,6 @@ layout: default
     </a>
 
   </footer>
+
 
 </main>
