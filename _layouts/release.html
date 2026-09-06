@@ -44,23 +44,33 @@
     }
 
     main {
-      max-width: 900px;
+      max-width: 1100px;
       margin: 9vh auto 12vh;
       padding: 0 5vw;
+    }
+
+    /* RELEASE HEADER */
+
+    .release-header {
+      display: grid;
+      grid-template-columns: 500px 1fr;
+      gap: 55px;
+      align-items: start;
+      margin-bottom: 35px;
     }
 
     /* RELEASE ARTWORK */
 
     .release-art {
-      width: 300px;
-      height: 300px;
+      width: 500px;
+      height: 500px;
       object-fit: cover;
       display: block;
     }
 
     .release-art-placeholder {
-      width: 300px;
-      height: 300px;
+      width: 500px;
+      height: 500px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -72,14 +82,14 @@
       text-align: center;
     }
 
-    /* RELEASE HEADING */
+    /* RELEASE INFORMATION */
 
     .release-heading {
-      margin-top: 35px;
+      padding-top: 5px;
     }
 
     .release-artist {
-      margin: 0 0 12px;
+      margin: 0 0 14px;
       color: var(--gold);
       font-size: 13px;
       letter-spacing: 0.12em;
@@ -90,7 +100,7 @@
       margin: 0;
       color: var(--black);
       font-family: "Hedvig Letters Serif", Georgia, serif;
-      font-size: clamp(32px, 5vw, 52px);
+      font-size: clamp(32px, 4vw, 52px);
       line-height: 0.98;
       font-weight: 400;
       letter-spacing: -0.02em;
@@ -104,6 +114,8 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
     }
+
+    /* DIVIDER */
 
     .release-divider {
       border: 0;
@@ -258,7 +270,7 @@
 
     /* MOBILE */
 
-    @media (max-width: 600px) {
+    @media (max-width: 850px) {
 
       header {
         padding: 22px 6vw;
@@ -269,24 +281,29 @@
         padding: 0 6vw;
       }
 
+      .release-header {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
       .release-art {
-        width: 300px;
-        height: 300px;
+        width: 500px;
+        height: 500px;
         max-width: 100%;
       }
 
       .release-art-placeholder {
-        width: 300px;
-        height: 300px;
+        width: 500px;
+        height: 500px;
         max-width: 100%;
       }
 
       .release-heading {
-        margin-top: 25px;
+        padding-top: 0;
       }
 
       h1 {
-        font-size: clamp(27px, 8vw, 40px);
+        font-size: clamp(30px, 8vw, 44px);
       }
 
       .release-artist {
@@ -328,34 +345,36 @@
 
 <main>
 
-  <!-- RELEASE ARTWORK -->
+  <!-- RELEASE HEADER -->
 
-  {% if page.cover_image %}
-    <img
-      class="release-art"
-      src="{{ page.cover_image | relative_url }}"
-      alt="{{ page.title }}"
-    >
-  {% else %}
-    <div class="release-art-placeholder">
-      Cover artwork
-    </div>
-  {% endif %}
+  <section class="release-header">
 
-  <!-- RELEASE HEADING -->
+    {% if page.cover_image %}
+      <img
+        class="release-art"
+        src="{{ page.cover_image | relative_url }}"
+        alt="{{ page.title }}"
+      >
+    {% else %}
+      <div class="release-art-placeholder">
+        Cover artwork
+      </div>
+    {% endif %}
 
-  <section class="release-heading">
+    <div class="release-heading">
 
-    <p class="release-artist">
-      {{ page.artist }}
-    </p>
+      <p class="release-artist">
+        {{ page.artist }}
+      </p>
 
-    <h1>
-      {{ page.title }}
-    </h1>
+      <h1>
+        {{ page.title }}
+      </h1>
 
-    <div class="release-year">
-      {{ page.date | date: "%Y" }}
+      <div class="release-year">
+        {{ page.date | date: "%Y" }}
+      </div>
+
     </div>
 
   </section>
