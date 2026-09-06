@@ -301,10 +301,6 @@
       padding: 0 1px;
     }
 
-    .gallery-slide.single-image {
-      grid-template-columns: 1fr;
-    }
-
     .gallery-slide img {
       width: 100%;
       aspect-ratio: 1 / 1;
@@ -596,7 +592,7 @@
     </section>
   {% endif %}
 
-  <!-- GALLERY -->
+  <!-- STOLEN YOU FROM THE UNDERWORLD — MAKING OF GALLERY -->
 
   <section class="gallery-section">
 
@@ -608,12 +604,33 @@
 
       <div class="gallery-track" id="galleryTrack">
 
-        <!-- SLIDE 1 — THREE IMAGES -->
+        <!-- SLIDE 1 — IMAGES 1–3 -->
 
         <div class="gallery-slide">
 
           <img
             src="{{ '/assets/images/releases/20241027_123052 smaller.jpg' | relative_url }}"
+            alt="Stole You From The Underworld — Making Of"
+          >
+
+          <img
+            src="{{ '/assets/images/releases/20241027_125232 smaller.jpg' | relative_url }}"
+            alt="Stole You From The Underworld — Making Of"
+          >
+
+          <img
+            src="{{ '/assets/images/releases/20241027_125427 smaller.jpg' | relative_url }}"
+            alt="Stole You From The Underworld — Making Of"
+          >
+
+        </div>
+
+        <!-- SLIDE 2 — IMAGES 4–6 -->
+
+        <div class="gallery-slide">
+
+          <img
+            src="{{ '/assets/images/releases/20241027_153746 smaller.jpg' | relative_url }}"
             alt="Stole You From The Underworld — Making Of"
           >
 
@@ -624,17 +641,6 @@
 
           <img
             src="{{ '/assets/images/releases/20241027_195213.jpg' | relative_url }}"
-            alt="Stole You From The Underworld — Making Of"
-          >
-
-        </div>
-
-        <!-- SLIDE 2 — ONE IMAGE -->
-
-        <div class="gallery-slide single-image">
-
-          <img
-            src="{{ '/assets/images/releases/20241028_133249.jpg' | relative_url }}"
             alt="Stole You From The Underworld — Making Of"
           >
 
@@ -658,7 +664,7 @@
       <button
         class="gallery-dot"
         type="button"
-        aria-label="Show fourth gallery image"
+        aria-label="Show second three gallery images"
         data-slide="1">
       </button>
 
@@ -694,13 +700,15 @@
     });
   }
 
+  /* DOT NAVIGATION */
+
   galleryDots.forEach((dot) => {
     dot.addEventListener("click", () => {
       showSlide(Number(dot.dataset.slide));
     });
   });
 
-  /* TOUCH / SWIPE */
+  /* TOUCH / SWIPE NAVIGATION */
 
   galleryTrack.addEventListener("touchstart", (event) => {
     startX = event.touches[0].clientX;
@@ -737,4 +745,3 @@
 
 </body>
 </html>
-```
