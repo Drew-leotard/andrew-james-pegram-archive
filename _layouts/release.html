@@ -45,33 +45,25 @@
     }
 
     main {
-      max-width: 900px;
+      max-width: 960px;
       margin: 9vh auto 12vh;
       padding: 0 5vw;
     }
 
-    /* RELEASE HEADER */
-
-    .release-header {
-      display: grid;
-      grid-template-columns: 180px 1fr;
-      gap: 45px;
-      align-items: start;
-      margin-bottom: 35px;
-    }
+    /* RELEASE ARTWORK */
 
     .release-art {
-      width: 180px;
-      height: 180px;
-      object-fit: cover;
+      width: 100%;
+      max-width: 960px;
+      height: auto;
       display: block;
-      border: 1px solid var(--gold);
+      object-fit: contain;
     }
 
     .release-art-placeholder {
-      width: 180px;
-      height: 180px;
-      border: 1px solid var(--gold);
+      width: 100%;
+      max-width: 960px;
+      aspect-ratio: 1 / 1;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -83,8 +75,10 @@
       text-align: center;
     }
 
+    /* RELEASE HEADING */
+
     .release-heading {
-      padding-top: 2px;
+      margin-top: 35px;
     }
 
     .release-artist {
@@ -117,7 +111,7 @@
     .release-divider {
       border: 0;
       border-top: 1px solid var(--line);
-      margin: 0 0 25px;
+      margin: 35px 0 25px;
     }
 
     /* LISTEN / BUY */
@@ -278,15 +272,13 @@
         padding: 0 6vw;
       }
 
-      .release-header {
-        grid-template-columns: 110px 1fr;
-        gap: 25px;
+      .release-art {
+        width: 100%;
+        max-width: none;
       }
 
-      .release-art,
-      .release-art-placeholder {
-        width: 110px;
-        height: 110px;
+      .release-heading {
+        margin-top: 25px;
       }
 
       h1 {
@@ -332,36 +324,34 @@
 
 <main>
 
-  <!-- RELEASE HEADER -->
+  <!-- RELEASE ARTWORK -->
 
-  <section class="release-header">
+  {% if page.cover_image %}
+    <img
+      class="release-art"
+      src="{{ page.cover_image | relative_url }}"
+      alt="{{ page.title }}"
+    >
+  {% else %}
+    <div class="release-art-placeholder">
+      Cover artwork
+    </div>
+  {% endif %}
 
-    {% if page.cover_image %}
-      <img
-        class="release-art"
-        src="{{ page.cover_image | relative_url }}"
-        alt="{{ page.title }}"
-      >
-    {% else %}
-      <div class="release-art-placeholder">
-        Cover artwork
-      </div>
-    {% endif %}
+  <!-- RELEASE HEADING -->
 
-    <div class="release-heading">
+  <section class="release-heading">
 
-      <p class="release-artist">
-        {{ page.artist }}
-      </p>
+    <p class="release-artist">
+      {{ page.artist }}
+    </p>
 
-      <h1>
-        {{ page.title }}
-      </h1>
+    <h1>
+      {{ page.title }}
+    </h1>
 
-      <div class="release-year">
-        {{ page.date | date: "%Y" }}
-      </div>
-
+    <div class="release-year">
+      {{ page.date | date: "%Y" }}
     </div>
 
   </section>
