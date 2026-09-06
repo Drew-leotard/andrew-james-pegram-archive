@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -278,17 +279,70 @@
       margin-bottom: 28px;
     }
 
-    .gallery {
+    .gallery-carousel {
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .gallery-track {
+      display: flex;
+      width: 200%;
+      transition: transform 0.65s ease;
+      touch-action: pan-y;
+    }
+
+    .gallery-slide {
+      width: 50%;
+      flex: 0 0 50%;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 12px;
+      box-sizing: border-box;
+      padding: 0 1px;
     }
 
-    .gallery img {
+    .gallery-slide.single-image {
+      grid-template-columns: 1fr;
+    }
+
+    .gallery-slide img {
       width: 100%;
       aspect-ratio: 1 / 1;
       object-fit: cover;
       display: block;
+    }
+
+    /* CAROUSEL DOTS */
+
+    .gallery-dots {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 9px;
+      margin-top: 18px;
+    }
+
+    .gallery-dot {
+      width: 7px;
+      height: 7px;
+      padding: 0;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      background: transparent;
+      cursor: pointer;
+      transition:
+        background 0.25s ease,
+        transform 0.25s ease;
+    }
+
+    .gallery-dot.active {
+      background: var(--gold);
+      transform: scale(1.15);
+    }
+
+    .gallery-dot:hover {
+      background: var(--gold);
     }
 
     /* FOOTER */
@@ -398,8 +452,12 @@
         margin-bottom: 60px;
       }
 
-      .gallery {
-        grid-template-columns: repeat(2, 1fr);
+      .gallery-slide {
+        gap: 8px;
+      }
+
+      .gallery-dots {
+        margin-top: 15px;
       }
     }
   </style>
@@ -539,26 +597,75 @@
     </section>
   {% endif %}
 
-  {% if page.gallery %}
-    <section class="gallery-section">
+  <!-- GALLERY -->
 
-      <h2 class="section-heading">
-        {{ page.gallery_title | default: "Gallery" }}
-      </h2>
+  <section class="gallery-section">
 
-      <div class="gallery">
+    <h2 class="section-heading">
+      {{ page.gallery_title | default: "Making Of" }}
+    </h2>
 
-        {% for image in page.gallery %}
+    <div class="gallery-carousel">
+
+      <div class="gallery-track" id="galleryTrack">
+
+        <!-- SLIDE 1 — THREE IMAGES -->
+
+        <div class="gallery-slide">
+
           <img
-            src="{{ image.url | relative_url }}"
-            alt="{{ image.alt | default: page.title }}"
+            src="{{ '/assets/images/releases/20241027_123052 smaller.jpg' | relative_url }}"
+            alt="Stole You From The Underworld — Making Of"
           >
-        {% endfor %}
+
+          <img
+            src="{{ '/assets/images/releases/20241027_172411_smaller.jpg' | relative_url }}"
+            alt="Stole You From The Underworld — Making Of"
+          >
+
+          <img
+            src="{{ '/assets/images/releases/20241027_195213.jpg' | relative_url }}"
+            alt="Stole You From The Underworld — Making Of"
+          >
+
+        </div>
+
+        <!-- SLIDE 2 — ONE IMAGE -->
+
+        <div class="gallery-slide single-image">
+
+          <img
+            src="{{ '/assets/images/releases/20241028_133249.jpg' | relative_url }}"
+            alt="Stole You From The Underworld — Making Of"
+          >
+
+        </div>
 
       </div>
 
-    </section>
-  {% endif %}
+    </div>
+
+    <!-- TWO NAVIGATION DOTS -->
+
+    <div class="gallery-dots">
+
+      <button
+        class="gallery-dot active"
+        type="button"
+        aria-label="Show first three gallery images"
+        data-slide="0">
+      </button>
+
+      <button
+        class="gallery-dot"
+        type="button"
+        aria-label="Show fourth gallery image"
+        data-slide="1">
+      </button>
+
+    </div>
+
+  </section>
 
   <footer>
     <a href="{{ '/releases/' | relative_url }}">
@@ -568,5 +675,67 @@
 
 </main>
 
+<script>
+  const galleryTrack = document.getElementById("galleryTrack");
+  const galleryDots = document.querySelectorAll(".gallery-dot");
+
+  let currentSlide = 0;
+  let startX = 0;
+  let currentX = 0;
+  let isDragging = false;
+
+  function showSlide(slide) {
+    currentSlide = slide;
+
+    galleryTrack.style.transform =
+      "translateX(-" + (slide * 50) + "%)";
+
+    galleryDots.forEach((dot, index) => {
+      dot.classList.toggle("active", index === slide);
+    });
+  }
+
+  galleryDots.forEach((dot) => {
+    dot.addEventListener("click", () => {
+      showSlide(Number(dot.dataset.slide));
+    });
+  });
+
+  /* TOUCH / SWIPE */
+
+  galleryTrack.addEventListener("touchstart", (event) => {
+    startX = event.touches[0].clientX;
+    currentX = startX;
+    isDragging = true;
+  }, { passive: true });
+
+  galleryTrack.addEventListener("touchmove", (event) => {
+    if (!isDragging) return;
+
+    currentX = event.touches[0].clientX;
+  }, { passive: true });
+
+  galleryTrack.addEventListener("touchend", () => {
+    if (!isDragging) return;
+
+    const difference = startX - currentX;
+
+    if (Math.abs(difference) > 50) {
+
+      if (difference > 0 && currentSlide < galleryDots.length - 1) {
+        showSlide(currentSlide + 1);
+      }
+
+      if (difference < 0 && currentSlide > 0) {
+        showSlide(currentSlide - 1);
+      }
+
+    }
+
+    isDragging = false;
+  });
+</script>
+
 </body>
 </html>
+```
