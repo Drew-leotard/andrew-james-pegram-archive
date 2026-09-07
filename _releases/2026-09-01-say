@@ -1,0 +1,32 @@
+---
+layout: release
+title: "Say"
+artist: "Genuflector"
+date: 2026-09-01
+permalink: /releases/2026-09-01-say/
+order: 4
+format: "Digital / Vinyl"
+isrc: "XXXX"
+credits: "NAME / NAME / NAME"
+
+cover_image: "/assets/images/releases/Screenshot 2026-09-06 at 05-03-39 Instagram smaller.jpg"
+
+listen_url: ""
+buy_url: ""
+
+lyrics_url: "/lyrics/say/"
+
+tracklist:
+  - title: "Say"
+ 
+gallery_title: "Say Images"
+
+gallery:
+  - url: "/assets/images/releases/stole-you-from-the-underworld-01.jpg"
+    alt: "Recording session"
+  - url: "/assets/images/releases/stole-you-from-the-underworld-02.jpg"
+    alt: "Recording session"
+  - url: "/assets/images/releases/stole-you-from-the-underworld-03.jpg"
+    alt: "Recording session"
+---
+
