@@ -17,9 +17,9 @@ buy_url: ""
 lyrics_url: "/lyrics/stole-you-from-the-underworld/"
 
 tracklist:
-  - title: "Track One"
-  - title: "Track Two"
-  - title: "Track Three"
+  - title: "Stole You From The underworld"
+  - title: "Stole You From The underworld (Instrumental)"
+ 
 
 gallery_title: "Stole You From The Underworld Images"
 
