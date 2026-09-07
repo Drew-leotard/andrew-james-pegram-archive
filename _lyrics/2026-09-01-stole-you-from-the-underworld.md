@@ -57,5 +57,5 @@ Listen to
 The ancient mother of old
 Swim to a body
 That you can call home
-Try to save the Soul Devine
+Try to save the Soul Divine
 Swim to the ocean
