@@ -148,12 +148,14 @@ layout: default
     {{ page.date | date: "%d %B %Y" }}
   </div>
 
-  <div class="release-link">
-    <strong>Release:</strong>
-   <a href="{{ '/releases/2026-09-01-stole-you-from-the-underworld/' | relative_url }}">
-      Stole You From The Underworld
-    </a>
-  </div>
+<div class="release-link">
+  <strong>Release:</strong>
+  {% if page.release_url and page.release_title %}
+  <a href="{{ page.release_url | relative_url }}">
+    {{ page.release_title }}
+  </a>
+  {% endif %}
+</div>
 
   <h1>{{ page.title }}</h1>
 
