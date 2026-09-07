@@ -1,490 +1,475 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+---
+layout: default
+---
 
-  <title>{{ page.title }} — {{ site.title }}</title>
+<style>
+  :root {
+    --gold: #9E7C02C9;
+    --green: #174A1CCC;
+    --black: #111111;
+  }
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  body {
+    margin: 0;
+    background: #ffffff;
+    color: var(--black);
+    font-family: "Hedvig Letters Serif", Georgia, serif;
+  }
 
-  <link href="https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+  .release-page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 30px 100px;
+  }
 
-  <style>
-    :root {
-      --gold: #9E7C02C9;
-      --green: #174A1CCC;
-      --black: #000000;
-      --white: #ffffff;
-      --line: #9E7C02C9;
-      --view-all: #2E2E2E61;
+  /* ==================================================
+     HEADER
+  ================================================== */
+
+  .site-header {
+    width: 100%;
+    margin: 0 0 80px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid var(--gold);
+  }
+
+  .site-title {
+    display: block;
+    width: fit-content;
+
+    font-family: "Hedvig Letters Serif", Georgia, serif;
+    font-size: 30px;
+    line-height: 1.1;
+    font-weight: 400;
+
+    color: var(--gold);
+    text-decoration: none;
+  }
+
+  .site-title:hover {
+    text-decoration: none;
+  }
+
+  /* ==================================================
+     RELEASE HEADER
+  ================================================== */
+
+  .release-header {
+    display: grid;
+    grid-template-columns: 500px minmax(0, 1fr);
+    gap: 70px;
+    align-items: start;
+  }
+
+  .release-left {
+    width: 500px;
+  }
+
+  .release-cover {
+    width: 500px;
+    height: 500px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .release-meta {
+    padding: 25px 0 0;
+    margin: 0;
+    border: none;
+
+    font-size: 12px;
+    line-height: 1.7;
+  }
+
+  .release-meta strong {
+    color: var(--gold);
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .release-meta > div {
+    margin-bottom: 14px;
+  }
+
+  .release-meta > div:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ==================================================
+     RELEASE INFORMATION
+  ================================================== */
+
+  .release-info {
+    text-align: center;
+    padding-top: 0;
+  }
+
+  .release-title {
+    margin: 0 0 12px;
+
+    font-family: "Hedvig Letters Serif", Georgia, serif;
+    font-size: 34px;
+    line-height: 1.15;
+    font-weight: 400;
+
+    color: var(--black);
+  }
+
+  .release-artist {
+    margin: 0 0 10px;
+
+    font-family: "Hedvig Letters Serif", Georgia, serif;
+    font-size: 16px;
+    line-height: 1.4;
+    font-weight: 400;
+
+    color: var(--black);
+  }
+
+  .release-year {
+    margin: 0 0 20px;
+
+    font-family: "Hedvig Letters Serif", Georgia, serif;
+    font-size: 12px;
+    line-height: 1.5;
+    font-weight: 400;
+
+    color: var(--gold);
+  }
+
+  .release-divider {
+    width: 100%;
+    max-width: 420px;
+    height: 1px;
+
+    margin: 0 auto 22px;
+
+    background: linear-gradient(
+      90deg,
+      var(--gold) 0%,
+      var(--green) 100%
+    );
+  }
+
+  .release-links {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+
+    margin-bottom: 45px;
+  }
+
+  .release-links a {
+    font-family: "Hedvig Letters Serif", Georgia, serif;
+    font-size: 13px;
+    font-weight: 400;
+
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  .release-links a:hover {
+    color: var(--gold);
+  }
+
+  /* ==================================================
+     DESCRIPTION
+  ================================================== */
+
+  .release-description {
+    max-width: 620px;
+    margin: 0 auto 60px;
+
+    font-size: 12px;
+    line-height: 1.7;
+    font-weight: 400;
+
+    text-align: left;
+  }
+
+  /* ==================================================
+     TRACKLIST
+  ================================================== */
+
+  .tracklist-section {
+    margin-top: 30px;
+  }
+
+  .tracklist-header {
+    position: relative;
+    margin-bottom: 25px;
+  }
+
+  .section-heading {
+    margin: 0;
+
+    font-family: "IM Fell English", Georgia, serif;
+    font-size: 24px;
+    line-height: 1.2;
+    font-weight: 400;
+
+    text-align: center;
+    text-transform: uppercase;
+
+    background: linear-gradient(
+      90deg,
+      var(--gold) 0%,
+      var(--green) 100%
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .view-all {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+
+    font-family: "DATATYPE", Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+
+    color: #2E2E2E61;
+    text-decoration: none;
+  }
+
+  .view-all:hover {
+    color: var(--gold);
+  }
+
+  .tracklist-box {
+    max-width: 760px;
+    margin: 0 auto;
+
+    padding: 24px 30px;
+
+    border: 1px solid #11111120;
+  }
+
+  .track {
+    padding: 10px 0;
+
+    font-family: "Hedvig Letters Serif", Georgia, serif;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .track a {
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  .track a:hover {
+    color: var(--gold);
+  }
+
+  /* ==================================================
+     GALLERY
+  ================================================== */
+
+  .gallery-section {
+    margin-top: 90px;
+  }
+
+  .gallery-carousel {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .gallery-track {
+    display: flex;
+    width: 200%;
+
+    transition: transform 0.65s ease;
+    touch-action: pan-y;
+  }
+
+  .gallery-slide {
+    width: 50%;
+    flex: 0 0 50%;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+
+    box-sizing: border-box;
+    padding: 0 1px;
+  }
+
+  .gallery-slide img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    display: block;
+  }
+
+  .gallery-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+
+    margin-top: 18px;
+  }
+
+  .gallery-dot {
+    width: 8px;
+    height: 8px;
+
+    padding: 0;
+
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+
+    background: transparent;
+
+    cursor: pointer;
+  }
+
+  .gallery-dot.active {
+    background: var(--gold);
+  }
+
+  /* ==================================================
+     FOOTER
+  ================================================== */
+
+  .release-footer {
+    margin-top: 100px;
+    text-align: center;
+  }
+
+  .release-footer a {
+    font-family: "Hedvig Letters Serif", Georgia, serif;
+    font-size: 15px;
+    font-weight: 400;
+
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  .release-footer a:hover {
+    text-decoration: underline;
+  }
+
+  /* ==================================================
+     MOBILE
+  ================================================== */
+
+  @media (max-width: 800px) {
+
+    .release-page {
+      padding: 45px 22px 70px;
     }
 
-    body {
-      margin: 0;
-      background: var(--white);
-      color: var(--black);
-      font-family: "Hedvig Letters Serif", Georgia, serif;
-      font-size: 16px;
-      line-height: 1.6;
+    .site-header {
+      margin-bottom: 55px;
+      padding-bottom: 18px;
     }
 
-    header {
-      padding: 28px 5vw;
-      border-bottom: 1px solid var(--line);
-      font-family: "Hedvig Letters Serif", Georgia, serif;
-      font-size: 14px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+    .site-title {
+      font-size: 25px;
     }
-
-    header a {
-      color: var(--gold);
-      text-decoration: none;
-    }
-
-    main {
-      max-width: 1100px;
-      margin: 9vh auto 12vh;
-      padding: 0 5vw;
-    }
-
-    /* RELEASE HEADER */
 
     .release-header {
-      display: grid;
-      grid-template-columns: 500px 1fr;
-      gap: 55px;
-      align-items: center;
-      margin-bottom: 35px;
+      grid-template-columns: 1fr;
+      gap: 45px;
     }
 
-    .release-art {
-      width: 500px;
-      height: 500px;
-      object-fit: cover;
-      display: block;
-    }
-
-    .release-art-placeholder {
-      width: 500px;
-      height: 500px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-sizing: border-box;
-      color: var(--gold);
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      text-align: center;
-    }
-
-    .release-heading {
-      padding: 0 15px;
-      text-align: center;
-    }
-
-    h1 {
-      margin: 0;
-      color: var(--black);
-      font-family: "Hedvig Letters Serif", Georgia, serif;
-      font-size: clamp(32px, 4vw, 52px);
-      line-height: 0.98;
-      font-weight: 400;
-      letter-spacing: -0.02em;
-      text-transform: uppercase;
-    }
-
-    .release-artist {
-      margin: 14px 0 0;
-      color: var(--gold);
-      font-size: 13px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-
-    .release-year {
-      margin-top: 22px;
-      color: var(--gold);
-      font-size: 13px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-
-    .release-title-divider {
+    .release-left {
       width: 100%;
-      max-width: 420px;
-      height: 1px;
-      background: var(--gold);
-      margin: 24px auto 0;
     }
 
-    .release-actions {
-      display: flex;
-      justify-content: center;
-      gap: 28px;
-      margin-top: 28px;
+    .release-cover {
+      width: 100%;
+      height: auto;
     }
 
-    .release-actions a {
-      color: var(--gold);
-      text-decoration: none;
-      font-size: 13px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+    .release-info {
+      text-align: center;
     }
 
-    .release-actions a:hover {
-      color: var(--black);
+    .release-title {
+      font-size: 30px;
     }
-
-    .release-divider {
-      border: 0;
-      border-top: 1px solid var(--line);
-      margin: 35px 0 55px;
-    }
-
-    /* DESCRIPTION */
 
     .release-description {
-      max-width: 650px;
-      margin-bottom: 65px;
-      font-size: 15px;
-      line-height: 1.65;
-      color: var(--black);
+      font-size: 12px;
     }
-
-    .release-description p {
-      margin: 0 0 20px;
-    }
-
-    /* TRACKLIST */
 
     .tracklist-box {
-      border: 1px solid var(--gold);
-      padding: 28px 30px 30px;
-      margin-bottom: 45px;
-    }
-
-    .tracklist-heading {
-      position: relative;
-      min-height: 32px;
-      margin-bottom: 28px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .section-heading {
-      margin: 0;
-      font-family: "IM Fell English", Georgia, serif;
-      font-size: 25px;
-      line-height: 1;
-      font-weight: 400;
-      text-transform: uppercase;
-      text-align: center;
-
-      background: linear-gradient(
-        90deg,
-        var(--gold) 0%,
-        var(--green) 100%
-      );
-
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      padding: 20px;
     }
 
     .view-all {
-      position: absolute;
-      right: 0;
-      top: 50%;
-      transform: translateY(-50%);
+      position: static;
+      display: block;
 
-      color: var(--view-all);
-      font-family: "DATATYPE", Arial, sans-serif;
-      font-size: 11px;
-      line-height: 1;
-      font-weight: 400;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      text-decoration: none;
-      white-space: nowrap;
-    }
+      margin-top: 10px;
 
-    .view-all:hover {
-      color: var(--black);
-    }
-
-    .tracklist {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .tracklist li {
-      display: grid;
-      grid-template-columns: 38px 1fr;
-      gap: 10px;
-      padding: 8px 0;
-      font-family: "Hedvig Letters Serif", Georgia, serif;
-      font-size: 14px;
-      color: var(--black);
-    }
-
-    .track-number {
-      color: var(--gold);
-    }
-
-    .track-title {
-      color: var(--black);
-    }
-
-    /* RELEASE METADATA */
-
-.release-meta {
-  padding: 25px 0 0;
-  margin: 0;
-  border: none;
-  font-size: 12px;
-  line-height: 1.7;
-}
-
-    .release-meta strong {
-      color: var(--gold);
-      font-weight: 400;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    .release-meta > div {
-      margin-bottom: 14px;
-    }
-
-    .release-meta > div:last-child {
-      margin-bottom: 0;
-    }
-
-    /* GALLERY */
-
-    .gallery-section {
-      margin-bottom: 80px;
-    }
-
-    .gallery-section .section-heading {
-      margin-bottom: 28px;
-    }
-
-    .gallery-carousel {
-      width: 100%;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .gallery-track {
-      display: flex;
-      width: 200%;
-      transition: transform 0.65s ease;
-      touch-action: pan-y;
+      transform: none;
+      text-align: center;
     }
 
     .gallery-slide {
-      width: 50%;
-      flex: 0 0 50%;
-      display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      box-sizing: border-box;
-      padding: 0 1px;
+      gap: 7px;
     }
 
-    .gallery-slide img {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      object-fit: cover;
-      display: block;
+    .gallery-section {
+      margin-top: 65px;
     }
+  }
+</style>
 
-    /* CAROUSEL DOTS */
 
-    .gallery-dots {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 9px;
-      margin-top: 18px;
-    }
+<main class="release-page">
 
-    .gallery-dot {
-      width: 7px;
-      height: 7px;
-      padding: 0;
-      border: 1px solid var(--gold);
-      border-radius: 50%;
-      background: transparent;
-      cursor: pointer;
-      transition:
-        background 0.25s ease,
-        transform 0.25s ease;
-    }
+  <!-- ==================================================
+       SITE HEADER
+  ================================================== -->
 
-    .gallery-dot.active {
-      background: var(--gold);
-      transform: scale(1.15);
-    }
+  <header class="site-header">
 
-    .gallery-dot:hover {
-      background: var(--gold);
-    }
+    <a
+      class="site-title"
+      href="https://andrewjamespegram.carrd.co/"
+    >
+      Andrew James Pegram
+    </a>
 
-    /* FOOTER */
+  </header>
 
-    footer {
-      padding-top: 25px;
-      border-top: 1px solid var(--line);
-      font-size: 12px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
 
-    footer a {
-      color: var(--gold);
-      text-decoration: none;
-    }
+  <!-- ==================================================
+       RELEASE HEADER
+  ================================================== -->
 
-    footer a:hover {
-      color: var(--black);
-    }
+  <div class="release-header">
 
-    /* MOBILE */
 
-    @media (max-width: 850px) {
+    <!-- LEFT -->
 
-      header {
-        padding: 22px 6vw;
-      }
+    <div class="release-left">
 
-      main {
-        margin-top: 7vh;
-        padding: 0 6vw;
-      }
+      {% if page.cover_image %}
 
-      .release-header {
-        grid-template-columns: 1fr;
-        gap: 30px;
-        align-items: start;
-      }
+        <img
+          class="release-cover"
+          src="{{ page.cover_image | relative_url }}"
+          alt="{{ page.title }}"
+        >
 
-      .release-art {
-        width: 500px;
-        height: 500px;
-        max-width: 100%;
-      }
+      {% endif %}
 
-      .release-art-placeholder {
-        width: 500px;
-        height: 500px;
-        max-width: 100%;
-      }
 
-      .release-heading {
-        padding: 0;
-        text-align: center;
-      }
+      <!-- Metadata -->
 
-      h1 {
-        font-size: clamp(30px, 8vw, 44px);
-      }
-
-      .release-artist {
-        font-size: 11px;
-      }
-
-      .release-year {
-        margin-top: 14px;
-        font-size: 11px;
-      }
-
-      .release-title-divider {
-        max-width: 100%;
-        margin-top: 18px;
-      }
-
-      .release-actions {
-        gap: 22px;
-        margin-top: 22px;
-      }
-
-      .release-divider {
-        margin: 35px 0 45px;
-      }
-
-      .release-description {
-        font-size: 14px;
-      }
-
-      .tracklist-box {
-        padding: 22px 20px 25px;
-        margin-bottom: 40px;
-      }
-
-      .tracklist-heading {
-        min-height: 28px;
-      }
-
-      .section-heading {
-        font-size: 22px;
-      }
-
-      .view-all {
-        right: 0;
-      }
-
-      .release-meta {
-        margin-bottom: 60px;
-      }
-
-      .gallery-slide {
-        gap: 8px;
-      }
-
-      .gallery-dots {
-        margin-top: 15px;
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-<header>
-  <a href="https://andrewjamespegram.carrd.co/">
-    Andrew James Pegram
-  </a>
-</header>
-
-<main>
-
-  <section class="release-header">
-
-  <div class="release-left">
-
-    {% if page.cover_image %}
-      <img
-        class="release-art"
-        src="{{ page.cover_image | relative_url }}"
-        alt="{{ page.title }}"
-      >
-    {% else %}
-      <div class="release-art-placeholder">
-        Cover artwork
-      </div>
-    {% endif %}
-
-    {% if page.format or page.isrc or page.credits %}
-      <section class="release-meta">
+      <div class="release-meta">
 
         {% if page.format %}
           <div>
@@ -507,61 +492,85 @@
           </div>
         {% endif %}
 
-      </section>
-    {% endif %}
+      </div>
 
-  </div>
-
-  <div class="release-heading">
-
-    <h1>
-      {{ page.title }}
-    </h1>
-
-    <p class="release-artist">
-      {{ page.artist }}
-    </p>
-
-    <div class="release-year">
-      {{ page.date | date: "%Y" }}
     </div>
 
-    <div class="release-title-divider"></div>
 
-    {% if page.listen_url or page.buy_url %}
-      <nav class="release-actions">
+    <!-- RIGHT -->
+
+    <div class="release-info">
+
+      <h1 class="release-title">
+        {{ page.title }}
+      </h1>
+
+      {% if page.artist %}
+        <div class="release-artist">
+          {{ page.artist }}
+        </div>
+      {% endif %}
+
+      {% if page.date %}
+        <div class="release-year">
+          {{ page.date | date: "%Y" }}
+        </div>
+      {% endif %}
+
+
+      <div class="release-divider"></div>
+
+
+      <!-- Listen / Buy -->
+
+      <div class="release-links">
 
         {% if page.listen_url %}
-          <a href="{{ page.listen_url }}" target="_blank" rel="noopener">
+          <a
+            href="{{ page.listen_url }}"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Listen
           </a>
         {% endif %}
 
         {% if page.buy_url %}
-          <a href="{{ page.buy_url }}" target="_blank" rel="noopener">
+          <a
+            href="{{ page.buy_url }}"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Buy
           </a>
         {% endif %}
 
-      </nav>
-    {% endif %}
+      </div>
+
+
+      <!-- Description -->
+
+      {% if content != "" %}
+        <div class="release-description">
+          {{ content }}
+        </div>
+      {% endif %}
+
+
+    </div>
 
   </div>
 
-</section>
-  
-  <hr class="release-divider">
 
-  {% if content %}
-    <section class="release-description">
-      {{ content }}
-    </section>
-  {% endif %}
+  <!-- ==================================================
+       TRACKLIST & LYRICS
+  ================================================== -->
 
   {% if page.tracklist %}
-    <section class="tracklist-box">
 
-      <div class="tracklist-heading">
+    <section class="tracklist-section">
+
+      <div class="tracklist-header">
 
         <h2 class="section-heading">
           Tracklist & Lyrics
@@ -571,207 +580,244 @@
           class="view-all"
           href="{{ '/lyrics/' | relative_url }}"
         >
-          View All
+          VIEW ALL
         </a>
 
       </div>
 
-      <ol class="tracklist">
+
+      <div class="tracklist-box">
 
         {% for track in page.tracklist %}
-          <li>
-            <span class="track-number">
-              {{ forloop.index | prepend: "0" | slice: -2, 2 }}
-            </span>
 
-            <span class="track-title">
+          <div class="track">
+
+            {% if forloop.first %}
+
+              <a
+                href="{{ '/lyrics/stole-you-from-the-underworld/' | relative_url }}"
+              >
+                {{ track.title }}
+              </a>
+
+            {% else %}
+
               {{ track.title }}
-            </span>
-          </li>
+
+            {% endif %}
+
+          </div>
+
         {% endfor %}
 
-      </ol>
+      </div>
 
     </section>
+
   {% endif %}
 
-  {% if page.format or page.isrc or page.credits %}
-    <section class="release-meta">
 
-      {% if page.format %}
-        <div>
-          <strong>Format</strong><br>
-          {{ page.format }}
-        </div>
-      {% endif %}
+  <!-- ==================================================
+       GALLERY
+  ================================================== -->
 
-      {% if page.isrc %}
-        <div>
-          <strong>ISRC</strong><br>
-          {{ page.isrc }}
-        </div>
-      {% endif %}
+  {% if page.gallery_title %}
 
-      {% if page.credits %}
-        <div>
-          <strong>Credits</strong><br>
-          {{ page.credits }}
-        </div>
-      {% endif %}
+    <section class="gallery-section">
 
-    </section>
-  {% endif %}
+      <h2 class="section-heading">
+        {{ page.gallery_title }}
+      </h2>
 
-  <!-- STOLEN YOU FROM THE UNDERWORLD — MAKING OF GALLERY -->
 
-  <section class="gallery-section">
+      <div class="gallery-carousel">
 
-    <h2 class="section-heading">
-      {{ page.gallery_title | default: "Making Of" }}
-    </h2>
+        <div
+          class="gallery-track"
+          id="galleryTrack"
+        >
 
-    <div class="gallery-carousel">
+          <div class="gallery-slide">
 
-      <div class="gallery-track" id="galleryTrack">
+            <img
+              src="{{ '/assets/images/releases/20241027_123052 smaller.jpg' | relative_url }}"
+              alt="Stole You From The Underworld — Making Of"
+            >
 
-        <!-- SLIDE 1 — IMAGES 1–3 -->
+            <img
+              src="{{ '/assets/images/releases/20241027_125232 smaller.jpg' | relative_url }}"
+              alt="Stole You From The Underworld — Making Of"
+            >
 
-        <div class="gallery-slide">
+            <img
+              src="{{ '/assets/images/releases/20241027_125427 smaller.jpg' | relative_url }}"
+              alt="Stole You From The Underworld — Making Of"
+            >
 
-          <img
-            src="{{ '/assets/images/releases/20241027_123052 smaller.jpg' | relative_url }}"
-            alt="Stole You From The Underworld — Making Of"
-          >
+          </div>
 
-          <img
-            src="{{ '/assets/images/releases/20241027_125232 smaller.jpg' | relative_url }}"
-            alt="Stole You From The Underworld — Making Of"
-          >
 
-          <img
-            src="{{ '/assets/images/releases/20241027_125427 smaller.jpg' | relative_url }}"
-            alt="Stole You From The Underworld — Making Of"
-          >
+          <div class="gallery-slide">
 
-        </div>
+            <img
+              src="{{ '/assets/images/releases/20241027_153746 smaller.jpg' | relative_url }}"
+              alt="Stole You From The Underworld — Making Of"
+            >
 
-        <!-- SLIDE 2 — IMAGES 4–6 -->
+            <img
+              src="{{ '/assets/images/releases/20241027_172411_smaller.jpg' | relative_url }}"
+              alt="Stole You From The Underworld — Making Of"
+            >
 
-        <div class="gallery-slide">
+            <img
+              src="{{ '/assets/images/releases/20241027_195213.jpg' | relative_url }}"
+              alt="Stole You From The Underworld — Making Of"
+            >
 
-          <img
-            src="{{ '/assets/images/releases/20241027_153746 smaller.jpg' | relative_url }}"
-            alt="Stole You From The Underworld — Making Of"
-          >
-
-          <img
-            src="{{ '/assets/images/releases/20241027_172411_smaller.jpg' | relative_url }}"
-            alt="Stole You From The Underworld — Making Of"
-          >
-
-          <img
-            src="{{ '/assets/images/releases/20241027_195213.jpg' | relative_url }}"
-            alt="Stole You From The Underworld — Making Of"
-          >
+          </div>
 
         </div>
 
       </div>
 
-    </div>
 
-    <!-- TWO NAVIGATION DOTS -->
+      <div class="gallery-dots">
 
-    <div class="gallery-dots">
+        <button
+          class="gallery-dot active"
+          type="button"
+          aria-label="Show first three gallery images"
+          data-slide="0"
+        ></button>
 
-      <button
-        class="gallery-dot active"
-        type="button"
-        aria-label="Show first three gallery images"
-        data-slide="0">
-      </button>
+        <button
+          class="gallery-dot"
+          type="button"
+          aria-label="Show second three gallery images"
+          data-slide="1"
+        ></button>
 
-      <button
-        class="gallery-dot"
-        type="button"
-        aria-label="Show second three gallery images"
-        data-slide="1">
-      </button>
+      </div>
 
-    </div>
+    </section>
 
-  </section>
+  {% endif %}
 
-  <footer>
+
+  <!-- ==================================================
+       FOOTER
+  ================================================== -->
+
+  <footer class="release-footer">
+
     <a href="{{ '/releases/' | relative_url }}">
       ← All releases
     </a>
+
   </footer>
 
 </main>
+
 
 <script>
   const galleryTrack = document.getElementById("galleryTrack");
   const galleryDots = document.querySelectorAll(".gallery-dot");
 
-  let currentSlide = 0;
-  let startX = 0;
-  let currentX = 0;
-  let isDragging = false;
+  if (galleryTrack && galleryDots.length) {
 
-  function showSlide(slide) {
-    currentSlide = slide;
+    let currentSlide = 0;
+    let startX = 0;
+    let currentX = 0;
+    let isDragging = false;
 
-    galleryTrack.style.transform =
-      "translateX(-" + (slide * 50) + "%)";
+    function showSlide(slide) {
 
-    galleryDots.forEach((dot, index) => {
-      dot.classList.toggle("active", index === slide);
-    });
-  }
+      currentSlide = slide;
 
-  /* DOT NAVIGATION */
+      galleryTrack.style.transform =
+        "translateX(-" + (slide * 50) + "%)";
 
-  galleryDots.forEach((dot) => {
-    dot.addEventListener("click", () => {
-      showSlide(Number(dot.dataset.slide));
-    });
-  });
+      galleryDots.forEach((dot, index) => {
 
-  /* TOUCH / SWIPE NAVIGATION */
+        dot.classList.toggle(
+          "active",
+          index === slide
+        );
 
-  galleryTrack.addEventListener("touchstart", (event) => {
-    startX = event.touches[0].clientX;
-    currentX = startX;
-    isDragging = true;
-  }, { passive: true });
-
-  galleryTrack.addEventListener("touchmove", (event) => {
-    if (!isDragging) return;
-
-    currentX = event.touches[0].clientX;
-  }, { passive: true });
-
-  galleryTrack.addEventListener("touchend", () => {
-    if (!isDragging) return;
-
-    const difference = startX - currentX;
-
-    if (Math.abs(difference) > 50) {
-
-      if (difference > 0 && currentSlide < galleryDots.length - 1) {
-        showSlide(currentSlide + 1);
-      }
-
-      if (difference < 0 && currentSlide > 0) {
-        showSlide(currentSlide - 1);
-      }
-
+      });
     }
 
-    isDragging = false;
-  });
-</script>
 
-</body>
-</html>
+    galleryDots.forEach((dot) => {
+
+      dot.addEventListener("click", () => {
+
+        showSlide(
+          Number(dot.dataset.slide)
+        );
+
+      });
+
+    });
+
+
+    galleryTrack.addEventListener(
+      "touchstart",
+      (event) => {
+
+        startX = event.touches[0].clientX;
+        currentX = startX;
+        isDragging = true;
+
+      },
+      { passive: true }
+    );
+
+
+    galleryTrack.addEventListener(
+      "touchmove",
+      (event) => {
+
+        if (!isDragging) return;
+
+        currentX = event.touches[0].clientX;
+
+      },
+      { passive: true }
+    );
+
+
+    galleryTrack.addEventListener(
+      "touchend",
+      () => {
+
+        if (!isDragging) return;
+
+        const difference =
+          startX - currentX;
+
+        if (Math.abs(difference) > 50) {
+
+          if (
+            difference > 0 &&
+            currentSlide < galleryDots.length - 1
+          ) {
+            showSlide(currentSlide + 1);
+          }
+
+          if (
+            difference < 0 &&
+            currentSlide > 0
+          ) {
+            showSlide(currentSlide - 1);
+          }
+
+        }
+
+        isDragging = false;
+
+      }
+    );
+
+  }
+</script>
