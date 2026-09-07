@@ -4,6 +4,9 @@ title: "Stole You From The Underworld"
 artist: "Genuflector"
 date: 2026-09-01
 permalink: /lyrics/stole-you-from-the-underworld/
+release_url: /releases/2026-09-01-stole-you-from-the-underworld/
+release_title: "Stole You From The Underworld"
+
 ---
 I've tried every trick in the book
 To get you to know me
