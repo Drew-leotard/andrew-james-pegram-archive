@@ -238,9 +238,14 @@
       color: var(--gold);
     }
 
-    .track-title {
-      color: var(--black);
-    }
+.track-title a {
+  color: var(--black);
+  text-decoration: none;
+}
+
+.track-title a:hover {
+  color: var(--gold);
+}
 
     /* RELEASE METADATA */
 
@@ -584,9 +589,15 @@
               {{ forloop.index | prepend: "0" | slice: -2, 2 }}
             </span>
 
-            <span class="track-title">
-              {{ track.title }}
-            </span>
+          <span class="track-title">
+  {% if forloop.first %}
+    <a href="{{ '/lyrics/stole-you-from-the-underworld/' | relative_url }}">
+      {{ track.title }}
+    </a>
+  {% else %}
+    {{ track.title }}
+  {% endif %}
+</span>
           </li>
         {% endfor %}
 
