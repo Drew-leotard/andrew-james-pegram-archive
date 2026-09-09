@@ -606,10 +606,7 @@
     </section>
   {% endif %}
 
-  {% if page.format or page.isrc or page.credits %}
-    <section class="release-meta">
-
-      {% if page.format %}
+        {% if page.format %}
         <div>
           <strong>Format</strong><br>
           {{ page.format }}
