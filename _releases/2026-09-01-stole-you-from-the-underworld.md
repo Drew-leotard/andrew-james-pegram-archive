@@ -6,8 +6,7 @@ date: 2026-09-01
 permalink: /releases/2026-09-01-stole-you-from-the-underworld/
 order: 1
 format: "Digital / Vinyl"
-isrc: "XXXX"
-credits: " Music and lyrics Andrew James Pegram / Piano Tim Enders / Bass guitar Georg Kostron / Cello Natasha Jaffe / Drums Gidon Carmel / Pre production Håvard Møen Otnes / Recording engineer Cameron Laing / Additional engineer Sam Hanlan 
+credits: " Music and lyrics Andrew James Pegram / Piano Tim Enders / Bass guitar Georg Kostron  Cello Natasha Jaffe / Drums Gidon Carmel / Pre production Håvard Møen Otnes / Recording engineer Cameron Laing / Additional engineer Sam Hanlan 
 "
 
 cover_image: "/assets/images/releases/Screenshot 2026-09-06 at 05-03-39 Instagram smaller.jpg"
