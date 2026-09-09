@@ -40,16 +40,29 @@ title: Releases
     margin: 10vh auto 12vh;
     padding: 0 5vw;
   }
+  
+.section-title {
+  display: block;
+  width: fit-content;
+  margin: 0 auto 10vh;
 
-  h1 {
-    font-size: clamp(48px, 8vw, 100px);
-    line-height: 0.9;
-    font-weight: 400;
-    letter-spacing: -0.025em;
-    color: var(--black);
-    margin: 0 0 80px;
-    text-transform: uppercase;
-  }
+  font-family: "IM Fell English", Georgia, serif;
+  font-size: 32px;
+  line-height: 1;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: uppercase;
+
+  background: linear-gradient(
+    90deg,
+    var(--gold) 0%,
+    var(--green) 100%
+  );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
   
 .release-grid {
   display: grid;
