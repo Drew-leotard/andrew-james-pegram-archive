@@ -34,7 +34,10 @@ gallery:
 
 Taken from the upcoming album 'Genuflector', the new single 'Stole You From The Underworld' is out now on digital and limited edition 12" Vinyl.
 
-During the making of this record I changed, both as a person and as an artist. It was as if I woke with a great calling to create something incredibly beautiful with other people. The grand undertaking unfolded - a record featuring 5 session musicians, 2 producers, 2 recording engineers and one mastering engineer.
+
+"I hope this record enchants people the way it has me. Each time I listen I'm swept away by it. There's never a master plan when making a record, instead it reflects the emotions of the musicians and writers who performed on it. It's a simple record in any ways - it asks you to be patient and to slow down, which is difficult for some listeners. Without this record I can safely safe, I wouldn't be the artist I am today."
+
+During the making of this record I rapidly evolved, both as a person and as an artist. It was as if I'd woken with a great calling to create something incredibly beautiful together with other people. The grand undertaking unfolded - a record featuring 5 session musicians, 2 producers, 2 recording engineers and one mastering engineer.
 
 Friend and Dark-folk scene curator, Cameron James Laing, had the doors of his 'Famous Gold Watch Studios' flung open for me, and on the day of our first recording session I was greeted with customary wry smile and 'let's get down to it' attitude. 
 
@@ -46,4 +49,4 @@ The sign 'keep your engineer caffeinated at all time' hung in the kitchen. After
 
 Havard Moen Otnes and Tim Enders accompanied me in the mixing room, following attentively and giving mix advice, guidance of take choices as we harvested audio takes during recording and just being there - offering their invaluable support. 
 
-On day two we prepared the Cello for Natasha 
+On day two we prepared the Cello for Natasha Jaffe to arrive and begin laying down smooth, velvet like foundations which supported the chordal movements of the arrangements. Later, after recording had finished, we realised she'd recorded a whole extra hour with us - we we're all so deeply immersed into the world of this record, raw ideas were flowing. Time had stopped. 
