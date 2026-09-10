@@ -24,12 +24,23 @@ tracklist:
 gallery_title: "Stole You From The Underworld Images"
 
 gallery:
-  - url: "/assets/images/releases/stole-you-from-the-underworld-01.jpg"
-    alt: "Recording session"
-  - url: "/assets/images/releases/stole-you-from-the-underworld-02.jpg"
-    alt: "Recording session"
-  - url: "/assets/images/releases/stole-you-from-the-underworld-03.jpg"
-    alt: "Recording session"
+  - url: "/assets/images/releases/20241027_123052 smaller.jpg"
+    alt: "Stole You From The Underworld — Making Of"
+
+  - url: "/assets/images/releases/20241027_125232 smaller.jpg"
+    alt: "Stole You From The Underworld — Making Of"
+
+  - url: "/assets/images/releases/20241027_125427 smaller.jpg"
+    alt: "Stole You From The Underworld — Making Of"
+
+  - url: "/assets/images/releases/20241027_153746 smaller.jpg"
+    alt: "Stole You From The Underworld — Making Of"
+
+  - url: "/assets/images/releases/20241027_172411_smaller.jpg"
+    alt: "Stole You From The Underworld — Making Of"
+
+  - url: "/assets/images/releases/20241027_195213.jpg"
+    alt: "Stole You From The Underworld — Making Of"
 ---
 
 Taken from the upcoming album 'Genuflector', the new single 'Stole You From The Underworld' is out now on digital and limited edition 12" Vinyl.
