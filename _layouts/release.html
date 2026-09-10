@@ -584,18 +584,18 @@
       <ol class="tracklist">
 
         {% for track in page.tracklist %}
-          <li>
-            <span class="track-number">
-              {{ forloop.index | prepend: "0" | slice: -2, 2 }}
-            </span>
+  <li>
+    <span class="track-number">
+      {{ forloop.index | prepend: "0" | slice: -2, 2 }}
+    </span>
 
-            <span class="track-title">
-              <a href="{{ '/lyrics/' | append: track.title | slugify | append: '/' | relative_url }}">
-                {{ track.title }}
-              </a>
-            </span>
-          </li>
-        {% endfor %}
+    <span class="track-title">
+      <a href="{{ '/lyrics/' | append: track.title | slugify | append: '/' | relative_url }}">
+        {{ track.title }}
+      </a>
+    </span>
+  </li>
+{% endfor %}
 
       </ol>
 
