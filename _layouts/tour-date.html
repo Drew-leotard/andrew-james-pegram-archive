@@ -3,64 +3,63 @@ layout: default
 ---
 
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&family=IM+Fell+English:ital@0;1&display=swap');
+
   :root {
     --gold: #9E7C02C9;
     --green: #174A1CCC;
-    --black: #111111;
+    --black: #000000;
+    --white: #ffffff;
   }
 
   body {
     margin: 0;
-    background: #ffffff;
+    background: var(--white);
     color: var(--black);
     font-family: "Hedvig Letters Serif", Georgia, serif;
+    font-size: 16px;
+    line-height: 1.7;
   }
 
-  /* ==================================================
+  /* ================================
      PAGE
-  ================================================== */
+  ================================= */
 
   .tour-date-page {
-    max-width: 1100px;
+    max-width: 1000px;
     margin: 0 auto;
-    padding: 60px 30px 100px;
+    padding: 0 5vw 10vh;
   }
 
-
-  /* ==================================================
+  /* ================================
      SITE HEADER
-     Matches the Releases page
-  ================================================== */
+     Matches News / Tour Dates index
+  ================================= */
 
   .site-header {
-    width: 100%;
-    margin: 0 0 80px;
-    padding-bottom: 22px;
+    padding: 28px 0;
+    margin: 0 0 8vh;
 
     border-bottom: 1px solid var(--gold);
+
+    font-family: "Hedvig Letters Serif", Georgia, serif;
+    font-size: 14px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
   }
 
   .site-title {
-    display: block;
-    width: fit-content;
-
-    font-family: "Hedvig Letters Serif", Georgia, serif;
-    font-size: 30px;
-    line-height: 1.1;
-    font-weight: 400;
-
     color: var(--gold);
     text-decoration: none;
   }
 
   .site-title:hover {
-    text-decoration: none;
+    color: var(--black);
   }
 
-
-  /* ==================================================
-     MAIN RELEASE-STYLE LAYOUT
-  ================================================== */
+  /* ================================
+     TOUR DATE LAYOUT
+  ================================= */
 
   .tour-date-layout {
     display: grid;
@@ -69,10 +68,9 @@ layout: default
     align-items: start;
   }
 
-
-  /* ==================================================
+  /* ================================
      IMAGE
-  ================================================== */
+  ================================= */
 
   .tour-date-image {
     width: 500px;
@@ -97,21 +95,17 @@ layout: default
     padding: 20px;
   }
 
-
-  /* ==================================================
-     RIGHT-HAND INFORMATION
-  ================================================== */
+  /* ================================
+     INFORMATION
+  ================================= */
 
   .tour-date-info {
     width: 100%;
-    padding-top: 0;
   }
 
-
-  /* ==================================================
+  /* ================================
      TITLE
-     Same display scale as Releases
-  ================================================== */
+  ================================= */
 
   .tour-date-title {
     margin: 0 0 18px;
@@ -122,14 +116,12 @@ layout: default
     font-weight: 400;
 
     color: var(--black);
-
     text-align: left;
   }
 
-
-  /* ==================================================
+  /* ================================
      DATE
-  ================================================== */
+  ================================= */
 
   .tour-date-date {
     margin: 0 0 25px;
@@ -142,10 +134,9 @@ layout: default
     color: var(--gold);
   }
 
-
-  /* ==================================================
+  /* ================================
      DIVIDER
-  ================================================== */
+  ================================= */
 
   .tour-date-divider {
     width: 100%;
@@ -160,11 +151,9 @@ layout: default
     );
   }
 
-
-  /* ==================================================
+  /* ================================
      CONTENT
-     Small restrained article text
-  ================================================== */
+  ================================= */
 
   .tour-date-content {
     font-family: "Hedvig Letters Serif", Georgia, serif;
@@ -184,10 +173,9 @@ layout: default
     font-weight: 400;
   }
 
-
-  /* ==================================================
-     SECTION HEADING
-  ================================================== */
+  /* ================================
+     SECTION HEADINGS
+  ================================= */
 
   .tour-date-content h2 {
     margin: 45px 0 25px;
@@ -211,10 +199,9 @@ layout: default
     background-clip: text;
   }
 
-
-  /* ==================================================
+  /* ================================
      LINKS
-  ================================================== */
+  ================================= */
 
   .tour-date-content a {
     color: var(--green);
@@ -225,10 +212,9 @@ layout: default
     text-decoration: underline;
   }
 
-
-  /* ==================================================
+  /* ================================
      SOCIAL SHARE
-  ================================================== */
+  ================================= */
 
   .tour-date-share {
     margin-top: 50px;
@@ -277,52 +263,47 @@ layout: default
 
   .tour-date-share a:hover {
     background: var(--gold);
-    color: #ffffff;
+    color: var(--white);
   }
 
-
-  /* ==================================================
+  /* ================================
      FOOTER
-  ================================================== */
+  ================================= */
 
   .tour-date-footer {
-    margin-top: 100px;
+    margin-top: 12vh;
+    padding-top: 25px;
 
-    text-align: center;
+    border-top: 1px solid var(--gold);
+
+    font-family: "Hedvig Letters Serif", Georgia, serif;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
   }
 
   .tour-date-footer a {
-    font-family: "Hedvig Letters Serif", Georgia, serif;
-    font-size: 15px;
-    line-height: 1.2;
-    font-weight: 400;
-
-    color: var(--black);
+    color: var(--gold);
     text-decoration: none;
   }
 
   .tour-date-footer a:hover {
-    text-decoration: underline;
+    color: var(--black);
   }
 
-
-  /* ==================================================
+  /* ================================
      MOBILE
-  ================================================== */
+  ================================= */
 
   @media (max-width: 800px) {
 
     .tour-date-page {
-      padding: 45px 22px 70px;
+      padding: 0 6vw 8vh;
     }
 
     .site-header {
-      margin-bottom: 55px;
-      padding-bottom: 18px;
-    }
-
-    .site-title {
-      font-size: 25px;
+      padding: 22px 0;
+      margin-bottom: 6vh;
     }
 
     .tour-date-layout {
@@ -359,7 +340,7 @@ layout: default
     }
 
     .tour-date-footer {
-      margin-top: 75px;
+      margin-top: 8vh;
     }
   }
 </style>
@@ -367,10 +348,7 @@ layout: default
 
 <main class="tour-date-page">
 
-
-  <!-- ==================================================
-       SITE HEADER
-  ================================================== -->
+  <!-- SITE HEADER -->
 
   <header class="site-header">
 
@@ -384,9 +362,7 @@ layout: default
   </header>
 
 
-  <!-- ==================================================
-       TOUR DATE
-  ================================================== -->
+  <!-- TOUR DATE -->
 
   <div class="tour-date-layout">
 
@@ -433,16 +409,13 @@ layout: default
       </article>
 
 
-      <!-- ==================================================
-           SOCIAL SHARE
-      ================================================== -->
+      <!-- SOCIAL SHARE -->
 
       <div class="tour-date-share">
 
         <span class="tour-date-share-label">
           Share
         </span>
-
 
         <!-- Facebook -->
 
@@ -456,7 +429,6 @@ layout: default
           f
         </a>
 
-
         <!-- X -->
 
         <a
@@ -468,7 +440,6 @@ layout: default
         >
           X
         </a>
-
 
         <!-- WhatsApp -->
 
@@ -484,15 +455,12 @@ layout: default
 
       </div>
 
-
     </div>
 
   </div>
 
 
-  <!-- ==================================================
-       BACK
-  ================================================== -->
+  <!-- BACK -->
 
   <footer class="tour-date-footer">
 
@@ -501,6 +469,5 @@ layout: default
     </a>
 
   </footer>
-
 
 </main>
