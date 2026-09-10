@@ -2,7 +2,7 @@
 layout: release
 title: "The Body's Perfect Day"
 artist: "Andrew James Pegram"
-date: 2026-09-01
+date: 2026-09-03
 permalink: /releases/2026-09-01-the-bodys-perfect-day/
 order: 4
 format: "Digital / Vinyl"
