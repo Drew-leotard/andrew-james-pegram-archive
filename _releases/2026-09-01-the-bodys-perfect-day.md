@@ -8,7 +8,7 @@ order: 4
 format: "Digital / Vinyl"
 credits: "Music and lyrics Andrew James Pegram / Additional production Håvard Møen Otnes"
 
-cover_image: ""
+cover_image: "assets/images/releases/bodys perfect day.jpg"
 
 listen_url: ""
 buy_url: ""
