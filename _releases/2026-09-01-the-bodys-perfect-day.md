@@ -20,13 +20,6 @@ tracklist:
 
 gallery_title: "The Body's Perfect Day Images"
 
-gallery:
-  - url: ""
-    alt: ""
-  - url: ""
-    alt: ""
-  - url: ""
-    alt: ""
 ---
 
 Taken from the upcoming album 'Genuflector', the new single 'The Body's Perfect Day' is out now on digital and limited edition 12" Vinyl.
