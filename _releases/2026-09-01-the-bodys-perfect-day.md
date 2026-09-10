@@ -16,7 +16,7 @@ buy_url: ""
 lyrics_url: ""
 
 tracklist:
-  - title: "TEST The Body's Perfect Day"
+  - title: "The Body's Perfect Day"
 
 gallery_title: "The Body's Perfect Day Images"
 
