@@ -563,45 +563,64 @@
     </section>
   {% endif %}
 
-  {% if page.tracklist %}
-    <section class="tracklist-box">
+ {% if page.tracklist %}
+  <section class="tracklist-box">
 
-      <div class="tracklist-heading">
+    <div class="tracklist-heading">
 
-        <h2 class="section-heading">
-          Tracklist & Lyrics
-        </h2>
+      <h2 class="section-heading">
+        Tracklist & Lyrics
+      </h2>
 
-        <a
-          class="view-all"
-          href="{{ '/lyrics/' | relative_url }}"
-        >
-          View All
-        </a>
-
-      </div>
-
-      <ol class="tracklist">
-
-        {% for track in page.tracklist %}
-  <li>
-    <span class="track-number">
-      {{ forloop.index | prepend: "0" | slice: -2, 2 }}
-    </span>
-
-    <span class="track-title">
-      <a href="{{ '/lyrics/' | append: track.title | slugify | append: '/' | relative_url }}">
-        {{ track.title }}
+      <a
+        class="view-all"
+        href="{{ '/lyrics/' | relative_url }}"
+      >
+        View All
       </a>
-    </span>
-  </li>
-{% endfor %}
 
-      </ol>
+    </div>
 
-    </section>
-  {% endif %}
+    <ol class="tracklist">
 
+      {% for track in page.tracklist %}
+
+        {% assign track_slug = track.title | slugify %}
+        {% assign lyric_url = "" %}
+
+        {% for lyric in site.lyrics %}
+          {% assign lyric_slug = lyric.title | slugify %}
+
+          {% if lyric_slug == track_slug %}
+            {% assign lyric_url = lyric.url %}
+          {% endif %}
+
+        {% endfor %}
+
+        <li>
+          <span class="track-number">
+            {{ forloop.index | prepend: "0" | slice: -2, 2 }}
+          </span>
+
+          <span class="track-title">
+
+            {% if lyric_url != "" %}
+              <a href="{{ lyric_url | relative_url }}">
+                {{ track.title }}
+              </a>
+            {% else %}
+              {{ track.title }}
+            {% endif %}
+
+          </span>
+        </li>
+
+      {% endfor %}
+
+    </ol>
+
+  </section>
+{% endif %}
   <!-- DYNAMIC GALLERY -->
 
   {% assign gallery_images = page.gallery | where_exp: "image", "image.url != ''" %}
