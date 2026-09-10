@@ -238,24 +238,24 @@
       color: var(--gold);
     }
 
-.track-title a {
-  color: var(--black);
-  text-decoration: none;
-}
+    .track-title a {
+      color: var(--black);
+      text-decoration: none;
+    }
 
-.track-title a:hover {
-  color: var(--gold);
-}
+    .track-title a:hover {
+      color: var(--gold);
+    }
 
     /* RELEASE METADATA */
 
-.release-meta {
-  padding: 25px 0 0;
-  margin: 0;
-  border: none;
-  font-size: 12px;
-  line-height: 1.7;
-}
+    .release-meta {
+      padding: 25px 0 0;
+      margin: 0;
+      border: none;
+      font-size: 12px;
+      line-height: 1.7;
+    }
 
     .release-meta strong {
       color: var(--gold);
@@ -290,14 +290,14 @@
 
     .gallery-track {
       display: flex;
-      width: 200%;
+      width: 100%;
       transition: transform 0.65s ease;
       touch-action: pan-y;
     }
 
     .gallery-slide {
-      width: 50%;
-      flex: 0 0 50%;
+      width: 100%;
+      flex: 0 0 100%;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 12px;
@@ -474,87 +474,87 @@
 
   <section class="release-header">
 
-  <div class="release-left">
+    <div class="release-left">
 
-    {% if page.cover_image %}
-      <img
-        class="release-art"
-        src="{{ page.cover_image | relative_url }}"
-        alt="{{ page.title }}"
-      >
-    {% else %}
-      <div class="release-art-placeholder">
-        Cover artwork
-      </div>
-    {% endif %}
+      {% if page.cover_image %}
+        <img
+          class="release-art"
+          src="{{ page.cover_image | relative_url }}"
+          alt="{{ page.title }}"
+        >
+      {% else %}
+        <div class="release-art-placeholder">
+          Cover artwork
+        </div>
+      {% endif %}
 
-    {% if page.format or page.isrc or page.credits %}
-      <section class="release-meta">
+      {% if page.format or page.isrc or page.credits %}
+        <section class="release-meta">
 
-        {% if page.format %}
-          <div>
-            <strong>Format</strong><br>
-            {{ page.format }}
-          </div>
-        {% endif %}
+          {% if page.format %}
+            <div>
+              <strong>Format</strong><br>
+              {{ page.format }}
+            </div>
+          {% endif %}
 
-        {% if page.isrc %}
-          <div>
-            <strong>ISRC</strong><br>
-            {{ page.isrc }}
-          </div>
-        {% endif %}
+          {% if page.isrc %}
+            <div>
+              <strong>ISRC</strong><br>
+              {{ page.isrc }}
+            </div>
+          {% endif %}
 
-        {% if page.credits %}
-          <div>
-            <strong>Credits</strong><br>
-            {{ page.credits }}
-          </div>
-        {% endif %}
+          {% if page.credits %}
+            <div>
+              <strong>Credits</strong><br>
+              {{ page.credits }}
+            </div>
+          {% endif %}
 
-      </section>
-    {% endif %}
+        </section>
+      {% endif %}
 
-  </div>
-
-  <div class="release-heading">
-
-    <h1>
-      {{ page.title }}
-    </h1>
-
-    <p class="release-artist">
-      {{ page.artist }}
-    </p>
-
-    <div class="release-year">
-      {{ page.date | date: "%Y" }}
     </div>
 
-    <div class="release-title-divider"></div>
+    <div class="release-heading">
 
-    {% if page.listen_url or page.buy_url %}
-      <nav class="release-actions">
+      <h1>
+        {{ page.title }}
+      </h1>
 
-        {% if page.listen_url %}
-          <a href="{{ page.listen_url }}" target="_blank" rel="noopener">
-            Listen
-          </a>
-        {% endif %}
+      <p class="release-artist">
+        {{ page.artist }}
+      </p>
 
-        {% if page.buy_url %}
-          <a href="{{ page.buy_url }}" target="_blank" rel="noopener">
-            Buy
-          </a>
-        {% endif %}
+      <div class="release-year">
+        {{ page.date | date: "%Y" }}
+      </div>
 
-      </nav>
-    {% endif %}
+      <div class="release-title-divider"></div>
 
-  </div>
+      {% if page.listen_url or page.buy_url %}
+        <nav class="release-actions">
 
-</section>
-  
+          {% if page.listen_url %}
+            <a href="{{ page.listen_url }}" target="_blank" rel="noopener">
+              Listen
+            </a>
+          {% endif %}
+
+          {% if page.buy_url %}
+            <a href="{{ page.buy_url }}" target="_blank" rel="noopener">
+              Buy
+            </a>
+          {% endif %}
+
+        </nav>
+      {% endif %}
+
+    </div>
+
+  </section>
+
   <hr class="release-divider">
 
   {% if content %}
@@ -589,15 +589,11 @@
               {{ forloop.index | prepend: "0" | slice: -2, 2 }}
             </span>
 
-          <span class="track-title">
-  {% if forloop.first %}
-    <a href="{{ '/lyrics/stole-you-from-the-underworld/' | relative_url }}">
-      {{ track.title }}
-    </a>
-  {% else %}
-    {{ track.title }}
-  {% endif %}
-</span>
+            <span class="track-title">
+              <a href="{{ '/lyrics/' | append: track.title | slugify | append: '/' | relative_url }}">
+                {{ track.title }}
+              </a>
+            </span>
           </li>
         {% endfor %}
 
@@ -606,85 +602,68 @@
     </section>
   {% endif %}
 
-  <!-- STOLEN YOU FROM THE UNDERWORLD — MAKING OF GALLERY -->
+  <!-- DYNAMIC GALLERY -->
 
-  <section class="gallery-section">
+  {% assign gallery_images = page.gallery | where_exp: "image", "image.url != ''" %}
 
-    <h2 class="section-heading">
-      {{ page.gallery_title | default: "Making Of" }}
-    </h2>
+  {% if gallery_images.size > 0 %}
 
-    <div class="gallery-carousel">
+    <section class="gallery-section">
 
-      <div class="gallery-track" id="galleryTrack">
+      <h2 class="section-heading">
+        {{ page.gallery_title | default: "Making Of" }}
+      </h2>
 
-        <!-- SLIDE 1 — IMAGES 1–3 -->
+      <div class="gallery-carousel">
 
-        <div class="gallery-slide">
+        <div class="gallery-track" id="galleryTrack">
 
-          <img
-            src="{{ '/assets/images/releases/20241027_123052 smaller.jpg' | relative_url }}"
-            alt="Stole You From The Underworld — Making Of"
-          >
+          {% for image in gallery_images %}
 
-          <img
-            src="{{ '/assets/images/releases/20241027_125232 smaller.jpg' | relative_url }}"
-            alt="Stole You From The Underworld — Making Of"
-          >
+            {% assign position = forloop.index0 | modulo: 3 %}
 
-          <img
-            src="{{ '/assets/images/releases/20241027_125427 smaller.jpg' | relative_url }}"
-            alt="Stole You From The Underworld — Making Of"
-          >
+            {% if position == 0 %}
+              <div class="gallery-slide">
+            {% endif %}
 
-        </div>
+                <img
+                  src="{{ image.url | relative_url }}"
+                  alt="{{ image.alt | default: page.title }}"
+                >
 
-        <!-- SLIDE 2 — IMAGES 4–6 -->
+            {% if position == 2 or forloop.last %}
+              </div>
+            {% endif %}
 
-        <div class="gallery-slide">
-
-          <img
-            src="{{ '/assets/images/releases/20241027_153746 smaller.jpg' | relative_url }}"
-            alt="Stole You From The Underworld — Making Of"
-          >
-
-          <img
-            src="{{ '/assets/images/releases/20241027_172411_smaller.jpg' | relative_url }}"
-            alt="Stole You From The Underworld — Making Of"
-          >
-
-          <img
-            src="{{ '/assets/images/releases/20241027_195213.jpg' | relative_url }}"
-            alt="Stole You From The Underworld — Making Of"
-          >
+          {% endfor %}
 
         </div>
 
       </div>
 
-    </div>
+      {% assign gallery_count = gallery_images.size %}
+      {% assign gallery_pages = gallery_count | plus: 2 | divided_by: 3 %}
 
-    <!-- TWO NAVIGATION DOTS -->
+      {% if gallery_pages > 1 %}
 
-    <div class="gallery-dots">
+        <div class="gallery-dots">
 
-      <button
-        class="gallery-dot active"
-        type="button"
-        aria-label="Show first three gallery images"
-        data-slide="0">
-      </button>
+          {% for i in (1..gallery_pages) %}
+            <button
+              class="gallery-dot{% if forloop.first %} active{% endif %}"
+              type="button"
+              aria-label="Show gallery images {{ i }}"
+              data-slide="{{ forloop.index0 }}">
+            </button>
+          {% endfor %}
 
-      <button
-        class="gallery-dot"
-        type="button"
-        aria-label="Show second three gallery images"
-        data-slide="1">
-      </button>
+        </div>
 
-    </div>
+      {% endif %}
 
-  </section>
+    </section>
+
+  {% endif %}
 
   <footer>
     <a href="{{ '/releases/' | relative_url }}">
