@@ -683,10 +683,12 @@
   let isDragging = false;
 
   function showSlide(slide) {
+    if (!galleryTrack) return;
+
     currentSlide = slide;
 
     galleryTrack.style.transform =
-      "translateX(-" + (slide * 50) + "%)";
+      "translateX(-" + (slide * 100) + "%)";
 
     galleryDots.forEach((dot, index) => {
       dot.classList.toggle("active", index === slide);
@@ -703,38 +705,41 @@
 
   /* TOUCH / SWIPE NAVIGATION */
 
-  galleryTrack.addEventListener("touchstart", (event) => {
-    startX = event.touches[0].clientX;
-    currentX = startX;
-    isDragging = true;
-  }, { passive: true });
+  if (galleryTrack) {
 
-  galleryTrack.addEventListener("touchmove", (event) => {
-    if (!isDragging) return;
+    galleryTrack.addEventListener("touchstart", (event) => {
+      startX = event.touches[0].clientX;
+      currentX = startX;
+      isDragging = true;
+    }, { passive: true });
 
-    currentX = event.touches[0].clientX;
-  }, { passive: true });
+    galleryTrack.addEventListener("touchmove", (event) => {
+      if (!isDragging) return;
 
-  galleryTrack.addEventListener("touchend", () => {
-    if (!isDragging) return;
+      currentX = event.touches[0].clientX;
+    }, { passive: true });
 
-    const difference = startX - currentX;
+    galleryTrack.addEventListener("touchend", () => {
+      if (!isDragging) return;
 
-    if (Math.abs(difference) > 50) {
+      const difference = startX - currentX;
 
-      if (difference > 0 && currentSlide < galleryDots.length - 1) {
-        showSlide(currentSlide + 1);
+      if (Math.abs(difference) > 50) {
+
+        if (difference > 0 && currentSlide < galleryDots.length - 1) {
+          showSlide(currentSlide + 1);
+        }
+
+        if (difference < 0 && currentSlide > 0) {
+          showSlide(currentSlide - 1);
+        }
+
       }
 
-      if (difference < 0 && currentSlide > 0) {
-        showSlide(currentSlide - 1);
-      }
+      isDragging = false;
+    });
 
-    }
-
-    isDragging = false;
-  });
+  }
 </script>
-
 </body>
 </html>
