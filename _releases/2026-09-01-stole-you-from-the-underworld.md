@@ -28,27 +28,27 @@ gallery:
     alt: "Stole You From The Underworld — Making Of"
 
   - url: "/assets/images/releases/20241027_125232 smaller.jpg"
-    alt: "Stole You From The Underworld — Making Of"
+    alt: "Stole You From The Underworld"
 
   - url: "/assets/images/releases/20241027_125427 smaller.jpg"
-    alt: "Stole You From The Underworld — Making Of"
+    alt: "Stole You From The Underworld"
 
   - url: "/assets/images/releases/20241027_153746 smaller.jpg"
-    alt: "Stole You From The Underworld — Making Of"
+    alt: "Stole You From The Underworld"
 
   - url: "/assets/images/releases/20241027_172411_smaller.jpg"
-    alt: "Stole You From The Underworld — Making Of"
+    alt: "Stole You From The Underworld"
 
   - url: "/assets/images/releases/20241027_195213.jpg"
-    alt: "Stole You From The Underworld — Making Of"
+    alt: "Stole You From The Underworld"
 ---
 
 Taken from the upcoming album 'Genuflector', the new single 'Stole You From The Underworld' is out now on digital and limited edition 12" Vinyl.
 
 
-"I hope this record enchants people the way it has me. Each time I listen I'm swept away by it. There's never a master plan when making a record, instead it reflects the emotions of the musicians and writers who performed on it. It's a simple record in any ways - it asks you to be patient and to slow down, which is difficult for some listeners. Without this record I can safely safe, I wouldn't be the artist I am today."
+"I hope this record enchants people the way it has me. Each time I listen I'm swept away by it. There's never a master plan when making a record, instead it reflects the emotions of the musicians and writers who performed on it. It's a simple record in many ways - it asks you to be patient and to slow down, which is difficult for some listeners. I've always wanted to be part of something truly beautiful, and with this record I feel blessed."
 
-During the making of this record I rapidly evolved, both as a person and as an artist. It was as if I'd woken with a great calling to create something incredibly beautiful together with other people. The grand undertaking unfolded - a record featuring 5 session musicians, 2 producers, 2 recording engineers and one mastering engineer.
+During the making of 'Stole You From The Underworld' I rapidly evolved, both as a person and as an artist. It was as if I'd woken with a great calling to create something incredibly beautiful together with other people. The grand undertaking unfolded - a record featuring 5 session musicians, 2 producers, 2 recording engineers and one mastering engineer.
 
 Friend and Dark-folk scene curator, Cameron James Laing, had the doors of his 'Famous Gold Watch Studios' flung open for me, and on the day of our first recording session I was greeted with customary wry smile and 'let's get down to it' attitude. 
 
