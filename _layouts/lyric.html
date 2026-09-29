@@ -26,7 +26,7 @@ layout: default
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--gold);
-    border-bottom: none;
+    border-bottom: 1px solid var(--gold);
   }
 
   header a {
@@ -94,7 +94,7 @@ layout: default
   footer {
     margin-top: 100px;
     padding-top: 25px;
-    border-top: none;
+    border-top: 1px solid var(--gold);
     font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 0.12em;
@@ -108,25 +108,6 @@ layout: default
   footer a:hover {
     color: var(--black);
   }
-
-
-  /* REMOVE GOLD UNDERLINES FROM LYRIC PAGE LINKS */
-
-  header a,
-  .release-link a,
-  footer a {
-    text-decoration: none !important;
-    border-bottom: none !important;
-    box-shadow: none !important;
-  }
-
-  header a::after,
-  .release-link a::after,
-  footer a::after {
-    display: none !important;
-    content: none !important;
-  }
-
 
   @media (max-width: 600px) {
 
@@ -156,9 +137,9 @@ layout: default
 </style>
 
 <header>
-  <a href="https://andrewjamespegram.carrd.co/">
-    Andrew James Pegram
-  </a>
+<a href="https://andrewjamespegram.carrd.co/">
+  Andrew James Pegram
+</a>
 </header>
 
 <main>
@@ -167,14 +148,14 @@ layout: default
     {{ page.date | date: "%d %B %Y" }}
   </div>
 
-  <div class="release-link">
-    <strong>Release:</strong>
-    {% if page.release_url and page.release_title %}
-    <a href="{{ page.release_url | relative_url }}">
-      {{ page.release_title }}
-    </a>
-    {% endif %}
-  </div>
+<div class="release-link">
+  <strong>Release:</strong>
+  {% if page.release_url and page.release_title %}
+  <a href="{{ page.release_url | relative_url }}">
+    {{ page.release_title }}
+  </a>
+  {% endif %}
+</div>
 
   <h1>{{ page.title }}</h1>
 
