@@ -237,7 +237,6 @@
     .story-share {
       margin-top: 50px;
       padding-top: 22px;
-
       border-top: 1px solid var(--gold);
 
       display: flex;
@@ -392,7 +391,7 @@
         <span class="story-meta-label">Categories</span>
 
         {% for category in page.categories %}
-          <a href="{{ '/news/?category=' | append: category | relative_url }}">
+          <a href="{{ '/news/' | relative_url }}?category={{ category | url_encode }}">
             {{ category }}
           </a>{% unless forloop.last %}<span class="story-meta-separator">·</span>{% endunless %}
         {% endfor %}
@@ -406,8 +405,148 @@
         <span class="story-meta-label">Tags</span>
 
         {% for tag in page.tags %}
-          <a href="{{ '/news/?tag=' | append: tag | relative_url }}">
+          <a href="{{ '/news/' | relative_url }}?tag={{ tag | url_encode }}">
             {{ tag }}
           </a>{% unless forloop.last %}<span class="story-meta-separator">·</span>{% endunless %}
-        {% en
+        {% endfor %}
+      {% endif %}
+
+    </div>
+
+    {% endif %}
+
+    {% if page.tour_dates_url or page.ticket_url %}
+
+    <div class="story-actions">
+
+      {% if page.tour_dates_url %}
+      <a href="{{ page.tour_dates_url | relative_url }}">
+        View Tour Dates →
+      </a>
+      {% endif %}
+
+      {% if page.ticket_url %}
+      <a href="{{ page.ticket_url }}" target="_blank" rel="noopener">
+        Get Tickets →
+      </a>
+      {% endif %}
+
+    </div>
+
+    {% endif %}
+
+    <!-- RELATED STORIES -->
+
+    {% assign related_count = 0 %}
+
+    {% for story in site.stories %}
+
+      {% if story.url != page.url %}
+
+        {% assign related = false %}
+
+        {% if page.categories and story.categories %}
+          {% for category in page.categories %}
+            {% if story.categories contains category %}
+              {% assign related = true %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+
+        {% if page.tags and story.tags %}
+          {% for tag in page.tags %}
+            {% if story.tags contains tag %}
+              {% assign related = true %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+
+        {% if related and related_count < 3 %}
+
+          {% if related_count == 0 %}
+          <div class="related-stories">
+
+            <div class="related-stories-title">
+              Related Stories
+            </div>
+          {% endif %}
+
+            <div class="related-story">
+
+              <div class="related-story-date">
+                {{ story.date | date: "%d %B %Y" }}
+              </div>
+
+              <h2 class="related-story-title">
+                <a href="{{ story.url | relative_url }}">
+                  {{ story.title }}
+                </a>
+              </h2>
+
+            </div>
+
+          {% assign related_count = related_count | plus: 1 %}
+
+        {% endif %}
+
+      {% endif %}
+
+    {% endfor %}
+
+    {% if related_count > 0 %}
+      </div>
+    {% endif %}
+
+    <!-- SOCIAL SHARE -->
+
+    <div class="story-share">
+
+      <span class="story-share-label">
+        Share
+      </span>
+
+      <a
+        href="https://www.facebook.com/sharer/sharer.php?u={{ page.url | absolute_url }}"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Share on Facebook"
+        title="Share on Facebook"
+      >
+        f
+      </a>
+
+      <a
+        href="https://twitter.com/intent/tweet?url={{ page.url | absolute_url }}&text={{ page.title }}"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Share on X"
+        title="Share on X"
+      >
+        X
+      </a>
+
+      <a
+        href="https://wa.me/?text={{ page.title }} {{ page.url | absolute_url }}"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Share on WhatsApp"
+        title="Share on WhatsApp"
+      >
+        WA
+      </a>
+
+    </div>
+
+  </article>
+
+  <footer>
+    <a href="{{ '/news/' | relative_url }}">
+      ← All stories
+    </a>
+  </footer>
+
+</main>
+
+</body>
+</html>
 ```
