@@ -4,8 +4,12 @@ date: 2026-09-04
 permalink: /news/manchester-micro-tour-2027/
 categories:
   - stories
-  - manchester
   - live
+tags:
+- manchester
+- tour
+- 2027
+- announcements
 description: "Hometown Manchester live dates announced"
 tour_dates_url: "/tour-dates/"
 ---
