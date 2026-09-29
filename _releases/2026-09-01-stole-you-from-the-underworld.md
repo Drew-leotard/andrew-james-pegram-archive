@@ -9,7 +9,7 @@ format: "Digital / Vinyl"
 credits: " Music and lyrics Andrew James Pegram / Piano Tim Enders / Bass guitar Georg Kostron  Cello Natasha Jaffe / Drums Gidon Carmel / Pre production Håvard Møen Otnes / Recording engineer Cameron Laing / Additional engineer Sam Hanlan 
 "
 
-cover_image: "/assets/images/releases/Screenshot 2026-09-06 at 05-03-39 Instagram smaller.jpg"
+cover_image: "/assets/images/releases/blank cover art.jpg"
 
 listen_url: ""
 buy_url: ""
