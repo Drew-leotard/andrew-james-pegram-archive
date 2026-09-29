@@ -109,6 +109,25 @@ layout: default
     color: var(--black);
   }
 
+
+  /* REMOVE GOLD UNDERLINES FROM LYRIC PAGE LINKS */
+
+  header a,
+  .release-link a,
+  footer a {
+    text-decoration: none !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+  }
+
+  header a::after,
+  .release-link a::after,
+  footer a::after {
+    display: none !important;
+    content: none !important;
+  }
+
+
   @media (max-width: 600px) {
 
     header {
