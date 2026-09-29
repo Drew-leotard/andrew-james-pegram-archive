@@ -77,21 +77,7 @@ title: Releases
     min-width: 0;
   }
 
-  .artwork-placeholder {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    border: 1px solid var(--gold);
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--gold);
-  }
-
-  .artwork {
+   .artwork {
     width: 100%;
     aspect-ratio: 1 / 1;
     object-fit: cover;
@@ -205,44 +191,45 @@ title: Releases
 
     {% for release in releases %}
 
-    <div class="release">
+  <div class="release">
 
-      {% if release.artwork %}
-      <img
-        class="artwork"
-        src="{{ release.artwork | relative_url }}"
-        alt="{{ release.title }} artwork">
-      {% else %}
-      <div class="artwork-placeholder">
-        Image
-      </div>
-      {% endif %}
+  {% if release.artwork %}
+  <img
+    class="artwork"
+    src="{{ release.artwork | relative_url }}"
+    alt="{{ release.title }} artwork">
+  {% else %}
+  <img
+    class="artwork"
+    src="{{ '/assets/images/releases/blank cover art.jpg' | relative_url }}"
+    alt="{{ release.title }} artwork">
+  {% endif %}
 
-      <div class="release-title">
-        <a href="{{ release.url | relative_url }}">
-          {{ release.title }}
-        </a>
-      </div>
+  <div class="release-title">
+    <a href="{{ release.url | relative_url }}">
+      {{ release.title }}
+    </a>
+  </div>
 
-      {% if release.artist %}
-      <div class="release-artist">
-        {{ release.artist }}
-      </div>
-      {% endif %}
+  {% if release.artist %}
+  <div class="release-artist">
+    {{ release.artist }}
+  </div>
+  {% endif %}
 
-      <div class="release-actions">
+  <div class="release-actions">
 
-        <a href="https://example.com" target="_blank" rel="noopener">
-          Listen
-        </a>
+    <a href="https://example.com" target="_blank" rel="noopener">
+      Listen
+    </a>
 
-        <a href="https://example.com" target="_blank" rel="noopener">
-          Buy
-        </a>
+    <a href="https://example.com" target="_blank" rel="noopener">
+      Buy
+    </a>
 
-      </div>
+  </div>
 
-    </div>
+</div>
 
     {% endfor %}
 
