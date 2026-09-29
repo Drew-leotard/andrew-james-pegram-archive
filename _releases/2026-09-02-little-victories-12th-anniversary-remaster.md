@@ -7,4 +7,7 @@ order: 3
 format: "Digital / Vinyl"
 isrc: "XXXX"
 credits: "NAME / NAME / NAME"
+
+cover_image: "/assets/images/releases/blank cover art.jpg"
+
 ---
