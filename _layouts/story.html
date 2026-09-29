@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -132,109 +133,10 @@
       color: var(--black);
     }
 
-    footer {
-      margin-top: 100px;
-      padding-top: 25px;
-      border-top: 1px solid var(--gold);
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-    }
+    /* ================================
+       SOCIAL SHARE
+    ================================ */
 
-    footer a {
-      color: var(--gold);
-      text-decoration: none;
-    }
-
-    footer a:hover {
-      color: var(--black);
-    }
-
-    a {
-      color: var(--gold);
-    }
-
-    @media (max-width: 600px) {
-
-      header {
-        padding: 24px 6vw;
-      }
-
-      main {
-        margin-top: 7vh;
-        padding: 0 6vw;
-      }
-
-      h1 {
-        font-size: clamp(38px, 12vw, 60px);
-      }
-
-      .subtitle {
-        font-size: 16px;
-        margin-bottom: 55px;
-      }
-
-      article {
-        font-size: 17px;
-      }
-
-      .story-actions {
-        flex-direction: column;
-        gap: 18px;
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-<header>
-<a href="https://andrewjamespegram.carrd.co/">
-  Andrew James Pegram
-</a>
-</header>
-
-<main>
-
-  <div class="date">
-    {{ page.date | date: "%d %B %Y" }}
-  </div>
-
-  <h1>{{ page.title }}</h1>
-
-  <div class="subtitle">
-    {{ page.excerpt }}
-  </div>
-
-  <article>
-    {{ content }}
-  </article>
-
-  {% if page.tour_dates_url or page.ticket_url %}
-  <div class="story-actions">
-
-    {% if page.tour_dates_url %}
-    <a href="{{ page.tour_dates_url | relative_url }}">
-      View Tour Dates →
-    </a>
-    {% endif %}
-
-    {% if page.ticket_url %}
-    <a href="{{ page.ticket_url }}" target="_blank" rel="noopener">
-      Get Tickets →
-    </a>
-    {% endif %}
-
-  </div>
-  {% endif %}
-
-  <footer>
-    <a href="{{ '/news/' | relative_url }}">
-      ← All stories
-    </a>
-  </footer>
-
-</main>
-
-</body>
-</html>
+    .story-share {
+      margin-t
+```
