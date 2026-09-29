@@ -6,5 +6,6 @@ categories:
   - stories
   - tour
   - genuflector
+  - tour_dates_url: "/tour-dates/"
 ---
 Taking genuflector on tour across the UK in an intimate acoustic electro setting
