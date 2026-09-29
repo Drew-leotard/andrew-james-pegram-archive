@@ -26,7 +26,7 @@ layout: default
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--gold);
-    border-bottom: 1px solid var(--gold);
+    border-bottom: none;
   }
 
   header a {
@@ -94,7 +94,7 @@ layout: default
   footer {
     margin-top: 100px;
     padding-top: 25px;
-    border-top: 1px solid var(--gold);
+    border-top: none;
     font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 0.12em;
@@ -137,9 +137,9 @@ layout: default
 </style>
 
 <header>
-<a href="https://andrewjamespegram.carrd.co/">
-  Andrew James Pegram
-</a>
+  <a href="https://andrewjamespegram.carrd.co/">
+    Andrew James Pegram
+  </a>
 </header>
 
 <main>
@@ -148,14 +148,14 @@ layout: default
     {{ page.date | date: "%d %B %Y" }}
   </div>
 
-<div class="release-link">
-  <strong>Release:</strong>
-  {% if page.release_url and page.release_title %}
-  <a href="{{ page.release_url | relative_url }}">
-    {{ page.release_title }}
-  </a>
-  {% endif %}
-</div>
+  <div class="release-link">
+    <strong>Release:</strong>
+    {% if page.release_url and page.release_title %}
+    <a href="{{ page.release_url | relative_url }}">
+      {{ page.release_title }}
+    </a>
+    {% endif %}
+  </div>
 
   <h1>{{ page.title }}</h1>
 
