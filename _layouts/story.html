@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -111,6 +112,45 @@
       font-weight: 600;
     }
 
+    /* ================================
+       CATEGORIES / TAGS
+    ================================ */
+
+    .story-meta {
+      margin-top: 45px;
+      padding-top: 20px;
+      border-top: 1px solid var(--gold);
+
+      font-family: "Hedvig Letters Serif", Georgia, serif;
+      font-size: 11px;
+      line-height: 1.8;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .story-meta-label {
+      margin-right: 10px;
+      color: var(--gold);
+    }
+
+    .story-meta a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    .story-meta a:hover {
+      color: var(--black);
+    }
+
+    .story-meta-separator {
+      margin: 0 7px;
+      color: var(--gold);
+    }
+
+    /* ================================
+       STORY ACTIONS
+    ================================ */
+
     .story-actions {
       display: flex;
       gap: 40px;
@@ -133,12 +173,71 @@
     }
 
     /* ================================
+       RELATED STORIES
+    ================================ */
+
+    .related-stories {
+      margin-top: 70px;
+      padding-top: 25px;
+      border-top: 1px solid var(--gold);
+    }
+
+    .related-stories-title {
+      margin: 0 0 35px;
+
+      font-family: "Hedvig Letters Serif", Georgia, serif;
+      font-size: 12px;
+      line-height: 1;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+
+      color: var(--gold);
+    }
+
+    .related-story {
+      margin-bottom: 32px;
+    }
+
+    .related-story-date {
+      margin-bottom: 7px;
+
+      font-family: "Hedvig Letters Serif", Georgia, serif;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+
+      color: var(--gold);
+    }
+
+    .related-story-title {
+      margin: 0;
+
+      font-family: "Hedvig Letters Serif", Georgia, serif;
+      font-size: 24px;
+      line-height: 1.1;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+    }
+
+    .related-story-title a {
+      color: var(--black);
+      text-decoration: none;
+    }
+
+    .related-story-title a:hover {
+      color: var(--gold);
+    }
+
+    /* ================================
        SOCIAL SHARE
     ================================ */
 
     .story-share {
       margin-top: 50px;
       padding-top: 22px;
+
       border-top: 1px solid var(--gold);
 
       display: flex;
@@ -185,6 +284,10 @@
       color: var(--white);
     }
 
+    /* ================================
+       FOOTER
+    ================================ */
+
     footer {
       margin-top: 100px;
       padding-top: 25px;
@@ -206,6 +309,10 @@
     a {
       color: var(--gold);
     }
+
+    /* ================================
+       MOBILE
+    ================================ */
 
     @media (max-width: 600px) {
 
@@ -234,6 +341,14 @@
       .story-actions {
         flex-direction: column;
         gap: 18px;
+      }
+
+      .related-stories {
+        margin-top: 55px;
+      }
+
+      .related-story-title {
+        font-size: 21px;
       }
 
       .story-share {
@@ -267,80 +382,32 @@
 
     {{ content }}
 
-    {% if page.tour_dates_url or page.ticket_url %}
-    <div class="story-actions">
+    <!-- CATEGORIES / TAGS -->
 
-      {% if page.tour_dates_url %}
-      <a href="{{ page.tour_dates_url | relative_url }}">
-        View Tour Dates →
-      </a>
+    {% if page.categories or page.tags %}
+
+    <div class="story-meta">
+
+      {% if page.categories %}
+        <span class="story-meta-label">Categories</span>
+
+        {% for category in page.categories %}
+          <a href="{{ '/news/?category=' | append: category | relative_url }}">
+            {{ category }}
+          </a>{% unless forloop.last %}<span class="story-meta-separator">·</span>{% endunless %}
+        {% endfor %}
       {% endif %}
 
-      {% if page.ticket_url %}
-      <a href="{{ page.ticket_url }}" target="_blank" rel="noopener">
-        Get Tickets →
-      </a>
+      {% if page.categories and page.tags %}
+        <span class="story-meta-separator">|</span>
       {% endif %}
 
-    </div>
-    {% endif %}
+      {% if page.tags %}
+        <span class="story-meta-label">Tags</span>
 
-    <!-- SOCIAL SHARE -->
-
-    <div class="story-share">
-
-      <span class="story-share-label">
-        Share
-      </span>
-
-      <!-- Facebook -->
-
-      <a
-        href="https://www.facebook.com/sharer/sharer.php?u={{ page.url | absolute_url }}"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Share on Facebook"
-        title="Share on Facebook"
-      >
-        f
-      </a>
-
-      <!-- X -->
-
-      <a
-        href="https://twitter.com/intent/tweet?url={{ page.url | absolute_url }}&text={{ page.title }}"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Share on X"
-        title="Share on X"
-      >
-        X
-      </a>
-
-      <!-- WhatsApp -->
-
-      <a
-        href="https://wa.me/?text={{ page.title }} {{ page.url | absolute_url }}"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Share on WhatsApp"
-        title="Share on WhatsApp"
-      >
-        WA
-      </a>
-
-    </div>
-
-  </article>
-
-  <footer>
-    <a href="{{ '/news/' | relative_url }}">
-      ← All stories
-    </a>
-  </footer>
-
-</main>
-
-</body>
-</html>
+        {% for tag in page.tags %}
+          <a href="{{ '/news/?tag=' | append: tag | relative_url }}">
+            {{ tag }}
+          </a>{% unless forloop.last %}<span class="story-meta-separator">·</span>{% endunless %}
+        {% en
 ```
