@@ -138,5 +138,210 @@
     ================================ */
 
     .story-share {
-      margin-t
+      margin-top: 50px;
+      padding-top: 22px;
+      border-top: 1px solid var(--gold);
+
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .story-share-label {
+      margin-right: 8px;
+
+      font-family: "Hedvig Letters Serif", Georgia, serif;
+      font-size: 12px;
+      line-height: 1;
+      font-weight: 400;
+
+      color: var(--gold);
+    }
+
+    .story-share a {
+      width: 32px;
+      height: 32px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      box-sizing: border-box;
+
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+
+      background: transparent;
+
+      color: var(--gold);
+      text-decoration: none;
+
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      line-height: 1;
+    }
+
+    .story-share a:hover {
+      background: var(--gold);
+      color: var(--white);
+    }
+
+    footer {
+      margin-top: 100px;
+      padding-top: 25px;
+      border-top: 1px solid var(--gold);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    footer a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: var(--black);
+    }
+
+    a {
+      color: var(--gold);
+    }
+
+    @media (max-width: 600px) {
+
+      header {
+        padding: 24px 6vw;
+      }
+
+      main {
+        margin-top: 7vh;
+        padding: 0 6vw;
+      }
+
+      h1 {
+        font-size: clamp(38px, 12vw, 60px);
+      }
+
+      .subtitle {
+        font-size: 16px;
+        margin-bottom: 55px;
+      }
+
+      article {
+        font-size: 17px;
+      }
+
+      .story-actions {
+        flex-direction: column;
+        gap: 18px;
+      }
+
+      .story-share {
+        margin-top: 42px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <a href="https://andrewjamespegram.carrd.co/">
+    Andrew James Pegram
+  </a>
+</header>
+
+<main>
+
+  <div class="date">
+    {{ page.date | date: "%d %B %Y" }}
+  </div>
+
+  <h1>{{ page.title }}</h1>
+
+  <div class="subtitle">
+    {{ page.excerpt }}
+  </div>
+
+  <article>
+
+    {{ content }}
+
+    {% if page.tour_dates_url or page.ticket_url %}
+    <div class="story-actions">
+
+      {% if page.tour_dates_url %}
+      <a href="{{ page.tour_dates_url | relative_url }}">
+        View Tour Dates →
+      </a>
+      {% endif %}
+
+      {% if page.ticket_url %}
+      <a href="{{ page.ticket_url }}" target="_blank" rel="noopener">
+        Get Tickets →
+      </a>
+      {% endif %}
+
+    </div>
+    {% endif %}
+
+    <!-- SOCIAL SHARE -->
+
+    <div class="story-share">
+
+      <span class="story-share-label">
+        Share
+      </span>
+
+      <!-- Facebook -->
+
+      <a
+        href="https://www.facebook.com/sharer/sharer.php?u={{ page.url | absolute_url }}"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Share on Facebook"
+        title="Share on Facebook"
+      >
+        f
+      </a>
+
+      <!-- X -->
+
+      <a
+        href="https://twitter.com/intent/tweet?url={{ page.url | absolute_url }}&text={{ page.title }}"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Share on X"
+        title="Share on X"
+      >
+        X
+      </a>
+
+      <!-- WhatsApp -->
+
+      <a
+        href="https://wa.me/?text={{ page.title }} {{ page.url | absolute_url }}"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Share on WhatsApp"
+        title="Share on WhatsApp"
+      >
+        WA
+      </a>
+
+    </div>
+
+  </article>
+
+  <footer>
+    <a href="{{ '/news/' | relative_url }}">
+      ← All stories
+    </a>
+  </footer>
+
+</main>
+
+</body>
+</html>
 ```
