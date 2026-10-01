@@ -181,25 +181,17 @@ title: Lyrics
     padding-top: 5px;
   }
 
-  .release-title {
-    margin: 0;
+.release-title {
+  margin: 0 0 14px;
 
-    font-family: "IM Fell English", Georgia, serif;
-    font-size: 27px;
-    line-height: 1.05;
-    font-weight: 400;
-    text-transform: uppercase;
+  font-family: "IM Fell English", Georgia, serif;
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 400;
+  text-transform: none;
 
-    background: linear-gradient(
-      90deg,
-      var(--gold) 0%,
-      var(--green) 100%
-    );
-
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
+  color: var(--black);
+}
 
   .release-artist {
     margin: 10px 0 0;
@@ -469,23 +461,13 @@ title: Lyrics
     {% endif %}
   </a>
 
-  <div class="release-information">
+ <div class="release-information">
 
-    <h2 class="release-title">
-      {{ release.title }}
-    </h2>
+  <h2 class="release-title">
+    {{ release.title }}
+  </h2>
 
-    {% if release.artist %}
-      <div class="release-artist">
-        {{ release.artist }}
-      </div>
-    {% endif %}
-
-    <div class="release-year">
-      {{ release.date | date: "%Y" }}
-    </div>
-
-    <ol class="song-list">
+  <ol class="song-list">
       {% for track in release.tracklist %}
 
         {% assign track_slug = track.title | slugify %}
