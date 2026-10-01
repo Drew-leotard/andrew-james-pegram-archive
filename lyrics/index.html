@@ -142,40 +142,40 @@ title: Lyrics
     margin-bottom: 9vh;
   }
 
-  .release-heading {
-    display: grid;
-    grid-template-columns: 150px 1fr;
-    gap: 35px;
-    align-items: start;
-    margin-bottom: 30px;
-  }
+.release-heading {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 35px;
+  align-items: start;
+  margin-bottom: 30px;
+}
 
   .release-art-link {
     display: block;
   }
 
-  .release-art {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    display: block;
-  }
+.release-art {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
 
-  .release-art-placeholder {
-    width: 150px;
-    height: 150px;
-    box-sizing: border-box;
-    border: 1px solid var(--gold);
+.release-art-placeholder {
+  width: 180px;
+  height: 180px;
+  box-sizing: border-box;
+  border: 1px solid var(--gold);
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    color: var(--gold);
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
+  color: var(--gold);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
 
   .release-information {
     padding-top: 5px;
@@ -242,14 +242,6 @@ title: Lyrics
     font-family: "Hedvig Letters Serif", Georgia, serif;
     font-size: 17px;
     line-height: 1.3;
-  }
-
-  .song-number {
-    width: 28px;
-    flex: 0 0 28px;
-
-    color: var(--gold);
-    font-size: 12px;
   }
 
   .song-link:hover {
@@ -394,11 +386,6 @@ title: Lyrics
       font-size: 15px;
     }
 
-    .song-number {
-      width: 25px;
-      flex-basis: 25px;
-    }
-  }
 </style>
 
 <header>
@@ -455,110 +442,93 @@ title: Lyrics
           data-release="{{ release.title | downcase }}"
         >
 
-          <div class="release-heading">
+<div class="release-heading">
+
+  <a
+    class="release-art-link"
+    href="{{ release.url | relative_url }}"
+  >
+    {% if release.artwork %}
+      <img
+        class="release-art"
+        src="{{ release.artwork | relative_url }}"
+        alt="{{ release.title }} artwork"
+      >
+
+    {% elsif release.cover_image %}
+      <img
+        class="release-art"
+        src="{{ release.cover_image | relative_url }}"
+        alt="{{ release.title }} artwork"
+      >
+
+    {% else %}
+      <div class="release-art-placeholder">
+        Image
+      </div>
+    {% endif %}
+  </a>
+
+  <div class="release-information">
+
+    <h2 class="release-title">
+      {{ release.title }}
+    </h2>
+
+    {% if release.artist %}
+      <div class="release-artist">
+        {{ release.artist }}
+      </div>
+    {% endif %}
+
+    <div class="release-year">
+      {{ release.date | date: "%Y" }}
+    </div>
+
+    <ol class="song-list">
+      {% for track in release.tracklist %}
+
+        {% assign track_slug = track.title | slugify %}
+        {% assign lyric_url = "" %}
+
+        {% for lyric in site.lyrics %}
+          {% assign lyric_slug = lyric.title | slugify %}
+
+          {% if lyric_slug == track_slug %}
+            {% assign lyric_url = lyric.url %}
+          {% endif %}
+        {% endfor %}
+
+        <li
+          class="song-item"
+          data-song="{{ track.title | downcase }}"
+        >
+
+          {% if lyric_url != "" %}
 
             <a
-              class="release-art-link"
-              href="{{ release.url | relative_url }}"
+              class="song-link song-title"
+              href="{{ lyric_url | relative_url }}"
             >
-
-              {% if release.artwork %}
-
-                <img
-                  class="release-art"
-                  src="{{ release.artwork | relative_url }}"
-                  alt="{{ release.title }} artwork"
-                >
-
-              {% elsif release.cover_image %}
-
-                <img
-                  class="release-art"
-                  src="{{ release.cover_image | relative_url }}"
-                  alt="{{ release.title }} artwork"
-                >
-
-              {% else %}
-
-                <div class="release-art-placeholder">
-                  Image
-                </div>
-
-              {% endif %}
-
+              {{ track.title }}
             </a>
 
-            <div class="release-information">
+          {% else %}
 
-              <h2 class="release-title">
-                {{ release.title }}
-              </h2>
+            <span class="song-title">
+              {{ track.title }}
+            </span>
 
-              {% if release.artist %}
+          {% endif %}
 
-                <div class="release-artist">
-                  {{ release.artist }}
-                </div>
+        </li>
 
-              {% endif %}
+      {% endfor %}
+    </ol>
 
-              <div class="release-year">
-                {{ release.date | date: "%Y" }}
-              </div>
+  </div>
 
-            </div>
-
-          </div>
-
-
-          <ol class="song-list">
-
-            {% for track in release.tracklist %}
-
-              {% assign track_slug = track.title | slugify %}
-              {% assign lyric_url = "" %}
-
-              {% for lyric in site.lyrics %}
-
-                {% assign lyric_slug = lyric.title | slugify %}
-
-                {% if lyric_slug == track_slug %}
-                  {% assign lyric_url = lyric.url %}
-                {% endif %}
-
-              {% endfor %}
-
-              <li
-                class="song-item"
-                data-song="{{ track.title | downcase }}"
-              >
-
-                <span class="song-number">
-                  {{ forloop.index | prepend: "0" | slice: -2, 2 }}
-                </span>
-
-                {% if lyric_url != "" %}
-
-                  <a
-                    class="song-link song-title"
-                    href="{{ lyric_url | relative_url }}"
-                  >
-                    {{ track.title }}
-                  </a>
-
-                {% else %}
-
-                  <span class="song-title">
-                    {{ track.title }}
-                  </span>
-
-                {% endif %}
-
-              </li>
-
-            {% endfor %}
-
-          </ol>
+</div>
 
         </section>
 
