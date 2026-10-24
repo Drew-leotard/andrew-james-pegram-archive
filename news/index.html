@@ -163,13 +163,14 @@ title: News
 
 <main>
 
-  <h1 class="section-title">News</h1>
+<h1 class="section-title" id="news-heading">News</h1>
 
   {% assign stories = site.stories | sort: "date" | reverse %}
 
   {% for story in stories %}
 
-    <article class="story">
+    <article class="story"
+         data-categories="{{ story.categories | join: ',' | downcase }}">
 
       <div class="story-date">
         {{ story.date | date: "%d %B %Y" }}
@@ -191,10 +192,54 @@ title: News
 
   {% endfor %}
 
-  <footer>
-    <a href="https://andrewjamespegram.carrd.co/">
-      ← Home
-    </a>
-  </footer>
+<footer>
+  <a id="news-back-link" href="{{ '/news/' | relative_url }}">
+    ← All stories
+  </a>
+</footer>
 
 </main>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const params = new URLSearchParams(window.location.search);
+  const category = params.get("category");
+
+  if (!category) return;
+
+  const selectedCategory = category.trim().toLowerCase();
+  const stories = document.querySelectorAll(".story");
+  let visibleCount = 0;
+
+  stories.forEach(function (story) {
+    const categories = (story.dataset.categories || "")
+      .split(",")
+      .map(function (item) {
+        return item.trim().toLowerCase();
+      });
+
+    const matches = categories.includes(selectedCategory);
+    story.hidden = !matches;
+
+    if (matches) visibleCount++;
+  });
+
+  const heading = document.getElementById("news-heading");
+  if (heading) {
+    heading.textContent = category + " stories";
+  }
+
+  const backLink = document.getElementById("news-back-link");
+  if (backLink) {
+    backLink.textContent = "← All stories";
+  }
+
+  if (visibleCount === 0) {
+    const main = document.querySelector("main");
+    const message = document.createElement("p");
+    message.textContent = "No stories found in this category.";
+    message.id = "no-category-stories";
+    main.insertBefore(message, document.querySelector("footer"));
+  }
+});
+</script>
