@@ -12,4 +12,4 @@ Tags:
   - berlin
   - debut album
 ---
-Genuflector is an album spanning multiple years of discovery
+The debut album is set to be remastered and re-released on limited edition 12" Vinyl 
