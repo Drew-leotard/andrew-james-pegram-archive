@@ -1,3 +1,4 @@
+
 ---
 layout: default
 title: News
@@ -42,28 +43,21 @@ title: News
     padding: 0 5vw;
   }
 
-.section-title {
-  display: block;
-  width: fit-content;
-  margin: 0 auto 10vh;
-
-  font-family: "IM Fell English", Georgia, serif;
-  font-size: 32px;
-  line-height: 1;
-  font-weight: 400;
-  letter-spacing: 0;
-  text-transform: uppercase;
-
-  background: linear-gradient(
-    90deg,
-    var(--gold) 0%,
-    var(--green) 100%
-  );
-
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
+  .section-title {
+    display: block;
+    width: fit-content;
+    margin: 0 auto 10vh;
+    font-family: "IM Fell English", Georgia, serif;
+    font-size: 32px;
+    line-height: 1;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, var(--gold) 0%, var(--green) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
 
   .story {
     margin-bottom: 9vh;
@@ -78,15 +72,15 @@ title: News
     margin-bottom: 12px;
   }
 
-.story-title {
-  font-family: "Hedvig Letters Serif", Georgia, serif;
-  font-size: 30px;
-  line-height: 1.05;
-  font-weight: 400;
-  letter-spacing: -0.01em;
-  margin: 0;
-  text-transform: uppercase;
-}
+  .story-title {
+    font-family: "Hedvig Letters Serif", Georgia, serif;
+    font-size: 30px;
+    line-height: 1.05;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    margin: 0;
+    text-transform: uppercase;
+  }
 
   .story-title a {
     color: var(--black);
@@ -104,6 +98,39 @@ title: News
     font-size: 16px;
     line-height: 1.5;
     color: var(--black);
+  }
+
+  /* Older stories: title only */
+  .story.older-story {
+    margin-bottom: 2vh;
+  }
+
+  .story.older-story .story-date,
+  .story.older-story .story-description {
+    display: none;
+  }
+
+  .story.older-story .story-title {
+    font-size: 20px;
+    line-height: 1.3;
+    text-transform: none;
+  }
+
+  .story.older-story .story-title a {
+    color: var(--black);
+  }
+
+  .story.older-story .story-title a:hover {
+    color: var(--gold);
+  }
+
+  .story-section-heading {
+    margin: 7vh 0 3vh;
+    font-family: "IM Fell English", Georgia, serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--gold);
+    text-transform: uppercase;
   }
 
   footer {
@@ -126,7 +153,6 @@ title: News
   }
 
   @media (max-width: 600px) {
-
     header {
       padding: 22px 6vw;
     }
@@ -152,6 +178,14 @@ title: News
     .story-description {
       font-size: 15px;
     }
+
+    .story.older-story {
+      margin-bottom: 2vh;
+    }
+
+    .story.older-story .story-title {
+      font-size: 19px;
+    }
   }
 </style>
 
@@ -162,42 +196,52 @@ title: News
 </header>
 
 <main>
-
-<h1 class="section-title" id="news-heading">News</h1>
+  <h1 class="section-title" id="news-heading">News</h1>
 
   {% assign stories = site.stories | sort: "date" | reverse %}
 
-  {% for story in stories %}
+  <div id="latest-stories"></div>
 
-    <article class="story"
-         data-categories="{{ story.categories | join: ',' | downcase }}">
+  <h2 class="story-section-heading" id="older-heading">
+    Older stories
+  </h2>
 
-      <div class="story-date">
-        {{ story.date | date: "%d %B %Y" }}
-      </div>
+  <div id="older-stories"></div>
 
-      <h2 class="story-title">
-        <a href="{{ story.url | relative_url }}">
-          {{ story.title }}
-        </a>
-      </h2>
+  <div id="all-stories-data" hidden>
+    {% for story in stories %}
+      <article class="story"
+        data-categories="{{ story.categories | join: ',' | downcase }}">
 
-      {% if story.excerpt %}
-        <div class="story-description">
-          {{ story.excerpt }}
+        <div class="story-date">
+          {{ story.date | date: "%d %B %Y" }}
         </div>
-      {% endif %}
 
-    </article>
+        <h2 class="story-title">
+          <a href="{{ story.url | relative_url }}">
+            {{ story.title }}
+          </a>
+        </h2>
 
-  {% endfor %}
+        {% if story.excerpt %}
+          <div class="story-description">
+            {{ story.excerpt }}
+          </div>
+        {% elsif story.description %}
+          <div class="story-description">
+            {{ story.description }}
+          </div>
+        {% endif %}
 
-<footer>
-  <a id="news-back-link" href="{{ '/news/' | relative_url }}">
-    ← All stories
-  </a>
-</footer>
+      </article>
+    {% endfor %}
+  </div>
 
+  <footer>
+    <a id="news-back-link" href="{{ '/news/' | relative_url }}">
+      ← All stories
+    </a>
+  </footer>
 </main>
 
 <script>
@@ -205,41 +249,49 @@ document.addEventListener("DOMContentLoaded", function () {
   const params = new URLSearchParams(window.location.search);
   const category = params.get("category");
 
-  if (!category) return;
+  const source = document.getElementById("all-stories-data");
+  const latest = document.getElementById("latest-stories");
+  const older = document.getElementById("older-stories");
+  const olderHeading = document.getElementById("older-heading");
+  const backLink = document.getElementById("news-back-link");
+  const heading = document.getElementById("news-heading");
 
-  const selectedCategory = category.trim().toLowerCase();
-  const stories = document.querySelectorAll(".story");
-  let visibleCount = 0;
+  if (!source || !latest || !older) return;
 
-  stories.forEach(function (story) {
+  const stories = Array.from(source.querySelectorAll(".story"));
+
+  const matchingStories = stories.filter(function (story) {
+    if (!category) return true;
+
     const categories = (story.dataset.categories || "")
       .split(",")
-      .map(function (item) {
-        return item.trim().toLowerCase();
-      });
+      .map(value => value.trim().toLowerCase());
 
-    const matches = categories.includes(selectedCategory);
-    story.hidden = !matches;
-
-    if (matches) visibleCount++;
+    return categories.includes(category.trim().toLowerCase());
   });
 
-  const heading = document.getElementById("news-heading");
-  if (heading) {
+  matchingStories.forEach(function (story, index) {
+    if (index < 4) {
+      latest.appendChild(story);
+    } else if (index < 8) {
+      story.classList.add("older-story");
+      older.appendChild(story);
+    }
+  });
+
+  if (olderHeading) {
+    olderHeading.hidden = matchingStories.length <= 4;
+  }
+
+  if (heading && category) {
     heading.textContent = category + " stories";
   }
 
-  const backLink = document.getElementById("news-back-link");
   if (backLink) {
-    backLink.textContent = "← All stories";
+    backLink.textContent = category ? "← All stories" : "← Home";
+    backLink.href = category ? "{{ '/news/' | relative_url }}" : "https://andrewjamespegram.carrd.co/";
   }
 
-  if (visibleCount === 0) {
-    const main = document.querySelector("main");
-    const message = document.createElement("p");
-    message.textContent = "No stories found in this category.";
-    message.id = "no-category-stories";
-    main.insertBefore(message, document.querySelector("footer"));
-  }
+  source.remove();
 });
 </script>
