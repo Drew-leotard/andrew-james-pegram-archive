@@ -1,16 +1,17 @@
 ---
-  title: "MESSAGES | OUT NOVEMBER 2026"
+title: "MESSAGES | OUT NOVEMBER 2026"
 date: 2026-10-01
 permalink: /news/messsages-out-november-26/
 categories:
   - releases
   - messages
 tags:
-- new music
-- new release
-- 2026
-- announcements
+  - new music
+  - new release
+  - 2026
+  - announcements
 description: "New single Messages out November 2026"
+---
 
 ---
 
