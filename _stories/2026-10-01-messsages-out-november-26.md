@@ -3,8 +3,8 @@
 date: 2026-10-01
 permalink: /news/messsages-out-november-26/
 categories:
-  - stories
   - releases
+  - messages
 tags:
 - new music
 - new release
@@ -14,4 +14,4 @@ description: "New single Messages out November 2026"
 
 ---
 
-Messages will be released digitally and on limited edition casette tape on November 2026.
+Messages will be released digitally and on limited edition cassette tape on November 2026.
