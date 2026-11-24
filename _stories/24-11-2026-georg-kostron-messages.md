@@ -6,7 +6,7 @@ categories:
   - stories
   - genuflector
   - album
-  - mesaages
+  - messages
 ---
 Georg Kostron lined up to collaborate on new single 'Messages'.
 
