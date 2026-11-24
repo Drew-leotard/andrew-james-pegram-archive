@@ -7,7 +7,6 @@ categories:
   - genuflector
   - album
 ---
---
 Stole You From The Underworld entered into the International Songwriting Contest 2026, and it feels like.. 'organic energy', man.
 
 After receiving a newsletter from my royalty collections society PRS, I happened across a link to the competition and, to my astonishment, immediately felt a pang of inspiration. Lo and behold, the deadline for submissions had been extended and that deadline gave me ample room to finish up some final mix teaks at my home studio in Leipzig.
