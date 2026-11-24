@@ -8,6 +8,7 @@ categories:
   - album
   - mesaages
 ---
+Georg Kostron lined up to collaborate on new single 'Messages'.
 
 Bass is an incredible frequency range. Low, full, steady energy is integral to the music I make. Full, melodic, supportive, primal and even fundamental in terms of tactility - 'in' and 'with' body listening and experiencing of musical sonic art forms. 
 
