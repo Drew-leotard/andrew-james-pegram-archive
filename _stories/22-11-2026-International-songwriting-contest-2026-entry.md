@@ -6,6 +6,7 @@ categories:
   - stories
   - genuflector
   - album
+  - Stole You From The Underworld
 ---
 Stole You From The Underworld entered into the International Songwriting Contest 2026, and it feels like.. 'organic energy', man.
 
