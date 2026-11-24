@@ -8,6 +8,8 @@ categories:
   - album
 ---
 --
+Stole You From The Underworld entered into the International Songwriting Contest 2026, and it feels like.. organic, man.
+
 After receiving a newsletter from my royalty collections society PRS, I happened across a link to the competition and, to my astonishment, immediately felt a pang of inspiration. Lo and behold, the deadline for submissions had been extended and that deadline gave me ample room to finish up some final mix teaks at my home studio in Leipzig.
 
 As far as competitions go I'm often skeptical, especially when charged an entry fee. Still, something organic had brought me there and I've acted on impulses like these in the past only to watch them come up trumps. I dug deep and forked out 27 quid, uploaded a 320kbps mp3 file of the latest mix and hit 'submit'.
