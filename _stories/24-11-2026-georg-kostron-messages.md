@@ -17,5 +17,3 @@ When creative producer and Famous Gold Watch studio owner and founder Cameron Ja
 As the follow up recording to 'Stole You From The Underworld', 'Messages' assumes a slightly submissive role. But, Not dominated by layered tracks of lush strings, pianos, full drum kits, organic sound design atmospheres or 10 piece choirs, this composition leaves more room for the aforementioned, more primal frequencies, namely - DRUMS and BASS. 
 
 Georg lives and works in Berlin, Germany and is, to my mind, one of the few technically and creatively brilliant bass players around. Follow him here
-
---
