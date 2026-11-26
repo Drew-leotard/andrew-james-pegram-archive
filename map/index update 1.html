@@ -1,0 +1,421 @@
+---
+layout: default
+title: Map of Epochs
+permalink: /map/
+---
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&family=IM+Fell+English:ital@0;1&display=swap');
+
+:root {
+  --map-ink: #29291f;
+  --map-paper: #f1ead7;
+  --map-paper-deep: #e5dac0;
+  --map-gold: #9e7c02;
+  --map-green: #315b43;
+  --map-blue: #527d86;
+  --map-serif: 'Hedvig Letters Serif', Georgia, serif;
+  --map-old: 'IM Fell English', Georgia, serif;
+}
+
+.epoch-world {
+  width: min(1240px, calc(100% - 48px));
+  margin: 0 auto 100px;
+  color: var(--map-ink);
+  font-family: var(--map-serif);
+}
+.epoch-world * { box-sizing: border-box; }
+.epoch-world a { color: inherit; }
+.map-heading { text-align: center; padding: 46px 0 22px; }
+.map-kicker { font: italic 15px var(--map-old); letter-spacing: .12em; color: #77705d; }
+.map-heading h1 { font: 400 clamp(34px, 5vw, 58px)/1.08 var(--map-serif); margin: 12px 0 10px; }
+.map-intro { max-width: 620px; margin: 0 auto; color: #686452; font: 16px/1.65 var(--map-old); }
+.map-instruction { margin: 20px auto 0; font: 12px var(--map-old); letter-spacing: .08em; color: #837b65; text-transform: uppercase; }
+.archive-link { display: inline-flex; align-items: center; gap: 9px; margin: 20px auto 0; padding: 7px 12px; color: #63715c !important; border: 1px solid #cfc5ad; border-radius: 2px; text-decoration: none; font: 13px var(--map-old); letter-spacing: .025em; transition: background .2s, border-color .2s, color .2s; }
+.archive-link:hover { background: #e8e2d2; border-color: #9e987e; color: #8a6c1b !important; }
+.archive-link svg { width: 16px; height: 16px; flex: 0 0 auto; stroke: currentColor; fill: none; stroke-width: 1.35; stroke-linecap: round; stroke-linejoin: round; }
+.epoch-index { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; margin: 18px 0 0; }
+.epoch-index-button { min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 5px; padding: 12px 13px 11px; text-align: left; color: #494638; background: transparent; border: 1px solid #d5cbb5; border-radius: 2px; cursor: pointer; transition: background .2s, border-color .2s, transform .2s; }
+.epoch-index-button:hover, .epoch-index-button.is-active { background: #eee7d7; border-color: var(--epoch-colour); transform: translateY(-2px); }
+.epoch-index-button .index-category { font: 13px/1.25 var(--map-old); }
+.epoch-index-button .index-land { color: #817963; font: italic 12px/1.2 var(--map-old); }
+.epoch-index-button .index-years { margin-top: 2px; color: #9a9078; font: 10px var(--map-old); letter-spacing: .08em; }
+
+.map-frame {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #c9bea4;
+  border-radius: 3px;
+  background: var(--map-paper);
+  box-shadow: 0 12px 38px #51462b18, inset 0 0 0 7px #f7f1e3, inset 0 0 0 8px #d8cdb4;
+}
+.map-frame:before, .map-frame:after { content: ''; position: absolute; z-index: 2; pointer-events: none; }
+.map-frame:before { inset: 15px; border: 1px solid #cbbf9f88; }
+.map-frame:after { inset: 22px; border: 1px dashed #cbbf9f66; }
+.map-art { display: block; width: 100%; height: auto; min-height: 430px; }
+.map-art text { user-select: none; }
+.map-art .terrain { stroke: #8d876f; stroke-width: 1.2; opacity: .35; fill: none; }
+.map-art .river { fill: none; stroke: #6d9ba0; stroke-width: 9; stroke-linecap: round; stroke-linejoin: round; opacity: .78; }
+.map-art .river-edge { fill: none; stroke: #e5f0e9; stroke-width: 2; stroke-dasharray: 2 9; stroke-linecap: round; opacity: .8; }
+.map-art .route { fill: none; stroke: #a48b56; stroke-width: 2.2; stroke-dasharray: 4 7; opacity: .85; }
+.map-art .land-label { font: italic 22px var(--map-old); fill: #3b4638; letter-spacing: .04em; }
+.map-art .small-label { font: 12px var(--map-old); fill: #625e4d; letter-spacing: .07em; }
+.map-art .map-ornament { font: 11px var(--map-old); fill: #7d765f; letter-spacing: .14em; }
+.map-art .epoch-node { cursor: pointer; outline: none; }
+.map-art .epoch-node .node-halo { fill: #f7f0dd; stroke: #8b7b51; stroke-width: 1.5; transition: .25s ease; }
+.map-art .epoch-node .node-core { fill: var(--node-color); stroke: #fff8e7; stroke-width: 2; }
+.map-art .epoch-node .node-title { font: 15px var(--map-old); fill: #302f26; text-anchor: middle; }
+.map-art .epoch-node .node-years { font: 10px var(--map-old); fill: #68614e; text-anchor: middle; letter-spacing: .08em; }
+.map-art .epoch-node:hover .node-halo, .map-art .epoch-node:focus .node-halo, .map-art .epoch-node.is-active .node-halo { stroke: #9e6500; stroke-width: 3; filter: drop-shadow(0 2px 4px #473b2670); }
+.map-art .epoch-node.is-active .node-core { stroke: #fff; stroke-width: 3.5; }
+.map-art .epoch-node:focus-visible .node-halo { stroke: #174a1c; stroke-width: 4; }
+.map-art .branch { fill: none; stroke: #9d8c63; stroke-width: 2; stroke-dasharray: 3 6; opacity: .65; }
+
+.map-legend { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px 25px; padding: 16px 22px 18px; border-top: 1px solid #c9bea4; color: #6e6857; font: 12px var(--map-old); letter-spacing: .04em; }
+.legend-item { display: inline-flex; align-items: center; gap: 8px; }
+.legend-dot { width: 9px; height: 9px; display: inline-block; border-radius: 50%; background: var(--dot); border: 1px solid #fff9e8; box-shadow: 0 0 0 1px #918568; }
+.legend-river { width: 25px; height: 3px; border-radius: 5px; background: #6d9ba0; }
+
+.epoch-detail {
+  display: none;
+  margin: 28px auto 0;
+  max-width: 930px;
+  border: 1px solid #c8b995;
+  background: #f7f1e3;
+  box-shadow: 0 8px 26px #51462b12;
+  animation: arrive .35s ease both;
+}
+.epoch-detail.is-open { display: block; }
+@keyframes arrive { from { opacity: 0; transform: translateY(9px); } to { opacity: 1; transform: translateY(0); } }
+.detail-top { display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: start; padding: 28px 32px 22px; border-bottom: 1px solid #d8cdb5; }
+.detail-eyebrow { font: italic 13px var(--map-old); color: #80765e; letter-spacing: .1em; }
+.detail-top h2 { font: 400 clamp(26px, 4vw, 39px)/1.1 var(--map-serif); margin: 8px 0 7px; }
+.detail-years { color: #77705d; font: 13px var(--map-old); letter-spacing: .1em; }
+.detail-description { max-width: 620px; margin: 12px 0 0; color: #625e4f; font: 15px/1.6 var(--map-old); }
+.detail-close { border: 1px solid #b9aa89; color: #625b49; background: transparent; padding: 8px 12px; font: 12px var(--map-old); cursor: pointer; }
+.detail-close:hover { background: #e9dfc9; }
+.detail-body { padding: 24px 32px 30px; }
+.detail-body h3 { margin: 0 0 18px; font: italic 18px var(--map-old); color: #4c5948; }
+.epoch-stories { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 34px; }
+.epoch-story { padding: 14px 0 16px; border-top: 1px solid #ded4bf; }
+.epoch-story-date { color: #8a805f; font: 11px var(--map-old); letter-spacing: .08em; }
+.epoch-story h4 { margin: 5px 0 5px; font: 400 19px/1.25 var(--map-serif); }
+.epoch-story h4 a { text-decoration: none; border-bottom: 1px solid transparent; }
+.epoch-story h4 a:hover { border-color: var(--map-gold); }
+.epoch-story p { margin: 0; color: #6b6656; font: 13px/1.5 var(--map-old); }
+.no-stories { color: #77705d; font: italic 15px var(--map-old); }
+.detail-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 24px; padding-top: 18px; border-top: 1px solid #d8cdb5; }
+.detail-nav button { border: 0; background: transparent; color: #45634e; padding: 5px 0; font: 14px var(--map-old); cursor: pointer; }
+.detail-nav button:hover { color: #9e7c02; }
+.detail-nav button:disabled { opacity: .3; cursor: default; }
+.map-footnote { text-align: center; margin: 25px auto 0; color: #8a826d; font: italic 13px var(--map-old); }
+.map-back { text-align: center; margin: 28px 0 0; font: 13px var(--map-old); }
+.map-back a { color: #526e56; text-decoration: none; border-bottom: 1px solid #9aab96; }
+.map-back a:hover { color: #9e7c02; }
+
+@media (max-width: 700px) {
+  .epoch-world { width: calc(100% - 24px); }
+  .map-heading { padding-top: 30px; }
+  .map-art { min-height: 0; }
+  .map-frame:before { inset: 9px; }
+  .map-frame:after { inset: 14px; }
+  .map-legend { gap: 9px 16px; padding: 13px 12px; }
+  .epoch-index { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px; }
+  .epoch-index-button { padding: 10px 11px; }
+  .epoch-index-button:last-child { grid-column: 1 / -1; }
+  .archive-link { margin-top: 16px; }
+  .detail-top { padding: 22px 18px 18px; }
+  .detail-body { padding: 20px 18px 24px; }
+  .epoch-stories { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *:before, *:after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+</style>
+
+{% assign stories = site.stories | sort: "date" | reverse %}
+
+<main class="epoch-world">
+  <header class="map-heading">
+    <div class="map-kicker">A living archive · a cartography of time</div>
+    <h1>Map of Epochs</h1>
+    <p class="map-intro">A world made of moments, places, songs and crossings. Follow the river through time, or leave the path and discover another shore.</p>
+    <a class="archive-link" href="{{ '/news/' | relative_url }}" aria-label="Explore the News archive">
+      <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2.5 5.2 7 3.5l6 1.8 4.5-1.7v11.2L13 16.5l-6-1.8-4.5 1.7Z"/><path d="M7 3.5v11.2M13 5.3v11.2M4.2 7l1.5-.6M15 7l1.2-.5"/></svg>
+      <span>Browse the written archive</span>
+      <span aria-hidden="true">↗</span>
+    </a>
+    <p class="map-instruction">Select a marked land to open its history · follow the river to travel through time</p>
+  </header>
+
+  <section class="map-frame" aria-label="Interactive illustrated map of the five archive epochs">
+    <svg class="map-art" viewBox="0 0 1100 690" role="img" aria-labelledby="map-title map-desc">
+      <title id="map-title">The Map of Epochs</title>
+      <desc id="map-desc">Five distinct lands connected by a winding river and smaller paths. Select any land to explore its stories.</desc>
+      <defs>
+        <pattern id="paper-grain" width="90" height="90" patternUnits="userSpaceOnUse">
+          <circle cx="11" cy="18" r="1" fill="#8d8061" opacity=".12"/><circle cx="62" cy="53" r=".8" fill="#8d8061" opacity=".1"/><path d="M25 75l8-2" stroke="#8d8061" opacity=".09"/>
+        </pattern>
+        <linearGradient id="sea" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#dce4d5"/><stop offset="1" stop-color="#c6d9d2"/></linearGradient>
+        <linearGradient id="land-love" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d6c7a2"/><stop offset="1" stop-color="#b5b88d"/></linearGradient>
+        <linearGradient id="land-healing" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#c9d4b8"/><stop offset="1" stop-color="#8da68d"/></linearGradient>
+        <linearGradient id="land-blade" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d5b9a1"/><stop offset="1" stop-color="#a77d68"/></linearGradient>
+        <linearGradient id="land-voice" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#b9c9c7"/><stop offset="1" stop-color="#718d8a"/></linearGradient>
+        <linearGradient id="land-studio" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d8c7a0"/><stop offset="1" stop-color="#b59b70"/></linearGradient>
+        <filter id="soft-shadow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="5"/></filter>
+      </defs>
+
+      <rect width="1100" height="690" fill="url(#sea)"/>
+      <rect width="1100" height="690" fill="url(#paper-grain)"/>
+      <path d="M0 95Q180 40 310 92T610 80T900 90T1100 55M0 600Q190 560 350 610T680 595T1100 620" class="terrain"/>
+      <path d="M40 190Q180 140 290 178T510 164M650 530Q820 485 1060 535M760 130Q900 110 1060 150" class="terrain"/>
+      <path d="M35 345Q115 290 198 325T345 315M765 365Q875 315 1060 355" class="terrain"/>
+
+      <!-- Distinct lands -->
+      <path d="M95 105Q180 48 295 91Q383 110 390 204Q401 282 325 315Q241 357 139 305Q58 267 65 190Q66 140 95 105Z" fill="url(#land-studio)" stroke="#8f805f" stroke-width="2"/>
+      <path d="M420 60Q525 20 632 80Q718 130 684 228Q656 310 552 309Q451 314 399 241Q353 174 420 60Z" fill="url(#land-voice)" stroke="#637e7a" stroke-width="2"/>
+      <path d="M770 100Q876 40 1000 113Q1080 163 1030 268Q989 351 884 332Q785 315 748 237Q717 166 770 100Z" fill="url(#land-blade)" stroke="#8d6958" stroke-width="2"/>
+      <path d="M125 390Q220 326 341 378Q425 419 391 527Q362 620 248 624Q133 625 83 540Q41 455 125 390Z" fill="url(#land-healing)" stroke="#718b70" stroke-width="2"/>
+      <path d="M690 405Q793 342 925 395Q1043 442 1008 553Q978 652 850 648Q725 650 669 557Q619 473 690 405Z" fill="url(#land-love)" stroke="#9b8a5f" stroke-width="2"/>
+
+      <!-- Mountain ranges and woodland marks -->
+      <g fill="#f0e5c9" stroke="#8e846d" stroke-width="1.3" opacity=".9">
+        <path d="M118 167l36-63 28 40 26-55 43 78 28-33 42 65-78-18-36 17-44-13-40 20Z"/>
+        <path d="M442 143l34-58 27 33 33-72 43 73 35-25 34 68-72-14-36 15-46-17-35 15Z"/>
+        <path d="M801 189l34-61 31 39 36-79 45 80 28-25 38 64-77-14-42 17-43-14-39 17Z"/>
+      </g>
+      <g fill="#45694d" opacity=".72">
+        <path d="M155 455l15-32 15 32h-9l15 24h-42l15-24Z M190 478l13-28 14 28h-8l13 20h-37l13-20Z M310 460l14-30 14 30h-8l14 22h-40l14-22Z"/>
+        <path d="M750 493l14-30 14 30h-8l14 22h-40l14-22Z M785 520l12-26 13 26h-8l12 19h-34l12-19Z M940 495l15-32 15 32h-9l15 23h-42l15-23Z"/>
+      </g>
+      <g fill="#e8dfc7" stroke="#8b7959" stroke-width="1" opacity=".85">
+        <path d="M840 459l16-25 16 25-16-7Z M870 476l13-21 13 21-13-6Z M903 456l14-22 14 22-14-6Z"/>
+      </g>
+
+      <!-- The chronological river -->
+      <path class="river" d="M220 190C330 105 420 110 535 172S770 115 890 207C1000 300 640 360 260 470C430 575 680 580 830 485"/>
+      <path class="river-edge" d="M220 190C330 105 420 110 535 172S770 115 890 207C1000 300 640 360 260 470C430 575 680 580 830 485"/>
+      <path class="route" d="M245 190C320 150 420 155 510 185S700 225 870 205"/>
+      <path class="branch" d="M510 185C560 260 590 320 540 472M870 205C830 300 810 350 750 425"/>
+
+      <!-- Small settlements and map details -->
+      <g fill="#6b634e" opacity=".75">
+        <circle cx="182" cy="248" r="3"/><circle cx="196" cy="256" r="2"/><circle cx="211" cy="249" r="2.5"/>
+        <circle cx="490" cy="260" r="3"/><circle cx="503" cy="267" r="2"/><circle cx="516" cy="258" r="2.5"/>
+        <circle cx="920" cy="285" r="3"/><circle cx="934" cy="293" r="2"/><circle cx="947" cy="284" r="2.5"/>
+        <circle cx="280" cy="555" r="3"/><circle cx="294" cy="563" r="2"/><circle cx="307" cy="554" r="2.5"/>
+        <circle cx="850" cy="585" r="3"/><circle cx="864" cy="593" r="2"/><circle cx="878" cy="584" r="2.5"/>
+      </g>
+      <text x="550" y="340" class="small-label" transform="rotate(72 550 340)">THE RIVER OF YEARS</text>
+      <text x="122" y="330" class="small-label">THE OLD QUARRIES</text>
+      <text x="835" y="365" class="small-label">THE RED WILDS</text>
+      <text x="445" y="292" class="small-label">THE QUIET HEIGHTS</text>
+      <text x="130" y="592" class="small-label">THE GREENWARD</text>
+      <text x="780" y="625" class="small-label">THE GOLDEN REACH</text>
+
+      <!-- Interactive epoch markers -->
+      <g class="epoch-node" data-epoch="studio" tabindex="0" role="button" aria-label="Explore Studio Projects, 2010 to 2013" style="--node-color:#8b7446">
+        <circle class="node-halo" cx="220" cy="190" r="36"/><circle class="node-core" cx="220" cy="190" r="8"/>
+        <text class="node-title" x="220" y="143">Studio Projects</text><text class="node-years" x="220" y="160">2010 — 2013</text>
+      </g>
+      <g class="epoch-node" data-epoch="voice" tabindex="0" role="button" aria-label="Explore Voice Under the Stairs, 2013 to 2016" style="--node-color:#527d86">
+        <circle class="node-halo" cx="535" cy="172" r="36"/><circle class="node-core" cx="535" cy="172" r="8"/>
+        <text class="node-title" x="535" y="119">Voice Under the Stairs</text><text class="node-years" x="535" y="137">2013 — 2016</text>
+      </g>
+      <g class="epoch-node" data-epoch="blade" tabindex="0" role="button" aria-label="Explore The Tip of the Blade, 2017 to 2020" style="--node-color:#a66e55">
+        <circle class="node-halo" cx="890" cy="207" r="36"/><circle class="node-core" cx="890" cy="207" r="8"/>
+        <text class="node-title" x="890" y="154">The Tip of the Blade</text><text class="node-years" x="890" y="172">2017 — 2020</text>
+      </g>
+      <g class="epoch-node" data-epoch="healing" tabindex="0" role="button" aria-label="Explore Healing, 2020 to 2023" style="--node-color:#668a68">
+        <circle class="node-halo" cx="260" cy="470" r="36"/><circle class="node-core" cx="260" cy="470" r="8"/>
+        <text class="node-title" x="260" y="420">Healing</text><text class="node-years" x="260" y="438">2020 — 2023</text>
+      </g>
+      <g class="epoch-node" data-epoch="love" tabindex="0" role="button" aria-label="Explore Love Studio, 2023 to 2026" style="--node-color:#a18a4d">
+        <circle class="node-halo" cx="830" cy="485" r="36"/><circle class="node-core" cx="830" cy="485" r="8"/>
+        <text class="node-title" x="830" y="435">Love Studio</text><text class="node-years" x="830" y="453">2023 — 2026</text>
+      </g>
+
+      <!-- Compass -->
+      <g transform="translate(1010 80)" opacity=".8">
+        <circle r="31" fill="none" stroke="#8f805f"/><circle r="23" fill="none" stroke="#8f805f" stroke-dasharray="2 4"/>
+        <path d="M0-25L6 0 0 25-6 0Z" fill="#9e7c02"/><path d="M-25 0L0-6 25 0 0 6Z" fill="#f4ecd8" stroke="#8f805f"/>
+        <text x="0" y="-39" text-anchor="middle" class="small-label">N</text>
+      </g>
+      <text x="52" y="652" class="map-ornament">AJP · CARTOGRAPHY OF THE WORKS</text>
+      <text x="1048" y="652" text-anchor="end" class="map-ornament">FIVE LANDS · ONE CONTINUOUS STORY</text>
+    </svg>
+    <div class="map-legend" aria-label="Map legend">
+      <span class="legend-item"><i class="legend-dot" style="--dot:#8b7446"></i> Beginnings</span>
+      <span class="legend-item"><i class="legend-dot" style="--dot:#527d86"></i> Voice</span>
+      <span class="legend-item"><i class="legend-dot" style="--dot:#a66e55"></i> The blade</span>
+      <span class="legend-item"><i class="legend-dot" style="--dot:#668a68"></i> Healing</span>
+      <span class="legend-item"><i class="legend-dot" style="--dot:#a18a4d"></i> Love</span>
+      <span class="legend-item"><i class="legend-river"></i> Chronological river</span>
+    </div>
+  </section>
+
+  <nav class="epoch-index" aria-label="Explore the five epoch worlds">
+    <button class="epoch-index-button" type="button" data-epoch="studio" style="--epoch-colour:#8b7446"><span class="index-category">Studio Projects</span><span class="index-land">The Old Quarries</span><span class="index-years">2010 — 2013</span></button>
+    <button class="epoch-index-button" type="button" data-epoch="voice" style="--epoch-colour:#527d86"><span class="index-category">Voice Under the Stairs</span><span class="index-land">The Quiet Heights</span><span class="index-years">2013 — 2016</span></button>
+    <button class="epoch-index-button" type="button" data-epoch="blade" style="--epoch-colour:#a66e55"><span class="index-category">The Tip of the Blade</span><span class="index-land">The Red Wilds</span><span class="index-years">2017 — 2020</span></button>
+    <button class="epoch-index-button" type="button" data-epoch="healing" style="--epoch-colour:#668a68"><span class="index-category">Healing</span><span class="index-land">The Greenward</span><span class="index-years">2020 — 2023</span></button>
+    <button class="epoch-index-button" type="button" data-epoch="love" style="--epoch-colour:#a18a4d"><span class="index-category">Love Studio</span><span class="index-land">The Golden Reach</span><span class="index-years">2023 — 2026</span></button>
+  </nav>
+
+  <section class="epoch-detail" id="epoch-detail" aria-live="polite" aria-hidden="true">
+    <div class="detail-top">
+      <div>
+        <div class="detail-eyebrow" id="detail-eyebrow">A region of the archive</div>
+        <h2 id="detail-title">Choose a land</h2>
+        <div class="detail-years" id="detail-years"></div>
+        <p class="detail-description" id="detail-description"></p>
+      </div>
+      <button class="detail-close" id="detail-close" type="button" aria-label="Close epoch">Close ×</button>
+    </div>
+    <div class="detail-body">
+      <h3 id="story-heading">Stories from this land</h3>
+      <div class="epoch-stories" id="epoch-stories"></div>
+      <nav class="detail-nav" aria-label="Travel between epochs">
+        <button id="previous-epoch" type="button">← Earlier land</button>
+        <button id="next-epoch" type="button">Later land →</button>
+      </nav>
+    </div>
+  </section>
+
+  <p class="map-footnote">The map is not yet complete. More paths, places and inhabitants will appear as the archive grows.</p>
+  <p class="map-back"><a href="{{ '/news/' | relative_url }}">Return to the News archive</a></p>
+</main>
+
+<script>
+(function () {
+  const epochs = [
+    { id: 'studio', title: 'Studio Projects', years: '2010 — 2013', start: 2010, end: 2012, land: 'The Old Quarries', tone: 'The first workshops, experiments and foundations. A landscape of rough stone, handmade instruments and early paths.', colour: '#8b7446' },
+    { id: 'voice', title: 'Voice Under the Stairs', years: '2013 — 2016', start: 2013, end: 2016, land: 'The Quiet Heights', tone: 'A place of echoes, hidden rooms and the search for a voice. The paths rise into mist and open onto new perspectives.', colour: '#527d86' },
+    { id: 'blade', title: 'The Tip of the Blade', years: '2017 — 2020', start: 2017, end: 2019, land: 'The Red Wilds', tone: 'A sharper, more exposed country: difficult crossings, red earth and the edge where one life gives way to another.', colour: '#a66e55' },
+    { id: 'healing', title: 'Healing', years: '2020 — 2023', start: 2020, end: 2022, land: 'The Greenward', tone: 'A greener region of recovery, renewal and patient growth. Woodland paths branch away from the main river.', colour: '#668a68' },
+    { id: 'love', title: 'Love Studio', years: '2023 — 2026', start: 2023, end: 2026, land: 'The Golden Reach', tone: 'The latest country in this map: a meeting place for music, connection, making and the continuing work.', colour: '#a18a4d' }
+  ];
+  const stories = [
+    {% for story in stories %}
+      { title: {{ story.title | jsonify }}, url: {{ story.url | relative_url | jsonify }}, date: {{ story.date | date: "%Y-%m-%d" | jsonify }}, excerpt: {{ story.excerpt | strip_html | strip_newlines | jsonify }} }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ];
+
+  const panel = document.getElementById('epoch-detail');
+  const title = document.getElementById('detail-title');
+  const years = document.getElementById('detail-years');
+  const eyebrow = document.getElementById('detail-eyebrow');
+  const description = document.getElementById('detail-description');
+  const storyList = document.getElementById('epoch-stories');
+  const storyHeading = document.getElementById('story-heading');
+  const closeButton = document.getElementById('detail-close');
+  const previousButton = document.getElementById('previous-epoch');
+  const nextButton = document.getElementById('next-epoch');
+  const nodes = Array.from(document.querySelectorAll('.epoch-node'));
+  const indexButtons = Array.from(document.querySelectorAll('.epoch-index-button'));
+  const allEpochControls = nodes.concat(indexButtons);
+  let activeIndex = -1;
+
+  function formatDate(value) {
+    const date = new Date(value + 'T12:00:00');
+    return date.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  }
+
+  function renderStories(epoch) {
+    const matches = stories.filter(story => {
+      const year = Number(story.date.slice(0, 4));
+      return year >= epoch.start && year <= epoch.end;
+    });
+    storyList.replaceChildren();
+    storyHeading.textContent = 'Stories from ' + epoch.land;
+    if (!matches.length) {
+      const empty = document.createElement('p');
+      empty.className = 'no-stories';
+      empty.textContent = 'The paths are drawn, but no stories have been placed here yet.';
+      storyList.appendChild(empty);
+      return;
+    }
+    matches.forEach(story => {
+      const article = document.createElement('article');
+      article.className = 'epoch-story';
+      const date = document.createElement('div');
+      date.className = 'epoch-story-date';
+      date.textContent = formatDate(story.date);
+      const heading = document.createElement('h4');
+      const link = document.createElement('a');
+      link.href = story.url;
+      link.textContent = story.title;
+      heading.appendChild(link);
+      article.append(date, heading);
+      if (story.excerpt) {
+        const excerpt = document.createElement('p');
+        excerpt.textContent = story.excerpt;
+        article.appendChild(excerpt);
+      }
+      storyList.appendChild(article);
+    });
+  }
+
+  function openEpoch(index, moveFocus) {
+    if (index < 0 || index >= epochs.length) return;
+    activeIndex = index;
+    const epoch = epochs[index];
+    title.textContent = epoch.title;
+    years.textContent = epoch.years;
+    eyebrow.textContent = epoch.land + ' · region ' + String(index + 1).padStart(2, '0');
+    description.textContent = epoch.tone;
+    renderStories(epoch);
+    panel.classList.add('is-open');
+    panel.setAttribute('aria-hidden', 'false');
+    allEpochControls.forEach(control => {
+      const selected = control.dataset.epoch === epoch.id;
+      control.classList.toggle('is-active', selected);
+      control.setAttribute('aria-pressed', selected ? 'true' : 'false');
+    });
+    previousButton.disabled = index === 0;
+    nextButton.disabled = index === epochs.length - 1;
+    if (moveFocus) panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  function closeEpoch() {
+    activeIndex = -1;
+    panel.classList.remove('is-open');
+    panel.setAttribute('aria-hidden', 'true');
+    allEpochControls.forEach(control => {
+      control.classList.remove('is-active');
+      control.setAttribute('aria-pressed', 'false');
+    });
+  }
+
+  nodes.forEach((node, index) => {
+    node.setAttribute('aria-pressed', 'false');
+    node.addEventListener('click', () => {
+      if (activeIndex === index) closeEpoch();
+      else openEpoch(index, true);
+    });
+    node.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        if (activeIndex === index) closeEpoch();
+        else openEpoch(index, true);
+      }
+    });
+  });
+
+  indexButtons.forEach(button => {
+    button.setAttribute('aria-pressed', 'false');
+    button.addEventListener('click', () => {
+      const index = epochs.findIndex(epoch => epoch.id === button.dataset.epoch);
+      if (activeIndex === index) closeEpoch();
+      else openEpoch(index, true);
+    });
+  });
+
+  closeButton.addEventListener('click', closeEpoch);
+  previousButton.addEventListener('click', () => openEpoch(activeIndex - 1, false));
+  nextButton.addEventListener('click', () => openEpoch(activeIndex + 1, false));
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && activeIndex !== -1) closeEpoch();
+  });
+})();
+</script>
