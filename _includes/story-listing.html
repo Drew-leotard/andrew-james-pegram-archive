@@ -1,0 +1,20 @@
+<article class="story"
+     data-categories="{{ include.story.categories | join: ',' | downcase }}">
+
+  <div class="story-date">
+    {{ include.story.date | date: "%d %B %Y" }}
+  </div>
+
+  <h2 class="story-title">
+    <a href="{{ include.story.url | relative_url }}">
+      {{ include.story.title }}
+    </a>
+  </h2>
+
+  {% if include.story.excerpt %}
+    <div class="story-description">
+      {{ include.story.excerpt }}
+    </div>
+  {% endif %}
+
+</article>
