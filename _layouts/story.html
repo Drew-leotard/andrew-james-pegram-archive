@@ -380,40 +380,28 @@
 
     {{ content }}
 
-    <!-- CATEGORIES / TAGS -->
+  /* ================================
+   CATEGORIES
+================================ */
 
-    {% if page.categories or page.tags %}
+    <!-- CATEGORIES -->
 
-    <div class="story-meta">
+{% if page.categories %}
 
-      {% if page.categories %}
-        <span class="story-meta-label">Categories</span>
+<div class="story-meta">
 
-        {% for category in page.categories %}
-          <a href="{{ '/news/' | relative_url }}?category={{ category | url_encode }}">
-            {{ category }}
-          </a>{% unless forloop.last %}<span class="story-meta-separator">·</span>{% endunless %}
-        {% endfor %}
-      {% endif %}
+  <span class="story-meta-label">Categories</span>
 
-      {% if page.categories and page.tags %}
-        <span class="story-meta-separator">|</span>
-      {% endif %}
+  {% for category in page.categories %}
+    <a href="{{ '/news/' | relative_url }}?category={{ category | url_encode }}">
+      {{ category }}
+    </a>{% unless forloop.last %}<span class="story-meta-separator">·</span>{% endunless %}
+  {% endfor %}
 
-      {% if page.tags %}
-        <span class="story-meta-label">Tags</span>
+</div>
 
-        {% for tag in page.tags %}
-          <a href="{{ '/news/' | relative_url }}?tag={{ tag | url_encode }}">
-            {{ tag }}
-          </a>{% unless forloop.last %}<span class="story-meta-separator">·</span>{% endunless %}
-        {% endfor %}
-      {% endif %}
-
-    </div>
-
-    {% endif %}
-
+{% endif %}
+    
     {% if page.tour_dates_url or page.ticket_url %}
 
     <div class="story-actions">
@@ -447,14 +435,6 @@
         {% if page.categories and story.categories %}
           {% for category in page.categories %}
             {% if story.categories contains category %}
-              {% assign related = true %}
-            {% endif %}
-          {% endfor %}
-        {% endif %}
-
-        {% if page.tags and story.tags %}
-          {% for tag in page.tags %}
-            {% if story.tags contains tag %}
               {% assign related = true %}
             {% endif %}
           {% endfor %}
