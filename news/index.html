@@ -125,6 +125,120 @@ title: News
     color: var(--black);
   }
 
+/* ================================
+   ARCHIVE EPOCH NAVIGATION
+================================ */
+
+.epoch-navigation {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin: -5vh 0 9vh;
+  width: 100%;
+}
+
+.epoch {
+  flex: 1;
+  min-width: 0;
+  position: relative;
+  text-align: center;
+}
+
+.epoch summary {
+  list-style: none;
+  cursor: pointer;
+  font-family: "Hedvig Letters Serif", Georgia, serif;
+  font-size: 13px;
+  line-height: 1.4;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gold);
+  padding: 8px 2px;
+  transition: color 0.2s ease;
+}
+
+.epoch summary::-webkit-details-marker {
+  display: none;
+}
+
+.epoch summary:hover,
+.epoch[open] summary {
+  color: var(--green);
+}
+
+.epoch-years {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  margin-top: 4px;
+  color: var(--gold);
+  opacity: 0.8;
+}
+
+.epoch-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: min(650px, 85vw);
+  max-height: 65vh;
+  overflow-y: auto;
+  z-index: 20;
+  background: var(--white);
+  border-top: 1px solid var(--gold);
+  border-bottom: 1px solid var(--gold);
+  padding: 25px 30px;
+  text-align: left;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.06);
+}
+
+.epoch:nth-child(n+4) .epoch-dropdown {
+  left: auto;
+  right: 0;
+}
+
+.epoch-dropdown .story {
+  margin-bottom: 35px;
+}
+
+.epoch-dropdown .story:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 750px) {
+  .epoch-navigation {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px 18px;
+    margin-top: -3vh;
+    margin-bottom: 7vh;
+  }
+
+  .epoch {
+    flex: 0 0 calc(33.333% - 18px);
+  }
+
+  .epoch summary {
+    font-size: 11px;
+  }
+
+  .epoch-dropdown,
+  .epoch:nth-child(n+4) .epoch-dropdown {
+    position: static;
+    width: 100%;
+    box-sizing: border-box;
+    max-height: 55vh;
+    padding: 20px 12px;
+  }
+}
+
+@media (max-width: 450px) {
+  .epoch {
+    flex: 0 0 calc(50% - 12px);
+  }
+}
+  
   @media (max-width: 600px) {
 
     header {
@@ -165,33 +279,105 @@ title: News
 
 <h1 class="section-title" id="news-heading">News</h1>
 
-  {% assign stories = site.stories | sort: "date" | reverse %}
+ {% assign stories = site.stories | sort: "date" | reverse %}
 
-  {% for story in stories %}
+<nav class="epoch-navigation" aria-label="News archive periods">
 
-    <article class="story"
-         data-categories="{{ story.categories | join: ',' | downcase }}">
+  <!-- LOVE STUDIO: 2023–2026 -->
 
-      <div class="story-date">
-        {{ story.date | date: "%d %B %Y" }}
-      </div>
+  <details class="epoch">
+    <summary>
+      Love Studio
+      <span class="epoch-years">2023 – 2026</span>
+    </summary>
 
-      <h2 class="story-title">
-        <a href="{{ story.url | relative_url }}">
-          {{ story.title }}
-        </a>
-      </h2>
+    <div class="epoch-dropdown">
+      {% for story in stories %}
+        {% assign story_year = story.date | date: "%Y" | plus: 0 %}
+        {% if story_year >= 2023 and story_year <= 2026 %}
+          {% include story-listing.html story=story %}
+        {% endif %}
+      {% endfor %}
+    </div>
+  </details>
 
-      {% if story.excerpt %}
-        <div class="story-description">
-          {{ story.excerpt }}
-        </div>
-      {% endif %}
 
-    </article>
+  <!-- HEALING: 2020–2022 -->
 
-  {% endfor %}
+  <details class="epoch">
+    <summary>
+      Healing
+      <span class="epoch-years">2020 – 2023</span>
+    </summary>
 
+    <div class="epoch-dropdown">
+      {% for story in stories %}
+        {% assign story_year = story.date | date: "%Y" | plus: 0 %}
+        {% if story_year >= 2020 and story_year < 2023 %}
+          {% include story-listing.html story=story %}
+        {% endif %}
+      {% endfor %}
+    </div>
+  </details>
+
+
+  <!-- THE TIP OF THE BLADE: 2017–2019 -->
+
+  <details class="epoch">
+    <summary>
+      The Tip of the Blade
+      <span class="epoch-years">2017 – 2020</span>
+    </summary>
+
+    <div class="epoch-dropdown">
+      {% for story in stories %}
+        {% assign story_year = story.date | date: "%Y" | plus: 0 %}
+        {% if story_year >= 2017 and story_year < 2020 %}
+          {% include story-listing.html story=story %}
+        {% endif %}
+      {% endfor %}
+    </div>
+  </details>
+
+
+  <!-- VOICE UNDER THE STAIRS: 2013–2016 -->
+
+  <details class="epoch">
+    <summary>
+      Voice Under the Stairs
+      <span class="epoch-years">2013 – 2016</span>
+    </summary>
+
+    <div class="epoch-dropdown">
+      {% for story in stories %}
+        {% assign story_year = story.date | date: "%Y" | plus: 0 %}
+        {% if story_year >= 2013 and story_year <= 2016 %}
+          {% include story-listing.html story=story %}
+        {% endif %}
+      {% endfor %}
+    </div>
+  </details>
+
+
+  <!-- STUDIO PROJECTS: 2010–2012 -->
+
+  <details class="epoch">
+    <summary>
+      Studio Projects
+      <span class="epoch-years">2010 – 2013</span>
+    </summary>
+
+    <div class="epoch-dropdown">
+      {% for story in stories %}
+        {% assign story_year = story.date | date: "%Y" | plus: 0 %}
+        {% if story_year >= 2010 and story_year < 2013 %}
+          {% include story-listing.html story=story %}
+        {% endif %}
+      {% endfor %}
+    </div>
+  </details>
+
+</nav>
 <footer>
   <a id="news-back-link" href="{{ '/news/' | relative_url }}">
     ← All stories
