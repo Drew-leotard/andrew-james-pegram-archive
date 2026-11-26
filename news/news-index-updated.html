@@ -1,0 +1,473 @@
+---
+layout: default
+title: News
+---
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&family=IM+Fell+English:ital@0;1&display=swap');
+
+  :root {
+    --gold: #9E7C02C9;
+    --green: #174A1CCC;
+    --black: #000000;
+    --white: #ffffff;
+  }
+
+  body {
+    margin: 0;
+    background: var(--white);
+    color: var(--black);
+    font-family: "Hedvig Letters Serif", Georgia, serif;
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  header {
+    padding: 28px 5vw;
+    font-family: "Hedvig Letters Serif", Georgia, serif;
+    font-size: 14px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border-bottom: none;
+  }
+
+  header a {
+    color: var(--gold);
+    text-decoration: none;
+  }
+
+  main {
+    max-width: 1000px;
+    margin: 8vh auto 10vh;
+    padding: 0 5vw;
+  }
+
+  .section-title {
+    display: block;
+    width: fit-content;
+    margin: 0 auto 10vh;
+    font-family: "IM Fell English", Georgia, serif;
+    font-size: 32px;
+    line-height: 1;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, var(--gold) 0%, var(--green) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .story {
+    margin-bottom: 9vh;
+  }
+
+  .story-date {
+    font-family: "Hedvig Letters Serif", Georgia, serif;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+
+  .story-title {
+    font-family: "Hedvig Letters Serif", Georgia, serif;
+    font-size: 30px;
+    line-height: 1.05;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    margin: 0;
+    text-transform: uppercase;
+  }
+
+  .story-title a {
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  .story-title a:hover {
+    color: var(--gold);
+  }
+
+  .story-description {
+    max-width: 600px;
+    margin-top: 14px;
+    font-family: "Hedvig Letters Serif", Georgia, serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--black);
+  }
+
+  footer {
+    margin-top: 12vh;
+    padding-top: 25px;
+    border-top: 1px solid var(--gold);
+    font-family: "Hedvig Letters Serif", Georgia, serif;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  footer a {
+    color: var(--gold);
+    text-decoration: none;
+  }
+
+  footer a:hover {
+    color: var(--black);
+  }
+
+  /* CURRENT ARTICLES */
+
+  .current-articles {
+    margin-bottom: 10vh;
+  }
+
+  /* ARCHIVE EPOCH SELECTOR */
+
+  .epoch-navigation {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 12px;
+    width: 100%;
+    margin: 0 0 7vh;
+  }
+
+  .epoch-button {
+    flex: 1;
+    min-width: 0;
+    padding: 18px 12px;
+    border: 1px solid var(--gold);
+    background: var(--white);
+    color: var(--gold);
+    font-family: "Hedvig Letters Serif", Georgia, serif;
+    font-size: 13px;
+    line-height: 1.4;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  }
+
+  .epoch-button:hover,
+  .epoch-button.active {
+    background: var(--green);
+    border-color: var(--green);
+    color: var(--white);
+  }
+
+  .epoch-years {
+    display: block;
+    margin-top: 5px;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    opacity: 0.8;
+  }
+
+  /* EPOCH ARTICLE PANELS */
+
+  .epoch-panel {
+    margin-top: 0;
+    padding-top: 2vh;
+  }
+
+  .epoch-panel[hidden],
+  .epoch-button[hidden],
+  .story[hidden] {
+    display: none !important;
+  }
+
+  .epoch-panel .story {
+    margin-bottom: 9vh;
+  }
+
+  @media (max-width: 750px) {
+    .epoch-navigation {
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 6vh;
+    }
+
+    .epoch-button {
+      flex: 0 0 calc(33.333% - 10px);
+      box-sizing: border-box;
+      padding: 14px 8px;
+      font-size: 11px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    header {
+      padding: 22px 6vw;
+    }
+
+    main {
+      margin-top: 6vh;
+      padding: 0 6vw;
+    }
+
+    .section-title {
+      font-size: clamp(40px, 12vw, 58px);
+      margin-bottom: 8vh;
+    }
+
+    .story {
+      margin-bottom: 8vh;
+    }
+
+    .story-title {
+      font-size: clamp(23px, 7vw, 32px);
+    }
+
+    .story-description {
+      font-size: 15px;
+    }
+  }
+
+  @media (max-width: 450px) {
+    .epoch-button {
+      flex: 0 0 calc(50% - 8px);
+      padding: 13px 7px;
+      font-size: 11px;
+    }
+  }
+</style>
+
+<header>
+  <a href="https://andrewjamespegram.carrd.co/">
+    Andrew James Pegram
+  </a>
+</header>
+
+<main>
+
+  <h1 class="section-title" id="news-heading">News</h1>
+
+  {% assign stories = site.stories | sort: "date" | reverse %}
+
+  <!-- CURRENT ARTICLES: 2027 ONWARDS -->
+
+  <div class="current-articles">
+    {% for story in stories %}
+      {% assign story_year = story.date | date: "%Y" | plus: 0 %}
+      {% if story_year >= 2027 %}
+        {% include story-listing.html story=story %}
+      {% endif %}
+    {% endfor %}
+  </div>
+
+
+  <!-- HISTORICAL EPOCH SELECTOR -->
+
+  <nav class="epoch-navigation" aria-label="News archive periods">
+
+    <button class="epoch-button" type="button" data-epoch="love-studio" aria-expanded="false">
+      Love Studio
+      <span class="epoch-years">2023 – 2026</span>
+    </button>
+
+    <button class="epoch-button" type="button" data-epoch="healing" aria-expanded="false">
+      Healing
+      <span class="epoch-years">2020 – 2023</span>
+    </button>
+
+    <button class="epoch-button" type="button" data-epoch="tip-of-the-blade" aria-expanded="false">
+      The Tip of the Blade
+      <span class="epoch-years">2017 – 2020</span>
+    </button>
+
+    <button class="epoch-button" type="button" data-epoch="voice-under-the-stairs" aria-expanded="false">
+      Voice Under the Stairs
+      <span class="epoch-years">2013 – 2016</span>
+    </button>
+
+    <button class="epoch-button" type="button" data-epoch="studio-projects" aria-expanded="false">
+      Studio Projects
+      <span class="epoch-years">2010 – 2013</span>
+    </button>
+
+  </nav>
+
+
+  <!-- EPOCH ARTICLES -->
+
+  <section class="epoch-panel" id="love-studio" hidden>
+    {% for story in stories %}
+      {% assign story_year = story.date | date: "%Y" | plus: 0 %}
+      {% if story_year >= 2023 and story_year <= 2026 %}
+        {% include story-listing.html story=story %}
+      {% endif %}
+    {% endfor %}
+  </section>
+
+  <section class="epoch-panel" id="healing" hidden>
+    {% for story in stories %}
+      {% assign story_year = story.date | date: "%Y" | plus: 0 %}
+      {% if story_year >= 2020 and story_year < 2023 %}
+        {% include story-listing.html story=story %}
+      {% endif %}
+    {% endfor %}
+  </section>
+
+  <section class="epoch-panel" id="tip-of-the-blade" hidden>
+    {% for story in stories %}
+      {% assign story_year = story.date | date: "%Y" | plus: 0 %}
+      {% if story_year >= 2017 and story_year < 2020 %}
+        {% include story-listing.html story=story %}
+      {% endif %}
+    {% endfor %}
+  </section>
+
+  <section class="epoch-panel" id="voice-under-the-stairs" hidden>
+    {% for story in stories %}
+      {% assign story_year = story.date | date: "%Y" | plus: 0 %}
+      {% if story_year >= 2013 and story_year <= 2016 %}
+        {% include story-listing.html story=story %}
+      {% endif %}
+    {% endfor %}
+  </section>
+
+  <section class="epoch-panel" id="studio-projects" hidden>
+    {% for story in stories %}
+      {% assign story_year = story.date | date: "%Y" | plus: 0 %}
+      {% if story_year >= 2010 and story_year < 2013 %}
+        {% include story-listing.html story=story %}
+      {% endif %}
+    {% endfor %}
+  </section>
+
+
+  <footer>
+    <a id="news-back-link" href="{{ '/news/' | relative_url }}">
+      ← All stories
+    </a>
+  </footer>
+
+</main>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const params = new URLSearchParams(window.location.search);
+  const category = params.get("category");
+
+  const stories = document.querySelectorAll(".story");
+  const buttons = document.querySelectorAll(".epoch-button");
+  const panels = document.querySelectorAll(".epoch-panel");
+
+  const heading = document.getElementById("news-heading");
+  const backLink = document.getElementById("news-back-link");
+
+
+  // CATEGORY FILTERING
+
+  if (category) {
+
+    const selectedCategory = category.trim().toLowerCase();
+    let visibleCount = 0;
+
+    stories.forEach(function (story) {
+
+      const categories = (story.dataset.categories || "")
+        .split(",")
+        .map(function (item) {
+          return item.trim().toLowerCase();
+        });
+
+      const matches = categories.includes(selectedCategory);
+      story.hidden = !matches;
+
+      if (matches) visibleCount++;
+
+    });
+
+    // Hide archive buttons whose epoch has no matching stories
+    buttons.forEach(function (button) {
+
+      const panel = document.getElementById(button.dataset.epoch);
+      const visibleStories = panel.querySelectorAll(".story:not([hidden])");
+
+      button.hidden = visibleStories.length === 0;
+
+    });
+
+    if (heading) {
+      heading.textContent = category + " stories";
+    }
+
+    if (backLink) {
+      backLink.textContent = "← All stories";
+    }
+
+    if (visibleCount === 0) {
+
+      const main = document.querySelector("main");
+      const message = document.createElement("p");
+
+      message.textContent = "No stories found in this category.";
+      message.id = "no-category-stories";
+
+      main.insertBefore(message, document.querySelector("footer"));
+
+    }
+
+  }
+
+
+  // EPOCH SELECTION
+
+  function resetEpochs() {
+
+    buttons.forEach(function (button) {
+      button.classList.remove("active");
+      button.setAttribute("aria-expanded", "false");
+    });
+
+    panels.forEach(function (panel) {
+      panel.hidden = true;
+    });
+
+    if (heading) {
+      heading.textContent = category ? category + " stories" : "News";
+    }
+
+  }
+
+
+  buttons.forEach(function (button) {
+
+    button.addEventListener("click", function () {
+
+      const selectedPanel = document.getElementById(button.dataset.epoch);
+      const alreadyActive = button.classList.contains("active");
+
+      // Clicking the active epoch again returns to the general News view
+      if (alreadyActive) {
+        resetEpochs();
+        return;
+      }
+
+      // Close any previously selected epoch
+      resetEpochs();
+
+      // Display the selected epoch's articles below the selector
+      button.classList.add("active");
+      button.setAttribute("aria-expanded", "true");
+      selectedPanel.hidden = false;
+
+      // Use the button's visible title, excluding the year label
+      const title = button.firstChild.textContent.trim();
+
+      if (heading) {
+        heading.textContent = title;
+      }
+
+    });
+
+  });
+
+});
+</script>
