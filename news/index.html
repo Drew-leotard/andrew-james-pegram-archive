@@ -391,12 +391,36 @@ document.addEventListener("DOMContentLoaded", function () {
   const params = new URLSearchParams(window.location.search);
   const category = params.get("category");
 
-  if (!category) return;
+  const stories = document.querySelectorAll(".story");
+  const epochs = document.querySelectorAll(".epoch");
+
+  const heading = document.getElementById("news-heading");
+  const backLink = document.getElementById("news-back-link");
+
+  // Remove any previous no-results message
+  const oldMessage = document.getElementById("no-category-stories");
+  if (oldMessage) oldMessage.remove();
+
+  // No category selected: show everything
+  if (!category) {
+    stories.forEach(function (story) {
+      story.hidden = false;
+    });
+
+    epochs.forEach(function (epoch) {
+      epoch.hidden = false;
+    });
+
+    if (heading) heading.textContent = "News";
+    if (backLink) backLink.textContent = "← All stories";
+
+    return;
+  }
 
   const selectedCategory = category.trim().toLowerCase();
-  const stories = document.querySelectorAll(".story");
   let visibleCount = 0;
 
+  // Filter individual stories
   stories.forEach(function (story) {
     const categories = (story.dataset.categories || "")
       .split(",")
@@ -410,21 +434,29 @@ document.addEventListener("DOMContentLoaded", function () {
     if (matches) visibleCount++;
   });
 
-  const heading = document.getElementById("news-heading");
+  // Hide epochs containing no matching stories
+  epochs.forEach(function (epoch) {
+    const visibleStories = epoch.querySelectorAll(".story:not([hidden])");
+    epoch.hidden = visibleStories.length === 0;
+  });
+
+  // Update heading and back link
   if (heading) {
     heading.textContent = category + " stories";
   }
 
-  const backLink = document.getElementById("news-back-link");
   if (backLink) {
     backLink.textContent = "← All stories";
   }
 
+  // Show message if no stories match
   if (visibleCount === 0) {
     const main = document.querySelector("main");
     const message = document.createElement("p");
+
     message.textContent = "No stories found in this category.";
     message.id = "no-category-stories";
+
     main.insertBefore(message, document.querySelector("footer"));
   }
 });
